@@ -1,19 +1,27 @@
 package com.geobim.teamtask.util;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * <pre>
@@ -30,6 +38,197 @@ public final class FileUtils {
     }
 
     private static final String LINE_SEP = System.getProperty("line.separator");
+
+    /**
+     * 创建文件夹
+     * @param path
+     */
+    public static void mkdir(String path) {
+        File destDir = new File(path);
+        if (!destDir.isFile()) {
+            if (!destDir.exists()) {
+                destDir.mkdirs();
+            }
+        }
+    }
+
+    /**
+     *  写入加密文件
+     * @param filepath
+     * @param content
+     * @param key
+     */
+    public static void writeDesEncryptFile(String filepath, String content, String key) {
+        // content获取设备ID,当前日期作为加密内容
+        // key为加密钥匙
+        // 获得返回值：密钥
+        content = DesEncrypt.encode(key == null ? "geobim" : key, content);
+        try {
+            // 创建文件
+            File file = new File(filepath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            if (file.exists() && file.isFile()) {
+                String c = readDesEncryptFile(filepath);// 读取filepath中的文件，如果是空文件则写入密钥
+                if (c == null || "".equals(c)) {
+                    // 写入，输出流
+                    FileOutputStream fos = new FileOutputStream(file);
+                    OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+                    BufferedWriter bw = new BufferedWriter(osw);
+                    bw.write(content);
+                    Log.i("wy", "成功写入文件");
+                    bw.flush();
+                    bw.close();
+                    osw.close();
+                    fos.close();
+                } else {
+                    Log.i("wy", "c不为空");
+                }
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    /**
+     *  写入登录时间
+     * @param filepath
+     * @param content
+     * @param key
+     */
+    public static void writeDesEncryptFileLogin(String filepath, String content, String key) {
+        content = DesEncrypt.encode(key == null ? "geobim" : key, content);
+        try {
+            File file = new File(filepath);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            if (file.isFile() && file.exists()) {
+                String c = readDesEncryptFile(filepath);
+                if (c == null || "".equals(c)) {
+                    FileOutputStream fos = new FileOutputStream(file);
+                    OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+                    BufferedWriter bw = new BufferedWriter(osw);
+                    bw.write(content);
+                    bw.close();
+                    osw.close();
+                    fos.close();
+                } else {
+                    String temp = DesEncrypt.decode(key == null ? "geobim" : key, c);
+                    String[] tempArray = temp.split(",");
+                    if (tempArray.length >= 3) {
+                        if (tempArray[2].equals("unlogin")) {
+                            FileOutputStream fos = new FileOutputStream(file);
+                            OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+                            BufferedWriter bw = new BufferedWriter(osw);
+                            bw.write(content);
+                            bw.close();
+                            osw.close();
+                            fos.close();
+                        }
+                    } else {
+                        FileOutputStream fos = new FileOutputStream(file);
+                        OutputStreamWriter osw = new OutputStreamWriter(fos, "UTF-8");
+                        BufferedWriter bw = new BufferedWriter(osw);
+                        bw.write(content);
+                        bw.close();
+                        osw.close();
+                        fos.close();
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+
+        }
+    }
+
+    /**
+     * 读文件
+     *
+     * @return
+     */
+    public static String readDesEncryptFile(String filepath) {
+        String content = "";
+        try {
+            File file = new File(filepath);
+            if (file.isFile() && file.exists()) {
+                InputStreamReader read = new InputStreamReader(new FileInputStream(file), "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(read);
+                String lineTxt = null;
+                while ((lineTxt = bufferedReader.readLine()) != null) {
+                    System.out.println(lineTxt);
+                    content = lineTxt;
+                }
+
+                read.close();
+            }
+        } catch (Exception e) {
+
+        }
+        return content;
+    }
+
+    /**
+     * 判断文件的格式
+     * @param filename 文件名
+     * @param format 格式
+     * @return
+     */
+    public static boolean isFormat(String filename,String format){
+        if((filename.toLowerCase(Locale.getDefault())).endsWith(format)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * 把assets中的文件拷贝到文件夹里
+     *
+     * @param isCover 是否覆盖已存在的目标文件
+     * @param source
+     * @param dest
+     */
+    public static void copyFromAssetsToSdcard(Context context, boolean isCover, String source, String dest) {
+        File file = new File(dest);
+        if (isCover || (!isCover && !file.exists())) {
+            InputStream is = null;
+            FileOutputStream fos = null;
+            try {
+                is = context.getResources().getAssets().open(source);
+                String path = dest;
+                fos = new FileOutputStream(path);
+                byte[] buffer = new byte[1024];
+                int size = 0;
+                while ((size = is.read(buffer, 0, 1024)) >= 0) {
+                    fos.write(buffer, 0, size);
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fos != null) {
+                    try {
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                try {
+                    if (is != null) {
+                        is.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 
     /**
      * 根据文件路径获取文件
