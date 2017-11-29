@@ -48,7 +48,8 @@
 	            android:textColorHint="#ffffff"
 	            android:textSize="@dimen/common_text_size16"
 	            android:textColor="#ffffff"
-	            android:background="@null"/>
+	            android:background="@null"
+				android:textCursorDrawable="@drawable/style_edittext_cursor_white"/>
 	    </LinearLayout>
 	    <LinearLayout 
 	        android:layout_width="match_parent"
@@ -84,7 +85,8 @@
 	            android:textSize="@dimen/common_text_size16"
 	            android:textColor="#ffffff"
 	            android:inputType="textPassword"
-	            android:background="@null"/>
+	            android:background="@null"
+				android:textCursorDrawable="@drawable/style_edittext_cursor_white"/>
 	    </LinearLayout>
 	    <RelativeLayout
 	        android:id="@+id/rl_login_savepassword"
