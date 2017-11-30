@@ -4,6 +4,7 @@ import java.util.Map;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -30,6 +31,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
@@ -39,7 +41,6 @@ import com.geobim.teamtask.ui.TitanicTextView.TitanicTextView;
 import com.geobim.teamtask.util.*;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoginActivity extends BaseActivity implements OnClickListener, OnFocusChangeListener, OnTouchListener {
     private static final String TAG = "LoginActivity";
@@ -57,11 +58,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     private LoginThread loginThread;        //登录验证线程
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     protected void initVariables() {
 
     }
@@ -69,7 +65,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
-        StatusBarUtil.setTranslucent(LoginActivity.this, 0);
+        StatusBarUtil.setTranslucent(LoginActivity.this, 0);//状态栏半透明
         rl_login = findViewById(R.id.rl_login);
         rl_login_savepassword = findViewById(R.id.rl_login_savepassword);
         et_username = findViewById(R.id.et_login_username);
@@ -310,13 +306,34 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         tv_login.startAnimation(down);//设置按钮运行该动画效果
     }
 
+    /**
+     * 虚拟返回键
+     * @param keyCode
+     * @param event
+     * @return
+     */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            SweetAlertDialog sd = new SweetAlertDialog(this);
-            sd.setCancelable(true);
-            sd.setCanceledOnTouchOutside(true);
-            sd.show();
+            SweetAlertDialog sad = new SweetAlertDialog(this);
+//            sd.setCancelable(true);
+//            sd.setCanceledOnTouchOutside(true);
+            sad.setTitleText("确认退出TeamTask吗？");
+            sad.setConfirmText("退出");
+            sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                    finish();
+                }
+            });
+            sad.setCancelText("取消");
+            sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                    sweetAlertDialog.dismiss();
+                }
+            });
+            sad.show();
         }
         return false;
     }

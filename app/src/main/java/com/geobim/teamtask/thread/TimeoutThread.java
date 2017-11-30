@@ -6,8 +6,8 @@ import java.util.TimerTask;
 import android.os.Handler;
 import android.os.Message;
 /**
- * ��ʱ�ж��߳���
- * ����ʱ15s����0���ͳ�ʱmessage
+ * 超时判断线程类
+ * 倒计时15s，到0后发送超时message
  * @author Administrator
  *
  */
@@ -17,31 +17,31 @@ public class TimeoutThread extends Thread{
 	public TimeoutThread(Handler handler){
 		mHandler=handler;
 	}
-	
+
 	public Timer timer = new Timer();
 	public TimerTask timerTask = new TimerTask() {
-		
+
 		@Override
 		public void run() {
-			Message msgMessage = new Message();  
-            msgMessage.what = 1;  
-            mHandler.sendMessage(msgMessage);  
+			Message msgMessage = new Message();
+			msgMessage.what = 1;
+			mHandler.sendMessage(msgMessage);
 		}
 	};
-    //�̳�Thread�࣬����д��run����        
+	//继承Thread类，并改写其run方法
 	@Override
-    public void run(){  
+	public void run(){
 		super.run();
-	    timer.schedule(timerTask, timeOutSet);
-    }  
-	
+		timer.schedule(timerTask, timeOutSet);
+	}
+
 	/**
-	 * ȡ����ʱ��
+	 * 取消定时器
 	 */
 	public void cancelTimer(){
 		if (timerTask != null){
-			timerTask.cancel();  //��ԭ����Ӷ������Ƴ�
-	 
+			timerTask.cancel();  //将原任务从队列中移除
+
 		}
 		if (timer != null){
 			timer.cancel();
