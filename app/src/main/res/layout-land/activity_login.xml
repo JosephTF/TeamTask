@@ -165,32 +165,20 @@
 	        android:paddingLeft="@dimen/common_space_size12"/>
     </RelativeLayout>
     <!-- 头部：LOGO+标题 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/login_ll_mid"
-        android:layout_marginTop="@dimen/common_space_size30"
-        android:layout_marginStart="@dimen/common_space_size10"
-        android:layout_marginEnd="@dimen/common_space_size10"
-        android:layout_marginBottom="@dimen/common_space_size30"
-        android:gravity="center"
-        android:orientation="vertical">
-        <TextView
-			android:id="@+id/login_logo_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_title1"
-            android:textSize="@dimen/common_text_size34"
-            android:textColor="#ffffff"/>
-        <TextView 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/common_space_size4"
-            android:text="@string/login_title2"
-            android:textSize="@dimen/common_text_size16"
-            android:textColor="#ffffff"/>
-    </LinearLayout>
+	<TextView
+		android:id="@+id/login_logo_title"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_above="@id/login_ll_mid"
+		android:layout_marginStart="@dimen/common_space_size10"
+		android:layout_marginEnd="@dimen/common_space_size10"
+		android:layout_marginBottom="@dimen/common_space_size10"
+		android:gravity="center"
+		android:text="@string/login_title1"
+		android:textSize="@dimen/common_text_size24"
+		android:textColor="#ffffff"/>
+
     <!-- 尾部：版权声明 -->
 	<TextView 
 	    android:layout_width="wrap_content"

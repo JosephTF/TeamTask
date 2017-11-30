@@ -4,8 +4,8 @@ import android.os.Environment;
 
 public class ApkUtil {
 	/**
-	 * 设置或获取APK安装路径
-	 * @return
+	 * 获取APK安装路径
+	 * @return path
 	 */
 	public static String getApkPath(){
 		return Environment.getExternalStorageDirectory() + "/TeamTask/";
@@ -13,7 +13,7 @@ public class ApkUtil {
 
 	/**
 	 * 获取Mob服务端的key值
-	 * @return
+	 * @return key值
 	 */
 	public static String getMobKey(){
 		return "21b75ceb709c0";
@@ -21,7 +21,7 @@ public class ApkUtil {
 
 	/**
 	 * 获取Mob服务端的secret值
-	 * @return
+	 * @return secret值
 	 */
 	public static String getMobSecret(){
 		return "d12751d8470be51cd1f58bf734ef4800";

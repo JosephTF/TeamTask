@@ -1,7 +1,6 @@
 package com.geobim.teamtask.activity;
 
 import android.Manifest;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -19,6 +18,7 @@ import java.io.File;
 
 /**
  * 启动界面
+ * 需要完成的功能：判断是否有用户登录过，获取密码，直接登录跳转到主页面
  * @author Joseph
  * 2017.10.18重构
  *

@@ -5,6 +5,7 @@ import java.util.Map;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -48,7 +49,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     private RelativeLayout rl_login, rl_login_savepassword;
     private EditText et_username, et_password;
     private ImageView iv_username, iv_password;
-    private TextView tv_login, tv_forget, tv_register;
+    private TextView tv_logo_title, tv_login, tv_forget, tv_register;
     private SmoothCheckBox cb_save;            //记住密码CheckBox
     private LoginSaveUtil loginService;        //用户密码保存
     private PopupWindow mPopupWindow;        //搭载Loading
@@ -56,10 +57,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     private TitanicTextView ttv_loading;    //Loading控件
     private TimeoutThread timeoutThread;    //超时判断线程
     private LoginThread loginThread;        //登录验证线程
+    private Typeface tf;
 
     @Override
     protected void initVariables() {
-
+        tf = Typeface.createFromAsset(getAssets(), "fonts/ArvoRegular.ttf");
     }
 
     @Override
@@ -72,10 +74,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         et_password = findViewById(R.id.et_login_password);
         iv_username = findViewById(R.id.iv_login_username);
         iv_password = findViewById(R.id.iv_login_password);
+        tv_logo_title = findViewById(R.id.login_logo_title);
         tv_login = findViewById(R.id.login_start);
         tv_forget = findViewById(R.id.login_forget);
         tv_register = findViewById(R.id.login_register);
         cb_save = findViewById(R.id.cb_login_savelogin);
+        tv_logo_title.setTypeface(tf);
         tv_login.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
         tv_register.setOnClickListener(this);
@@ -113,7 +117,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                 boolean isConnect = NetworkUtils.isAvailableByPing();
                 Log.i(TAG, "isConnect:" + isConnect);
                 if (isConnect) {
-                    //网络已连接
+                    /**
+                     * 网络连接状态
+                     */
                     username = et_username.getText().toString().trim();
                     password = et_password.getText().toString();
                     if (TextUtils.isEmpty(username)) {
@@ -132,17 +138,38 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                         showPopupLoading(true);//验证信息的时候显示ProgressBar等待图标，验证成功直接切Activity不用隐藏，验证不成功再隐藏等待用户再次验证
                         login();
                     }
+                }else{
+                    /**
+                     * 没有网络状态
+                     */
+                    SweetAlertDialog sad = new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE);
+                    sad.setTitleText("网络错误");
+                    sad.setContentText("网络不可用，请先设置网络！");
+                    sad.setConfirmText("设置");
+                    sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS));
+                        }
+                    });
+                    sad.setCancelText("取消");
+                    sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.dismiss();
+                        }
+                    });
+                    sad.show();
                 }
                 break;
             case R.id.login_forget:
-                Toast.makeText(this, "请联系管理员获取密码", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "功能研发中…", Toast.LENGTH_LONG).show();
                 break;
             case R.id.rl_login_savepassword:
                 cb_save.performClick();
                 break;
             case R.id.login_register:
-                Toast.makeText(LoginActivity.this, "暂不启动", Toast.LENGTH_SHORT).show();
-                this.finish();
+                Toast.makeText(LoginActivity.this, "暂时只开放内部用户使用，敬请期待新版本！", Toast.LENGTH_SHORT).show();
             default:
                 break;
         }
@@ -308,6 +335,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
 
     /**
      * 虚拟返回键
+     *
      * @param keyCode
      * @param event
      * @return
