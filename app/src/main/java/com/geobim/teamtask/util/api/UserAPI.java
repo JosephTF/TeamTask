@@ -2,6 +2,8 @@ package com.geobim.teamtask.util.api;
 
 /**
  * 用户管理API
+ * 账号：13826510352
+ * 密码：111111
  * Created by Joseph on 2017/11/30.
  */
 

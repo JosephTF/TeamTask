@@ -2,12 +2,16 @@ package com.geobim.teamtask.util;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.cazaea.sweetalert.SweetAlertDialog;
+import com.geobim.teamtask.R;
 
 import java.lang.reflect.Method;
 import java.net.InetAddress;
@@ -69,37 +73,45 @@ public final class NetworkUtils {
 
     /**
      * 判断网络是否可用
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-     * <p>需要异步ping，如果ping不通就说明网络不可用</p>
-     * <p>ping的ip为阿里巴巴公共ip：223.5.5.5</p>
      *
      * @return {@code true}: 可用<br>{@code false}: 不可用
      */
-    public static boolean isAvailableByPing() {
-        return isAvailableByPing(null);
+    public static boolean isAvailableByPing(Context context) {
+        boolean flag = false;
+        //得到网络连接信息
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        //去进行判断网络是否连接
+        NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            flag = manager.getActiveNetworkInfo().isAvailable();
+        }else{
+            //对未连接和已连接分别进行处理
+            setNetwork(context);
+        }
+        return flag;
     }
-
     /**
-     * 判断网络是否可用
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.INTERNET"/>}</p>
-     * <p>需要异步ping，如果ping不通就说明网络不可用</p>
-     *
-     * @param ip ip地址（自己服务器ip），如果为空，ip为阿里巴巴公共ip
-     * @return {@code true}: 可用<br>{@code false}: 不可用
+     * 网络未连接时，弹出提示
      */
-    public static boolean isAvailableByPing(String ip) {
-        if (ip == null || ip.length() <= 0) {
-            ip = "223.5.5.5";// 阿里巴巴公共ip
-        }
-        ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", ip), false);
-        boolean ret = result.result == 0;
-        if (result.errorMsg != null) {
-            Log.d("NetworkUtils", "isAvailableByPing() called" + result.errorMsg);
-        }
-        if (result.successMsg != null) {
-            Log.d("NetworkUtils", "isAvailableByPing() called" + result.successMsg);
-        }
-        return ret;
+    private static void setNetwork(final Context context){
+        SweetAlertDialog sad = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("网络错误");
+        sad.setContentText("网络不可用，请先设置网络！");
+        sad.setConfirmText("设置");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                context.startActivity(new Intent(android.provider.Settings.ACTION_WIFI_SETTINGS));
+            }
+        });
+        sad.setCancelText("取消");
+        sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
     }
 
     /**
@@ -202,7 +214,7 @@ public final class NetworkUtils {
      * @return {@code true}: 是<br>{@code false}: 否
      */
     public static boolean isWifiAvailable() {
-        return getWifiEnabled() && isAvailableByPing();
+        return getWifiEnabled();
     }
 
     /**

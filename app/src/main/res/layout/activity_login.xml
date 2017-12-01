@@ -95,7 +95,7 @@
 	        android:layout_marginTop="@dimen/common_space_size6"
 	        android:gravity="center_vertical">
 	        <TextView 
-	            android:id="@+id/login_savepassword"
+	            android:id="@+id/tv_login_savepassword"
 	            android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_marginRight="@dimen/common_space_size10"
@@ -110,7 +110,7 @@
 		        android:layout_width="@dimen/common_space_size14"
 	        	android:layout_height="@dimen/common_space_size14"
 	        	android:layout_centerVertical="true"
-	        	android:layout_toLeftOf="@id/login_savepassword"
+	        	android:layout_toLeftOf="@id/tv_login_savepassword"
 	            app:color_checked="#ddFF6633"/>
 	    </RelativeLayout>
     </LinearLayout>

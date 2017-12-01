@@ -92,10 +92,10 @@
 	        android:id="@+id/rl_login_savepassword"
 	        android:layout_width="match_parent"
         	android:layout_height="wrap_content"
-	        android:layout_marginTop="@dimen/common_space_size6"
+	        android:layout_marginTop="@dimen/common_space_size10"
 	        android:gravity="center_vertical">
-	        <TextView 
-	            android:id="@+id/login_savepassword"
+	        <TextView
+	            android:id="@+id/tv_login_savepassword"
 	            android:layout_width="wrap_content"
 	        	android:layout_height="wrap_content"
 	        	android:layout_marginRight="@dimen/common_space_size10"
@@ -110,7 +110,7 @@
 		        android:layout_width="@dimen/common_space_size14"
 	        	android:layout_height="@dimen/common_space_size14"
 	        	android:layout_centerVertical="true"
-	        	android:layout_toLeftOf="@id/login_savepassword"
+	        	android:layout_toLeftOf="@id/tv_login_savepassword"
 	            app:color_checked="#ddFF6633"/>
 	    </RelativeLayout>
     </LinearLayout>
@@ -126,16 +126,16 @@
         android:gravity="center"
         android:singleLine="true"
         android:background="@drawable/style_login_selector"
-        android:layout_marginTop="@dimen/common_space_size24"
+        android:layout_marginTop="@dimen/common_space_size12"
         android:layout_marginStart="@dimen/common_space_size40"
         android:layout_marginEnd="@dimen/common_space_size40"/>
-    <RelativeLayout 
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_start"
 		android:layout_marginTop="@dimen/common_space_size12"
         android:orientation="horizontal">
-	    <View 
+	    <View
 	       android:id="@+id/login_divider"
            android:layout_width="@dimen/common_space_size1"
            android:layout_height="@dimen/common_space_size16"
@@ -173,7 +173,7 @@
 		android:layout_above="@id/login_ll_mid"
 		android:layout_marginStart="@dimen/common_space_size10"
 		android:layout_marginEnd="@dimen/common_space_size10"
-		android:layout_marginBottom="@dimen/common_space_size10"
+		android:layout_marginBottom="@dimen/common_space_size30"
 		android:gravity="center"
 		android:text="@string/login_title1"
 		android:textSize="@dimen/common_text_size24"

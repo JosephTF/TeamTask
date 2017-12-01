@@ -37,5 +37,229 @@ public class User {
     private CompanyInfo companyInfo;                //单位信息
     private WorkInfo workInfo;                      //工种信息
     private TrainingInfo trainingInfo;              //培训信息
+    private Attachments attachments;                //附件信息
 
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getIDCard() {
+        return IDCard;
+    }
+
+    public void setIDCard(String IDCard) {
+        this.IDCard = IDCard;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getJobPosition() {
+        return jobPosition;
+    }
+
+    public void setJobPosition(String jobPosition) {
+        this.jobPosition = jobPosition;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(String maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public String getNativePlace() {
+        return nativePlace;
+    }
+
+    public void setNativePlace(String nativePlace) {
+        this.nativePlace = nativePlace;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getEducationLevel() {
+        return educationLevel;
+    }
+
+    public void setEducationLevel(String educationLevel) {
+        this.educationLevel = educationLevel;
+    }
+
+    public int getFirstWorkYear() {
+        return firstWorkYear;
+    }
+
+    public void setFirstWorkYear(int firstWorkYear) {
+        this.firstWorkYear = firstWorkYear;
+    }
+
+    public Date getHealthCheckTime() {
+        return healthCheckTime;
+    }
+
+    public void setHealthCheckTime(Date healthCheckTime) {
+        this.healthCheckTime = healthCheckTime;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public String getQQ() {
+        return QQ;
+    }
+
+    public void setQQ(String QQ) {
+        this.QQ = QQ;
+    }
+
+    public Date getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Date registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public ArrayList<LoginInfo> getLoginInfo() {
+        return loginInfo;
+    }
+
+    public void setLoginInfo(ArrayList<LoginInfo> loginInfo) {
+        this.loginInfo = loginInfo;
+    }
+
+    public WorkHistory getWorkHistory() {
+        return workHistory;
+    }
+
+    public void setWorkHistory(WorkHistory workHistory) {
+        this.workHistory = workHistory;
+    }
+
+    public FamilyInfo getFamilyInfo() {
+        return familyInfo;
+    }
+
+    public void setFamilyInfo(FamilyInfo familyInfo) {
+        this.familyInfo = familyInfo;
+    }
+
+    public PeaceCard getPeaceCard() {
+        return peaceCard;
+    }
+
+    public void setPeaceCard(PeaceCard peaceCard) {
+        this.peaceCard = peaceCard;
+    }
+
+    public PeaceAgentCard getPeaceAgentCard() {
+        return peaceAgentCard;
+    }
+
+    public void setPeaceAgentCard(PeaceAgentCard peaceAgentCard) {
+        this.peaceAgentCard = peaceAgentCard;
+    }
+
+    public CompanyInfo getCompanyInfo() {
+        return companyInfo;
+    }
+
+    public void setCompanyInfo(CompanyInfo companyInfo) {
+        this.companyInfo = companyInfo;
+    }
+
+    public WorkInfo getWorkInfo() {
+        return workInfo;
+    }
+
+    public void setWorkInfo(WorkInfo workInfo) {
+        this.workInfo = workInfo;
+    }
+
+    public TrainingInfo getTrainingInfo() {
+        return trainingInfo;
+    }
+
+    public void setTrainingInfo(TrainingInfo trainingInfo) {
+        this.trainingInfo = trainingInfo;
+    }
+
+    public Attachments getAttachments() {
+        return attachments;
+    }
+
+    public void setAttachments(Attachments attachments) {
+        this.attachments = attachments;
+    }
 }
