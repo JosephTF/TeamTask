@@ -3,6 +3,8 @@ package com.geobim.teamtask.http;
 import okhttp3.OkHttpClient;
 
 import com.geobim.teamtask.util.MD5;
+import com.geobim.teamtask.util.api.UserAPI;
+import com.geobim.teamtask.util.api.WebAPI;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -31,14 +33,9 @@ public class HttpUrlGet {
 
     /**
      * 获取登录地址
-     * MD5加密后要加"&isPasswordEncoded=true"标记
-     *
-     * @param username
-     * @param password
-     * @return
      */
-    public String getLoginUrl(String url, String username, String password) {
-        return url + "?userName=" + username + "&password=" + MD5.md5(password).toUpperCase(Locale.US) + "&isPasswordEncoded=true" + "&deviceType=Andriod" + "&entryId=MS";
+    public String getLoginUrl(String username, String password) {
+        return UserAPI.getUserLogin() + "?appkey=" + WebAPI.getKey() + "&userName=" + username + "&password=" + password;
     }
 
 

@@ -1,33 +1,24 @@
 package com.geobim.teamtask.activity;
 
-import java.util.Map;
-
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,27 +28,27 @@ import com.geobim.teamtask.R;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
 import com.geobim.teamtask.ui.SmoothCheckBox.SmoothCheckBox;
-import com.geobim.teamtask.ui.TitanicTextView.Titanic;
-import com.geobim.teamtask.ui.TitanicTextView.TitanicTextView;
-import com.geobim.teamtask.util.*;
+import com.geobim.teamtask.util.LoginSaveUtil;
+import com.geobim.teamtask.util.NetworkUtils;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
+import com.pnikosis.materialishprogress.ProgressWheel;
+
+import java.util.Map;
 
 
 public class LoginActivity extends BaseActivity implements OnClickListener, OnFocusChangeListener, OnTouchListener {
-    private static final String TAG = "LoginActivity";
+    private final String TAG = "LoginActivity";
     private String username, password;
     private RelativeLayout rl_login;
     private EditText et_username, et_password;
     private ImageView iv_username, iv_password;
     private TextView tv_logo_title, tv_login, tv_forget, tv_register, tv_savepassword;
-    private SmoothCheckBox cb_save;            //记住密码CheckBox
-    private LoginSaveUtil loginService;        //用户密码保存
-    private PopupWindow mPopupWindow;        //搭载Loading
-    private Titanic titanic;                //Loading动画
-    private TitanicTextView ttv_loading;    //Loading控件
-    private TimeoutThread timeoutThread;    //超时判断线程
-    private LoginThread loginThread;        //登录验证线程
-    private Typeface tf;
+    private SmoothCheckBox cb_save;             //记住密码CheckBox
+    private LoginSaveUtil loginService;         //用户密码保存
+    private TimeoutThread timeoutThread;        //超时判断线程
+    private LoginThread loginThread;            //登录验证线程
+    private Typeface tf;                        //字体
+    private ProgressWheel pg_wait;              //等待条
 
     @Override
     protected void initVariables() {
@@ -79,6 +70,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         tv_register = findViewById(R.id.login_register);
         tv_savepassword = findViewById(R.id.tv_login_savepassword);
         cb_save = findViewById(R.id.cb_login_savelogin);
+        pg_wait = findViewById(R.id.progress_login_wheel);
         tv_logo_title.setTypeface(tf);
         tv_login.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
@@ -87,16 +79,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         rl_login.setOnTouchListener(this);
         et_username.setOnFocusChangeListener(this);
         et_password.setOnFocusChangeListener(this);
-        ViewGroup vg = null;
-        View popupView = getLayoutInflater().inflate(R.layout.popup_loading, vg);
-        mPopupWindow = new PopupWindow(popupView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, true);
-        ttv_loading = popupView.findViewById(R.id.ttv_login_loading);
     }
 
     @Override
     protected void loadData() {
         loginService = new LoginSaveUtil(this);
-        titanic = new Titanic();
         try {
             Map<String, String> map = loginService.getUserInfo("private.txt");
             et_username.setText(map.get("username"));
@@ -135,7 +122,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                         animLoginBtn();
                         Toast.makeText(LoginActivity.this, "密码长度不能小于4位！", Toast.LENGTH_SHORT).show();
                     } else {
-                        showPopupLoading(true);//验证信息的时候显示ProgressBar等待图标，验证成功直接切Activity不用隐藏，验证不成功再隐藏等待用户再次验证
                         login();
                     }
                 }
@@ -203,6 +189,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 用户登录
      */
     private void login() {
+        pg_wait.setVisibility(View.VISIBLE);
         if (timeoutThread == null) {
             timeoutThread = new TimeoutThread(handler);
             timeoutThread.start();//开启定时器线程
@@ -270,38 +257,26 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
-                showPopupLoading(false);
-                new AlertDialog.Builder(LoginActivity.this)
-                        .setTitle("提示")
-                        .setMessage("登录超时，请稍后重试")
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                cancelThread();
-                            }
-                        })
-                        .create().show();
+                pg_wait.setVisibility(View.GONE);
+                SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+                sad.setTitleText("提示");
+                sad.setContentText("登录超时，请稍后重试");
+                sad.setConfirmText("确定");
+                sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        cancelThread();
+                        sweetAlertDialog.dismiss();
+                    }
+                });
+                sad.show();
             }
         }
-
-        ;
     };
 
     /**
-     * 控制缓冲条显隐
-     */
-    private void showPopupLoading(boolean show) {
-        if (show) {
-            mPopupWindow.showAtLocation(getWindow().getDecorView(), Gravity.CENTER, 0, 0);
-            titanic.start(ttv_loading);
-        } else {
-            titanic.cancel();
-            mPopupWindow.dismiss();
-        }
-    }
-
-    /**
-     * 控件动画
+     * 登录按钮动画
+     * 效果：左右晃动
      */
     private void animLoginBtn() {
         TranslateAnimation down = new TranslateAnimation(-60, 0, 0, 0);//位移动画，从button的上方300像素位置开始

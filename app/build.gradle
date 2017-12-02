@@ -30,4 +30,5 @@ dependencies {
     implementation 'com.android.support:design:27.0.1'
     compile 'com.github.cazaea:sweet-alert-dialog:1.0.0'
     implementation files('libs/okhttp-3.8.1.jar')
+    compile 'com.pnikosis:materialish-progress:1.7'
 }

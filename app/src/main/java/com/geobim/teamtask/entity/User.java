@@ -10,6 +10,22 @@ import java.util.Date;
  */
 
 public class User {
+    private volatile static User user;
+
+    private User() {
+    }
+
+    public static User getInstance() {
+        if (user == null) {
+            synchronized (User.class) {
+                if (user == null) {
+                    user = new User();
+                }
+            }
+        }
+        return user;
+    }
+
     private String ID;                              //Id
     private String IDCard;                          //身份证
     private String email;                           //邮箱，可作为用户名登录
@@ -33,11 +49,12 @@ public class User {
     private WorkHistory workHistory;                //最近一次工作经历
     private FamilyInfo familyInfo;                  //家属信息
     private PeaceCard peaceCard;                    //正式平安卡号
-    private PeaceAgentCard  peaceAgentCard;         //平安卡代理卡
+    private PeaceAgentCard peaceAgentCard;         //平安卡代理卡
     private CompanyInfo companyInfo;                //单位信息
     private WorkInfo workInfo;                      //工种信息
     private TrainingInfo trainingInfo;              //培训信息
     private Attachments attachments;                //附件信息
+    private String TokenKey;                        //用户安全Key
 
     public String getID() {
         return ID;
@@ -261,5 +278,13 @@ public class User {
 
     public void setAttachments(Attachments attachments) {
         this.attachments = attachments;
+    }
+
+    public String getTokenKey() {
+        return TokenKey;
+    }
+
+    public void setTokenKey(String tokenKey) {
+        TokenKey = tokenKey;
     }
 }
