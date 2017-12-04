@@ -14,18 +14,19 @@ public class JsonParseUser {
     private static final String TAG = "JsonParseUser";
 
     /**
+     * @param result 需要解析的数据
      * @throws JSONException 格式不对，转换异常
-     * @param    result            需要解析的数据
      */
     public static void parseUserByOrgJson(String result) throws JSONException {
-        // 使用该方法解析思路，遇到大括号用JsonObject，中括号用JsonArray
-        // 第一个是大括号{}
+
+        // 解析并保存回执信息
         JSONObject jsonObj = new JSONObject(result);
-        // 解析并保存
         ApiReturnInfo.getInstance().setOK(jsonObj.getBoolean("IsOk"));
         ApiReturnInfo.getInstance().setCode(jsonObj.getInt("Code"));
         ApiReturnInfo.getInstance().setMessage(jsonObj.getString("Message"));
         ApiReturnInfo.getInstance().setData(jsonObj.getString("Data"));
+
+        // 获取返回信息
         String data = ApiReturnInfo.getInstance().getData();
         if (data != "null") {
             JSONObject jsonObject = new JSONObject(data);

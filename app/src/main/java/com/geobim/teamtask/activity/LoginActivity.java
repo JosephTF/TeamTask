@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
+import com.geobim.teamtask.entity.ApiReturnInfo;
+import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
 import com.geobim.teamtask.ui.SmoothCheckBox.SmoothCheckBox;
@@ -42,8 +44,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     private RelativeLayout rl_login;
     private EditText et_username, et_password;
     private ImageView iv_username, iv_password;
-    private TextView tv_logo_title, tv_login, tv_forget, tv_register, tv_savepassword;
-    private SmoothCheckBox cb_save;             //记住密码CheckBox
+    private TextView tv_logo_title, tv_login, tv_forget, tv_register;
     private LoginSaveUtil loginService;         //用户密码保存
     private TimeoutThread timeoutThread;        //超时判断线程
     private LoginThread loginThread;            //登录验证线程
@@ -68,14 +69,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         tv_login = findViewById(R.id.login_start);
         tv_forget = findViewById(R.id.login_forget);
         tv_register = findViewById(R.id.login_register);
-        tv_savepassword = findViewById(R.id.tv_login_savepassword);
-        cb_save = findViewById(R.id.cb_login_savelogin);
         pg_wait = findViewById(R.id.progress_login_wheel);
         tv_logo_title.setTypeface(tf);
         tv_login.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
         tv_register.setOnClickListener(this);
-        tv_savepassword.setOnClickListener(this);
         rl_login.setOnTouchListener(this);
         et_username.setOnFocusChangeListener(this);
         et_password.setOnFocusChangeListener(this);
@@ -87,10 +85,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         try {
             Map<String, String> map = loginService.getUserInfo("private.txt");
             et_username.setText(map.get("username"));
-            et_password.setText(map.get("password"));
-            if (map.get("password").length() > 0) {
-                cb_save.setChecked(true);
-            }
         } catch (Exception e) {
         }
     }
@@ -116,7 +110,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                     } else if (TextUtils.isEmpty(password)) {
                         et_password.requestFocus();
                         animLoginBtn();
-                        Toast.makeText(LoginActivity.this, "密码不能为空！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "密码  不能为空！", Toast.LENGTH_SHORT).show();
                     } else if (password.length() < 4) {
                         et_password.requestFocus();
                         animLoginBtn();
@@ -128,10 +122,6 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                 break;
             case R.id.login_forget:
                 Toast.makeText(this, "功能研发中…", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.cb_login_savelogin:
-            case R.id.tv_login_savepassword:
-                cb_save.performClick();
                 break;
             case R.id.login_register:
                 Toast.makeText(LoginActivity.this, "暂时只开放内部用户使用，敬请期待新版本！", Toast.LENGTH_SHORT).show();
@@ -195,7 +185,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
             timeoutThread.start();//开启定时器线程
         }
         if (loginThread == null) {
-            loginThread = new LoginThread(this, username, password);
+            loginThread = new LoginThread(handler, username, password);
             loginThread.start();
         }
     }
@@ -203,7 +193,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     /**
      * 取消定时器
      */
-    private void cancelThread() {
+    private void cancelLogin() {
+        pg_wait.setVisibility(View.GONE);
         if (timeoutThread != null) {
             timeoutThread.cancelTimer();
             timeoutThread.interrupt();
@@ -215,36 +206,76 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         }
     }
 
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    loginFailed();
+                    break;
+                case 104:
+                    loginError();
+                    break;
+                case 200:
+                    loginSuccess();
+                    break;
+                case 504:
+                    loginTimeOut();
+                    break;
+            }
+        }
+    };
+
+    /**
+     * 登录失败
+     */
+    private void loginFailed() {
+        cancelLogin();
+        SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("登录失败");
+        sad.setContentText(ApiReturnInfo.getInstance().getMessage());
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
+    /**
+     * 登录错误
+     */
+    private void loginError() {
+        cancelLogin();
+        SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("登录错误！");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
     /**
      * 登录成功，保存密码，跳转界面
      */
-    public void loginSuccess() {
-        cancelThread();
-        if (cb_save.isChecked()) {
-            //保存密码
-            try {
-                boolean result = loginService.saveToRom(password, username);
-                if (result) {
-                    Log.i(TAG, "用户密码保存成功");
-                } else {
-                    Log.i(TAG, "用户密码保存失败");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(TAG, e.getMessage());
+    private void loginSuccess() {
+        //保存密码
+        try {
+            boolean result = loginService.saveToRom(password, username, User.getInstance().getTokenKey());
+            if (result) {
+                Log.i(TAG, "用户密码保存成功");
+            } else {
+                Log.i(TAG, "用户密码保存失败");
             }
-        } else {
-            try {
-                boolean result = loginService.saveToRom("", username);
-                if (result) {
-                    Log.i(TAG, "用户保存成功");
-                } else {
-                    Log.i(TAG, "用户保存失败");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(TAG, e.getMessage());
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
         }
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
@@ -252,27 +283,22 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     }
 
     /**
-     * 登录超时，取消线程
+     * 请求超时
      */
-    Handler handler = new Handler() {
-        public void handleMessage(Message msg) {
-            if (msg.what == 1) {
-                pg_wait.setVisibility(View.GONE);
-                SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
-                sad.setTitleText("提示");
-                sad.setContentText("登录超时，请稍后重试");
-                sad.setConfirmText("确定");
-                sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        cancelThread();
-                        sweetAlertDialog.dismiss();
-                    }
-                });
-                sad.show();
+    private void loginTimeOut() {
+        cancelLogin();
+        SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("登录超时，请稍后重试");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
             }
-        }
-    };
+        });
+        sad.show();
+    }
 
     /**
      * 登录按钮动画

@@ -24,7 +24,7 @@ public class TimeoutThread extends Thread{
 		@Override
 		public void run() {
 			Message msgMessage = new Message();
-			msgMessage.what = 1;
+			msgMessage.what = 504;
 			mHandler.sendMessage(msgMessage);
 		}
 	};
