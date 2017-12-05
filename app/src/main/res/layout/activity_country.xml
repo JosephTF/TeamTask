@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!-- 导航栏背景 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size20"
+        android:background="#292c33"/>
+    <!-- 标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size48"
+        android:gravity="center_vertical"
+        android:background="#292c33"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib_country_back"
+            android:layout_width="@dimen/common_space_size24"
+            android:layout_height="@dimen/common_space_size24"
+            android:layout_marginLeft="@dimen/common_space_size6"
+            android:background="@drawable/btn_return"
+            android:contentDescription="@string/common_back"/>
+        <TextView
+            android:id="@+id/tv_country_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="@string/register_country"
+            android:textSize="@dimen/common_space_size16"
+            android:textColor="#ffffff"/>
+        <RelativeLayout
+            android:id="@+id/rl_register_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/style_countrysearch_shape"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <ImageButton
+                android:id="@+id/ib_country_searchclear"
+                android:layout_width="@dimen/common_space_size18"
+                android:layout_height="@dimen/common_space_size18"
+                android:layout_marginRight="@dimen/common_space_size6"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_txtclear"
+                android:contentDescription="@string/common_clear"
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/et_country_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_space_size5"
+                android:gravity="center"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:maxLength="16"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/ib_country_searchclear"
+                android:hint="@string/register_country_hint"
+                android:textSize="@dimen/common_space_size16"
+                android:textCursorDrawable="@drawable/style_edittext_cursor_dark"
+                android:background="@null"/>
+        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/ib_country_search"
+            android:layout_width="@dimen/common_space_size32"
+            android:layout_height="@dimen/common_space_size32"
+            android:layout_marginRight="@dimen/common_space_size6"
+            android:background="@drawable/btn_search"
+            android:contentDescription="@string/common_back"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size10"
+        android:background="#66cccccc"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size1"
+        android:background="#99cccccc"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <ListView
+            android:id="@+id/country_lv_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#000000"
+            android:divider="#e3e3e3"
+            android:dividerHeight="@dimen/common_space_size1"
+            android:fadingEdge="none"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:visibility="visible" />
+
+        <com.geobim.teamtask.ui.CountryListView.SideBar
+            android:id="@+id/country_sidebar"
+            android:layout_width="@dimen/common_space_size30"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/common_space_size10"
+            android:layout_marginBottom="@dimen/common_space_size60"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/country_dialog"
+            android:layout_width="@dimen/common_space_size80"
+            android:layout_height="@dimen/common_space_size80"
+            android:layout_gravity="center"
+            android:background="@drawable/country_scroll_down"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="#ffffffff"
+            android:textSize="@dimen/common_space_size30"
+            android:visibility="invisible" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rl_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -10,13 +8,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/common_space_size12"
-        android:paddingBottom="@dimen/common_space_size12">
+        android:paddingTop="@dimen/common_space_size14"
+        android:paddingBottom="@dimen/common_space_size6">
         <ImageButton
             android:id="@+id/ib_forget_return"
             android:layout_width="@dimen/common_space_size24"
             android:layout_height="@dimen/common_space_size24"
-            android:layout_marginLeft="@dimen/common_space_size12"
+            android:layout_marginLeft="@dimen/common_space_size8"
             android:background="@drawable/btn_return"/>
         <TextView
             android:layout_width="wrap_content"
@@ -32,97 +30,95 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="#fafafa">
+        android:background="#f5f5f9">
+        <!-- 区域号+手机号 -->
         <LinearLayout
-            android:id="@+id/ll_register_mid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/common_space_size40"
-            android:layout_marginEnd="@dimen/common_space_size40"
-            android:layout_marginTop="@dimen/common_space_size20"
+            android:layout_marginStart="@dimen/common_space_size20"
+            android:layout_marginEnd="@dimen/common_space_size20"
+            android:layout_marginTop="@dimen/common_space_size30"
+            android:layout_marginBottom="@dimen/common_space_size20"
             android:orientation="horizontal"
             android:background="@drawable/style_edit_selector">
             <ImageView
+                android:id="@+id/iv_forget_countrynum"
                 android:layout_width="@dimen/common_space_size24"
                 android:layout_height="@dimen/common_space_size24"
+                android:layout_marginLeft="@dimen/common_space_size8"
                 android:background="@drawable/phone_white"
-                android:contentDescription="@string/register_enternum"/>
+                android:contentDescription="@string/register_country"/>
             <TextView
-                android:id="@+id/tv_register_countrynum"
+                android:id="@+id/tv_forget_countrynum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register_countrynum"
                 android:textColor="#a9a9aa"
                 android:textSize="@dimen/common_space_size16"/>
-            <LinearLayout
-                android:id="@+id/ll_register_phonenumber"
+            <EditText
+                android:id="@+id/et_forget_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/common_space_size10"
-                android:orientation="vertical">
-                <EditText
-                    android:id="@+id/et_register_phonenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/common_space_size4"
-                    android:hint="@string/register_phonenumber"
-                    android:textColorHint="#a9a9aa"
-                    android:inputType="phone"
-                    android:textColor="#cccccc"
-                    android:textSize="@dimen/common_space_size16"
-                    android:textCursorDrawable="@drawable/style_edittext_cursor_white"
-                    android:background="@null"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/common_space_size1"
-                    android:layout_marginTop="@dimen/common_space_size2"
-                    android:background="#66ffffff"/>
-            </LinearLayout>
+                android:layout_marginLeft="@dimen/common_space_size8"
+                android:paddingLeft="@dimen/common_space_size4"
+                android:hint="@string/register_phonenumber"
+                android:textColorHint="#a9a9aa"
+                android:inputType="phone"
+                android:textColor="#a9a9aa"
+                android:textSize="@dimen/common_space_size16"
+                android:textCursorDrawable="@drawable/style_edittext_cursor_dark"
+                android:background="@null"/>
         </LinearLayout>
-
-        <!-- 获取验证码按钮 -->
+        <!-- 验证码 -->
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/ll_forget_code"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_register_mid"
-            android:layout_marginTop="@dimen/common_space_size40">
+            android:layout_marginStart="@dimen/common_space_size20"
+            android:layout_marginEnd="@dimen/common_space_size20"
+            android:layout_marginBottom="@dimen/common_space_size20"
+            android:orientation="horizontal">
             <TextView
-                android:id="@+id/tv_register_getcaptcha"
-                android:layout_width="match_parent"
+                android:id="@+id/tv_forget_getcaptcha"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/register_getcaptcha"
-                android:textSize="@dimen/common_text_size18"
+                android:textSize="@dimen/common_text_size16"
                 android:textColor="#FFFFFF"
                 android:gravity="center"
+                android:layout_centerVertical="true"
                 android:singleLine="true"
-                android:layout_marginStart="@dimen/common_space_size40"
-                android:layout_marginEnd="@dimen/common_space_size40"
-                android:background="@drawable/style_login_selector"/>
-            <TextView
-                android:id="@+id/tv_register_notrecive"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/style_btn_selector"/>
+            <EditText
+                android:id="@+id/et_forget_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/register_notrecive"
-                android:textSize="@dimen/common_text_size18"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:singleLine="true"
-                android:visibility="invisible"
-                android:layout_marginStart="@dimen/common_space_size40"
-                android:layout_marginEnd="@dimen/common_space_size40"
-                android:background="@drawable/style_login_selector"/>
-            <TextView
-                android:id="@+id/tv_register_tip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_register_getcaptcha"
-                android:text="@string/register_receive_msg"
-                android:textSize="@dimen/common_text_size12"
-                android:textColor="#FFFFFF"
-                android:gravity="center"
-                android:singleLine="true"
-                android:layout_marginTop="@dimen/common_space_size12"/>
+                android:layout_marginRight="@dimen/common_space_size12"
+                android:paddingLeft="@dimen/common_space_size18"
+                android:hint="@string/register_entercaptcha"
+                android:textColorHint="#a9a9aa"
+                android:inputType="phone"
+                android:textColor="#a9a9aa"
+                android:textSize="@dimen/common_space_size16"
+                android:textCursorDrawable="@drawable/style_edittext_cursor_dark"
+                android:layout_toLeftOf="@id/tv_forget_getcaptcha"
+                android:background="@drawable/style_edit_selector"/>
         </RelativeLayout>
+        <!-- 获取验证码按钮 -->
+        <TextView
+            android:id="@+id/tv_forget_notrecive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/common_submit"
+            android:textSize="@dimen/common_text_size18"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_marginStart="@dimen/common_space_size20"
+            android:layout_marginEnd="@dimen/common_space_size20"
+            android:layout_marginTop="@dimen/common_space_size40"
+            android:background="@drawable/style_submit_selector"/>
     </LinearLayout>
 </LinearLayout>
