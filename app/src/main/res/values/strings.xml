@@ -32,7 +32,7 @@
     <string name="register_getcaptcha_again">重新发送验证码</string>
     <string name="register_getcaptcha_phone">发送语音验证</string>
     <string name="register_notrecive">没有收到验证码？</string>
-    <string name="register_phonenumber">手机号</string>
+    <string name="register_phonenumber">请输入手机号</string>
     <string name="register_country">国家和地区</string>
     <string name="register_country_hint">输入国家名称或区号</string>
     <string name="register_countryname">中国</string>
@@ -41,4 +41,6 @@
     <string name="register_receive_msg"><Data>接收短信大约需要&lt;font color=#FFFF66>%s&lt;/font>秒</Data></string>
     <string name="register_sendsounds">确定后将致电您的手机号播报验证码\n如不希望来电打扰请使用短信验证码</string>
     <string name="register_wrong">验证码不正确，请重新输入</string>
+    <!-- 找回密码 -->
+    <string name="forget_title">找回密码</string>
 </resources>

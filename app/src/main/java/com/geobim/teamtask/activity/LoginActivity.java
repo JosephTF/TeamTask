@@ -106,22 +106,21 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                     if (TextUtils.isEmpty(username)) {
                         et_username.requestFocus();
                         animLoginBtn();
-                        Toast.makeText(LoginActivity.this, "用户名不能为空！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();
                     } else if (TextUtils.isEmpty(password)) {
                         et_password.requestFocus();
                         animLoginBtn();
-                        Toast.makeText(LoginActivity.this, "密码  不能为空！", Toast.LENGTH_SHORT).show();
-                    } else if (password.length() < 4) {
-                        et_password.requestFocus();
-                        animLoginBtn();
-                        Toast.makeText(LoginActivity.this, "密码长度不能小于4位！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                     } else {
                         login();
                     }
                 }
                 break;
             case R.id.login_forget:
-                Toast.makeText(this, "功能研发中…", Toast.LENGTH_LONG).show();
+                cancelLogin();
+                Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.login_register:
                 Toast.makeText(LoginActivity.this, "暂时只开放内部用户使用，敬请期待新版本！", Toast.LENGTH_SHORT).show();
@@ -265,6 +264,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 登录成功，保存密码，跳转界面
      */
     private void loginSuccess() {
+        cancelLogin();
         //保存密码
         try {
             boolean result = loginService.saveToRom(password, username, User.getInstance().getTokenKey());
