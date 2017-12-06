@@ -74,7 +74,7 @@
                 android:background="@null"/>
             <!-- 世界上最长手机号吗为中国11位 -->
         </LinearLayout>
-        <!-- 验证码 -->
+        <!-- 验证码 getcaptcha-->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

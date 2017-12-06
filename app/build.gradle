@@ -31,4 +31,5 @@ dependencies {
     compile 'com.github.cazaea:sweet-alert-dialog:1.0.0'
     implementation files('libs/okhttp-3.8.1.jar')
     compile 'com.pnikosis:materialish-progress:1.7'
+    compile name:'SMSSDK-3.0.0',ext:'aar'
 }

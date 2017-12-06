@@ -26,21 +26,29 @@
     <!-- 注册 -->
     <string name="register_policy">法律声明</string>
     <string name="register_login">登&#160;录</string>
-    <string name="register_enternum">请填写手机号码并获取验证码</string>
-    <string name="register_entercaptcha">请输入短信验证码</string>
-    <string name="register_getcaptcha">发送验证码</string>
-    <string name="register_getcaptcha_again">重新发送验证码</string>
-    <string name="register_getcaptcha_phone">发送语音验证</string>
+    <string name="register_enternum">请填写手机号码</string>
+    <string name="register_enterVerificationCode">请输入验证码</string>
+    <string name="register_getVerificationCode">发送验证码</string>
+    <string name="register_getVerificationCode_again">重新发送验证码</string>
+    <string name="register_getVerificationCode_phone">发送语音验证</string>
     <string name="register_notrecive">没有收到验证码？</string>
-    <string name="register_phonenumber">请输入手机号</string>
+    <string name="register_phonenumber">请输入正确的手机号</string>
     <string name="register_country">国家和地区</string>
     <string name="register_country_hint">输入国家名称或区号</string>
     <string name="register_countryname">中国</string>
     <string name="register_countrynum">+86</string>
-    <string name="register_make_sure_mobile_detail"><Data>是否发送&lt;font color=#3cac17>验证码&lt;/font>到：</Data></string>
-    <string name="register_receive_msg"><Data>接收短信大约需要&lt;font color=#FFFF66>%s&lt;/font>秒</Data></string>
+    <string name="register_make_sure_mobile_detail">是否发送验证码到：</string>
+    <string name="register_receive_msg"><Data>&lt;font color=#FFFF66>%s&lt;/font>秒后可重新获取</Data></string>
     <string name="register_sendsounds">确定后将致电您的手机号播报验证码\n如不希望来电打扰请使用短信验证码</string>
     <string name="register_wrong">验证码不正确，请重新输入</string>
     <!-- 找回密码 -->
     <string name="forget_title">找回密码</string>
+    <string name="forget_enternum">请填写手机号码</string>
+    <string name="forget_enterVerificationCode">请输入验证码</string>
+    <!-- 重置密码 -->
+    <string name="reset_title">重置密码</string>
+    <string name="reset_newpassword">新密码</string>
+    <string name="reset_confirm">确认密码</string>
+    <string name="reset_newpassword_hint">设置新密码，不少于6位</string>
+    <string name="reset_confirm_hint">再次输入新密码，保持一致</string>
 </resources>

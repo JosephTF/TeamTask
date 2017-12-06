@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -165,4 +165,12 @@
 	    android:text="@string/copyright"
 	    android:textSize="@dimen/common_text_size8"
 	    android:textColor="#ffffff"/>
+	<com.pnikosis.materialishprogress.ProgressWheel
+		android:id="@+id/progress_login_wheel"
+		android:layout_width="80dp"
+		android:layout_height="80dp"
+		android:layout_centerInParent="true"
+		wheel:matProg_barColor="#28ADE5"
+		wheel:matProg_progressIndeterminate="true"
+		android:visibility="gone"/>
 </RelativeLayout>

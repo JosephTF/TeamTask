@@ -2,18 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <!-- 导航栏背景 -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/common_space_size20"
-        android:background="#292c33"/>
+    android:orientation="vertical"
+    android:background="@drawable/background">
     <!-- 标题栏 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_space_size48"
         android:gravity="center_vertical"
-        android:background="#292c33"
         android:orientation="horizontal">
         <ImageButton
             android:id="@+id/ib_country_back"
@@ -77,7 +72,7 @@
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_space_size10"
+        android:layout_height="@dimen/common_space_size4"
         android:background="#66cccccc"/>
     <View
         android:layout_width="match_parent"
@@ -86,7 +81,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+        <!-- 主列表 -->
         <ListView
             android:id="@+id/country_lv_list"
             android:layout_width="match_parent"
@@ -98,7 +95,7 @@
             android:scrollbars="none"
             android:scrollingCache="false"
             android:visibility="visible" />
-
+        <!-- 字母列表 -->
         <com.geobim.teamtask.ui.CountryListView.SideBar
             android:id="@+id/country_sidebar"
             android:layout_width="@dimen/common_space_size30"
@@ -107,7 +104,7 @@
             android:layout_marginBottom="@dimen/common_space_size60"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
-
+        <!-- 当前字母悬浮窗提示 -->
         <TextView
             android:id="@+id/country_dialog"
             android:layout_width="@dimen/common_space_size80"

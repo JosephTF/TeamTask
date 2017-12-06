@@ -25,6 +25,7 @@ import com.geobim.teamtask.ui.CountryListView.CountrySortModel;
 import com.geobim.teamtask.ui.CountryListView.GetCountryNameSort;
 import com.geobim.teamtask.ui.CountryListView.SideBar;
 import com.geobim.teamtask.ui.CountryListView.SideBar.OnTouchingLetterChangedListener;
+import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -69,15 +70,16 @@ public class CountryActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_country);
-        country_edt_search = (EditText) findViewById(R.id.et_country_search);
-        country_lv_countryList = (ListView) findViewById(R.id.country_lv_list);
-        ib_country_back = (ImageButton) findViewById(R.id.ib_country_back);
-        ib_country_search = (ImageButton) findViewById(R.id.ib_country_search);
-        ib_country_searchclear = (ImageButton) findViewById(R.id.ib_country_searchclear);
-        rl_country_search = (RelativeLayout) findViewById(R.id.rl_register_search);
-        tv_title = (TextView) findViewById(R.id.tv_country_title);
-        dialog = (TextView) findViewById(R.id.country_dialog);
-        sideBar = (SideBar) findViewById(R.id.country_sidebar);
+        StatusBarUtil.setTranslucent(CountryActivity.this, 0);//状态栏半透明
+        country_edt_search = findViewById(R.id.et_country_search);
+        country_lv_countryList = findViewById(R.id.country_lv_list);
+        ib_country_back = findViewById(R.id.ib_country_back);
+        ib_country_search = findViewById(R.id.ib_country_search);
+        ib_country_searchclear = findViewById(R.id.ib_country_searchclear);
+        rl_country_search = findViewById(R.id.rl_register_search);
+        tv_title = findViewById(R.id.tv_country_title);
+        dialog = findViewById(R.id.country_dialog);
+        sideBar = findViewById(R.id.country_sidebar);
         ib_country_back.setOnClickListener(this);
         ib_country_search.setOnClickListener(this);
         ib_country_searchclear.setOnClickListener(this);
@@ -194,8 +196,7 @@ public class CountryActivity extends BaseActivity implements OnClickListener {
 
                 if (searchContent.length() > 0) {
                     // 按照输入内容进行匹配
-                    ArrayList<CountrySortModel> fileterList = (ArrayList<CountrySortModel>) countryChangeUtil
-                            .search(searchContent, mAllCountryList);
+                    ArrayList<CountrySortModel> fileterList = (ArrayList<CountrySortModel>) countryChangeUtil.search(searchContent, mAllCountryList);
                     countryName = fileterList.get(position).countryName;
                     countryNumber = fileterList.get(position).countryNumber;
                 } else {
@@ -203,7 +204,6 @@ public class CountryActivity extends BaseActivity implements OnClickListener {
                     countryName = mAllCountryList.get(position).countryName;
                     countryNumber = mAllCountryList.get(position).countryNumber;
                 }
-
                 Intent intent = new Intent(CountryActivity.this, ForgetActivity.class);
                 intent.putExtra("countryName", countryName);
                 intent.putExtra("countryNumber", countryNumber);
@@ -235,6 +235,7 @@ public class CountryActivity extends BaseActivity implements OnClickListener {
 
             countrySortModel.sortLetters = sortLetter;
             mAllCountryList.add(countrySortModel);
+
         }
 
         Collections.sort(mAllCountryList, pinyinComparator);
