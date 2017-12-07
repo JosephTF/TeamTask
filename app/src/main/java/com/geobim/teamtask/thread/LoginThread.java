@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginThread extends Thread{
-	private final String TAG = "LoginThread";
+	private final String TAG = "CheckUserExistThread";
 	private Handler handler;
 	private String username,password;
 	public LoginThread(Handler handler, String username, String password) {
@@ -37,7 +37,7 @@ public class LoginThread extends Thread{
 		Message msgMessage = new Message();
 		//传入登录名和密码,获取登录地址
 		HttpUrlGet httpUtils = new HttpUrlGet();
-		String loginUrl = httpUtils.getLoginUrl(username, password);
+		String loginUrl = httpUtils.getUserLoginUrl(username, password);
 		try {
 			final String result = httpUtils.getResult(loginUrl);
 			try {

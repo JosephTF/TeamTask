@@ -22,7 +22,6 @@ import okhttp3.Response;
  */
 public class HttpUrlGet {
     private OkHttpClient client = new OkHttpClient();
-    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public String getResult(String url) throws IOException {
         Request request = new Request.Builder().url(url).build();
@@ -32,11 +31,16 @@ public class HttpUrlGet {
     }
 
     /**
-     * 获取登录地址
+     * 获取地址：判断用户是否存在
      */
-    public String getLoginUrl(String username, String password) {
-        return UserAPI.getUserLogin() + "?appkey=" + WebAPI.getKey() + "&userName=" + username + "&password=" + password;
+    public String getUserExistUrl(String username){
+        return UserAPI.getUserExist() +"?appkey=" + WebAPI.getKey() + "&userName=" + username;
     }
 
-
+    /**
+     * 获取登录地址
+     */
+    public String getUserLoginUrl(String username, String password) {
+        return UserAPI.getUserLogin() + "?appkey=" + WebAPI.getKey() + "&userName=" + username + "&password=" + password;
+    }
 }

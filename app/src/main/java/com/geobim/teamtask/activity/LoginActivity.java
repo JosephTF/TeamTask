@@ -29,7 +29,6 @@ import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
-import com.geobim.teamtask.ui.SmoothCheckBox.SmoothCheckBox;
 import com.geobim.teamtask.util.LoginSaveUtil;
 import com.geobim.teamtask.util.NetworkUtils;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
