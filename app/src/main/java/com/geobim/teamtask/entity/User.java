@@ -1,5 +1,7 @@
 package com.geobim.teamtask.entity;
 
+import org.bson.types.ObjectId;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,12 +28,12 @@ public class User {
         return user;
     }
 
-    private String ID;                              //Id
+    private ObjectId Id;                              //Id
     private String IDCard;                          //身份证
     private String email;                           //邮箱，可作为用户名登录
     private String phoneNumber;                     //手机号，可作为用户名登录
     private String realName;                        //用户姓名
-    private String avatar;                          //用户头像文件Id
+    private ObjectId avatar;                          //用户头像文件Id
     private String jobPosition;                     //工作职位
     private int sex;                                //性别：0-未透露；1-男性；2-女性
     private String nation;                          //民族
@@ -56,12 +58,12 @@ public class User {
     private Attachments attachments;                //附件信息
     private String TokenKey;                        //用户安全Key
 
-    public String getID() {
-        return ID;
+    public ObjectId getId() {
+        return Id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setId(ObjectId id) {
+        Id = id;
     }
 
     public String getIDCard() {
@@ -96,11 +98,11 @@ public class User {
         this.realName = realName;
     }
 
-    public String getAvatar() {
+    public ObjectId getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(ObjectId avatar) {
         this.avatar = avatar;
     }
 

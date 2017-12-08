@@ -1,5 +1,7 @@
 package com.geobim.teamtask.entity;
 
+import org.bson.types.ObjectId;
+
 import java.net.URL;
 
 /**
@@ -8,15 +10,15 @@ import java.net.URL;
  */
 
 public class Attachments {
-    private String fsId;            //文件Id
+    private ObjectId fsId;            //文件Id
     private String fileName;        //文件名称
     private URL fileUrl;            //文件链接
 
-    public String getFsId() {
+    public ObjectId getFsId() {
         return fsId;
     }
 
-    public void setFsId(String fsId) {
+    public void setFsId(ObjectId fsId) {
         this.fsId = fsId;
     }
 
