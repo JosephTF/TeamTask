@@ -20,11 +20,7 @@ import android.widget.Toast;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
-import com.geobim.teamtask.entity.ApiReturnInfo;
-import com.geobim.teamtask.http.HttpUrlGet;
-import com.geobim.teamtask.http.json.JsonParseUser;
 import com.geobim.teamtask.thread.CheckUserExistThread;
-import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
 import com.geobim.teamtask.util.ApkUtil;
 import com.geobim.teamtask.util.RegexConstants;
@@ -36,7 +32,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -70,7 +65,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     @Override
     protected void initVariables() {
         //默认中国区号
-        countryNumber = getString(R.string.register_countrynum);
+        countryNumber = getString(R.string.forget_countrynum);
         countryName = "中国";
         // 通过代码注册你的AppKey和AppSecret
         MobSDK.init(ForgetActivity.this, ApkUtil.getMobAppKey(), ApkUtil.getMobAppSecret());
@@ -80,7 +75,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_forget);
         StatusBarUtil.setTranslucent(ForgetActivity.this, 0);//状态栏半透明
-        ib_back = findViewById(R.id.ib_forget_return);
+        ib_back = findViewById(R.id.ib_forget_back);
         iv_country = findViewById(R.id.iv_forget_countrynum);
         tv_countrynum = findViewById(R.id.tv_forget_countrynum);
         tv_getVerificationCode = findViewById(R.id.tv_forget_getVerificationCode);
@@ -114,7 +109,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                     isRepeat = true;//非首次发送验证码
                     tv_getVerificationCode.setEnabled(true);
                     et_phonenumber.setEnabled(true);
-                    tv_getVerificationCode.setText(R.string.register_getVerificationCode_again);
+                    tv_getVerificationCode.setText(R.string.forget_getVerificationCode_again);
                     tm.cancel();//取消任务
                     tt.cancel();//取消任务
                     TIME = 60;//时间重置
@@ -155,7 +150,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ib_forget_return:
+            case R.id.ib_forget_back:
                 Intent intent = new Intent(ForgetActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -178,13 +173,13 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                             //第四次判断：用户是否存在
                             startThread();
                         } else {
-                            Toast.makeText(ForgetActivity.this, R.string.register_phonenumber, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgetActivity.this, R.string.forget_phonenumber, Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         if (countryNumber.length() > 7) {
                             startThread();
                         } else {
-                            Toast.makeText(ForgetActivity.this, R.string.register_phonenumber, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ForgetActivity.this, R.string.forget_phonenumber, Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -194,7 +189,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                 pg_wait.setVisibility(View.VISIBLE);
                 String verificationCode = et_code.getText().toString().trim();
                 if (verificationCode.isEmpty()) {
-                    Toast.makeText(ForgetActivity.this, R.string.register_enterVerificationCode, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ForgetActivity.this, R.string.forget_enterVerificationCode, Toast.LENGTH_SHORT).show();
                 } else {
                     //校验验证码
                     SMSSDK.submitVerificationCode(countryNumber_confirm, phonenum_confirm, verificationCode);
@@ -238,8 +233,8 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         if (!isRepeat) {
             final String phone = countryNumber + phonenum;
             SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this);
-            sad.setTitleText(getString(R.string.register_getVerificationCode));
-            sad.setContentText(getString(R.string.register_make_sure_mobile_detail) + phone);
+            sad.setTitleText(getString(R.string.forget_getVerificationCode));
+            sad.setContentText(getString(R.string.forget_make_sure_mobile_detail) + phone);
             sad.setCancelText(getString(R.string.common_cancel));
             sad.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
                 @Override
@@ -471,7 +466,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         } else {
             //没有倒计时
             if (isRepeat) {
-                tv_getVerificationCode.setText(R.string.register_getVerificationCode_again);
+                tv_getVerificationCode.setText(R.string.forget_getVerificationCode_again);
             }
         }
     }

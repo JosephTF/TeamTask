@@ -16,7 +16,7 @@
             android:paddingTop="@dimen/common_space_size14">
 
             <ImageButton
-                android:id="@+id/ib_forget_return"
+                android:id="@+id/ib_forget_back"
                 android:layout_width="@dimen/common_space_size24"
                 android:layout_height="@dimen/common_space_size24"
                 android:layout_centerVertical="true"
@@ -56,13 +56,13 @@
                     android:layout_height="@dimen/common_space_size24"
                     android:layout_marginLeft="@dimen/common_space_size8"
                     android:background="@drawable/phone_white"
-                    android:contentDescription="@string/register_country" />
+                    android:contentDescription="@string/forget_country" />
 
                 <TextView
                     android:id="@+id/tv_forget_countrynum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/register_countrynum"
+                    android:text="@string/forget_countrynum"
                     android:textColor="#a9a9aa"
                     android:textSize="@dimen/common_space_size16" />
 
@@ -101,7 +101,7 @@
                     android:background="@drawable/style_btn_selector"
                     android:gravity="center"
                     android:singleLine="true"
-                    android:text="@string/register_getVerificationCode"
+                    android:text="@string/forget_getVerificationCode"
                     android:textColor="#FFFFFF"
                     android:textSize="@dimen/common_text_size16" />
 

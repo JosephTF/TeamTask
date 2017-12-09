@@ -33,7 +33,7 @@ public class User {
     private String email;                           //邮箱，可作为用户名登录
     private String phoneNumber;                     //手机号，可作为用户名登录
     private String realName;                        //用户姓名
-    private ObjectId avatar;                          //用户头像文件Id
+    private String avatar;                          //用户头像文件Id
     private String jobPosition;                     //工作职位
     private int sex;                                //性别：0-未透露；1-男性；2-女性
     private String nation;                          //民族
@@ -98,11 +98,11 @@ public class User {
         this.realName = realName;
     }
 
-    public ObjectId getAvatar() {
+    public String getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(ObjectId avatar) {
+    public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 

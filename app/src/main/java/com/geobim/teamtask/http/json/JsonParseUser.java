@@ -5,7 +5,9 @@ import android.util.Log;
 
 import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
+import com.mongodb.BasicDBObject;
 
+import org.bson.types.ObjectId;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,8 +33,7 @@ public class JsonParseUser {
         if (data != "null") {
             JSONObject jsonObject = new JSONObject(data);
             String userId = jsonObject.getString("_id");
-            User.getInstance().setID(userId.substring(3, userId.length() - 1));
-            Log.i(TAG, User.getInstance().getID());
+            User.getInstance().setId(new ObjectId(userId.substring(3,userId.length()-1)));
             User.getInstance().setRealName(jsonObject.getString("RealName"));
             User.getInstance().setPhoneNumber(jsonObject.getString("PhoneNumber"));
             User.getInstance().setEmail(jsonObject.getString("Email"));
