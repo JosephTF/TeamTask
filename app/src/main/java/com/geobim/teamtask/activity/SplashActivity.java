@@ -43,7 +43,7 @@ public class SplashActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); //设置全屏
         setContentView(R.layout.activity_splash);
         //淡入效果动画
-        RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.splash_rootview);
+        RelativeLayout rootLayout = findViewById(R.id.splash_rootview);
         AlphaAnimation animation = new AlphaAnimation(0.6f, 1.0f);
         animation.setDuration(2000);
         rootLayout.startAnimation(animation);
