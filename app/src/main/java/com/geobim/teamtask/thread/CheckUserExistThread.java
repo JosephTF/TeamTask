@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
+ * 判断用户是否存在线程
  * Created by Administrator on 2017/12/7.
  */
 
@@ -42,9 +43,11 @@ public class CheckUserExistThread extends Thread{
                     case 200:
                         boolean isExist = json.getBoolean("Data");
                         if(isExist){
+                            //用户存在
                             msgMessage.what = 200;
                             handler.sendMessage(msgMessage);
                         }else{
+                            //用户不存在
                             msgMessage.what = 404;
                             handler.sendMessage(msgMessage);
                         }

@@ -111,12 +111,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
                         animLoginBtn();
                         Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_SHORT).show();
                     } else {
-                        login();
+                        startThread();
                     }
                 }
                 break;
             case R.id.login_forget:
-                cancelLogin();
+                cancelThread();
                 Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
                 startActivity(intent);
                 finish();
@@ -176,7 +176,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     /**
      * 用户登录
      */
-    private void login() {
+    private void startThread() {
         pg_wait.setVisibility(View.VISIBLE);
         if (timeoutThread == null) {
             timeoutThread = new TimeoutThread(handler);
@@ -191,7 +191,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     /**
      * 取消定时器
      */
-    private void cancelLogin() {
+    private void cancelThread() {
         pg_wait.setVisibility(View.GONE);
         if (timeoutThread != null) {
             timeoutThread.cancelTimer();
@@ -227,7 +227,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 登录失败
      */
     private void loginFailed() {
-        cancelLogin();
+        cancelThread();
         SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
         sad.setTitleText("登录失败");
         sad.setContentText(ApiReturnInfo.getInstance().getMessage());
@@ -245,7 +245,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 登录错误
      */
     private void loginError() {
-        cancelLogin();
+        cancelThread();
         SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
         sad.setTitleText("提示");
         sad.setContentText("登录错误！");
@@ -263,7 +263,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 登录成功，保存密码，跳转界面
      */
     private void loginSuccess() {
-        cancelLogin();
+        cancelThread();
         //保存密码
         try {
             boolean result = loginService.saveToRom(password, username, User.getInstance().getTokenKey());
@@ -285,7 +285,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
      * 请求超时
      */
     private void loginTimeOut() {
-        cancelLogin();
+        cancelThread();
         SweetAlertDialog sad = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
         sad.setTitleText("提示");
         sad.setContentText("登录超时，请稍后重试");

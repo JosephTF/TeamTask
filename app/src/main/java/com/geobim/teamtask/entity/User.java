@@ -57,6 +57,7 @@ public class User {
     private TrainingInfo trainingInfo;              //培训信息
     private Attachments attachments;                //附件信息
     private String TokenKey;                        //用户安全Key
+    private String UserToken;                       //用户令牌（包含用户Id及访问权限等信息）
 
     public ObjectId getId() {
         return Id;
@@ -288,5 +289,13 @@ public class User {
 
     public void setTokenKey(String tokenKey) {
         TokenKey = tokenKey;
+    }
+
+    public String getUserToken() {
+        return UserToken;
+    }
+
+    public void setUserToken(String userToken) {
+        UserToken = userToken;
     }
 }

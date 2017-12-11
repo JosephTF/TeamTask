@@ -46,9 +46,8 @@ import cn.smssdk.utils.SMSLog;
 
 public class ForgetActivity extends BaseActivity implements OnClickListener, OnLongClickListener {
     private final String TAG = "ForgetActivity";
-    private int TIME = 60;//倒计时60s这里应该多设置些因为mob后台需要60s
-    private boolean isCountdown, isRepeat;//验证码是否在倒计时中
-    private static final int CODE_REPEAT = 0; //重新发送
+    private int TIME = 60;                      //倒计时Mob后台需要60s
+    private boolean isCountdown, isRepeat;      //验证码是否在倒计时中
     private String countryNumber, countryName, phonenum, countryNumber_confirm, phonenum_confirm;
     private ImageButton ib_back;
     private ImageView iv_country;
@@ -56,18 +55,18 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     private EditText et_phonenumber, et_code;
     private TimeoutThread timeoutThread;        //超时判断线程
     private CheckUserExistThread cueThread;     //用户存在判断线程
-    private TimerTask tt;
-    private Timer tm;
-    private Handler handler;
-    private EventHandler eh;
-    private ProgressWheel pg_wait;  //等待条
+    private TimerTask tt;                       //验证码重发倒计时
+    private Timer tm;                           //验证码重发倒计时
+    private Handler handler;                    //自定义Handler
+    private EventHandler eh;                    //Mob短信验证码Handler
+    private ProgressWheel pg_wait;              //等待条
 
     @Override
     protected void initVariables() {
         //默认中国区号
         countryNumber = getString(R.string.forget_countrynum);
         countryName = "中国";
-        // 通过代码注册你的AppKey和AppSecret
+        // 注册MobSDK
         MobSDK.init(ForgetActivity.this, ApkUtil.getMobAppKey(), ApkUtil.getMobAppSecret());
     }
 
@@ -98,22 +97,27 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             @SuppressLint("StringFormatMatches")
             @Override
             public void handleMessage(Message msg) {
-                if (msg.what == 200) {
-                    verificationCodeDialog(phonenum);//用户存在，发送验证码弹框
-                    cancelThread();
-                } else if (msg.what == 404) {
-                    userIsNotExist();//用户不存在
-                    cancelThread();
-                } else if (msg.what == CODE_REPEAT) {
+                if (msg.what == 0) {
+                    //倒计时结束
                     isCountdown = false;//倒计时结束
                     isRepeat = true;//非首次发送验证码
                     tv_getVerificationCode.setEnabled(true);
                     et_phonenumber.setEnabled(true);
                     tv_getVerificationCode.setText(R.string.forget_getVerificationCode_again);
-                    tm.cancel();//取消任务
-                    tt.cancel();//取消任务
-                    TIME = 60;//时间重置
+                    cancelTimeTask();
+                } else if (msg.what == 200) {
+                    //用户存在，确认消息发送验证码
+                    verificationCodeDialog(phonenum);//用户存在，发送验证码弹框
+                    cancelThread();
+                } else if (msg.what == 404) {
+                    //用户不存在
+                    userIsNotExist();
+                    cancelThread();
+                } else if (msg.what == 504) {
+                    //判断用户存在线程超时
+                    checkTimeOut();
                 } else {
+                    //正在倒计时中
                     isCountdown = true;
                     tv_getVerificationCode.setEnabled(false);
                     et_phonenumber.setEnabled(false);
@@ -208,7 +212,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         }
         return true;
     }
-
+    /*-------------------------------------  对话框  -------------------------------------*/
     /**
      * 用户不存在，错误弹框
      */
@@ -253,7 +257,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                     // 重新获取验证码短信
                     SMSSDK.getVerificationCode(countryNumber_confirm, phonenum_confirm);
                     //做倒计时操作
-                    timeTask();
+                    startTimeTask();
                 }
             });
             sad.show();
@@ -281,7 +285,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                     // 重新获取验证码短信
                     SMSSDK.getVerificationCode(countryNumber, phonenum.trim());
                     //做倒计时操作
-                    timeTask();
+                    startTimeTask();
                 }
             });
             sad.show();
@@ -313,30 +317,10 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                 // 重新获取语音报播
                 SMSSDK.getVoiceVerifyCode(countryNumber, phonenum.trim());
                 //做倒计时操作
-                timeTask();
+                startTimeTask();
             }
         });
         sad.show();
-    }
-
-    /**
-     * 倒计时线程
-     */
-    private void timeTask() {
-        tm = new Timer();
-        tt = new TimerTask() {
-            @Override
-            public void run() {
-                if (TIME > 1) {
-                    handler.sendEmptyMessage(TIME--);
-                } else {
-                    Message msg = new Message();
-                    msg.what = CODE_REPEAT;
-                    handler.sendMessage(msg);
-                }
-            }
-        };
-        tm.schedule(tt, 0, 1000);
     }
 
     /**
@@ -361,8 +345,6 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     /**
      * 提交验证码成功后的执行事件
      *
-     * @param result
-     * @param data
      */
     protected void afterSubmit(final int result, final Object data) {
         Log.i(TAG, "验证成功");
@@ -370,7 +352,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             public void run() {
                 if (result == SMSSDK.RESULT_COMPLETE) {
                     //验证成功
-                    handler.sendEmptyMessage(CODE_REPEAT);
+                    handler.sendEmptyMessage(0);
                     pg_wait.setVisibility(View.INVISIBLE);
                     Intent intent = new Intent(ForgetActivity.this, ResetPasswordActivity.class);
                     startActivity(intent);
@@ -403,8 +385,6 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     /**
      * 获取语音验证码成功后,的执行动作
      *
-     * @param result
-     * @param data
      */
     protected void afterGetVoice(final int result, final Object data) {
         runOnUiThread(new Runnable() {
@@ -446,6 +426,9 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         });
     }
 
+    /**
+     * 保存转屏前的数据
+     */
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putBoolean("isCoutdown", isCountdown);
@@ -454,6 +437,9 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * 转屏后读取界面
+     */
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -462,7 +448,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         if (isCountdown) {
             //正在倒计时
             TIME = savedInstanceState.getInt("RemainingTime");
-            timeTask();
+            startTimeTask();
         } else {
             //没有倒计时
             if (isRepeat) {
@@ -470,8 +456,36 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             }
         }
     }
+    /*-------------------------------------  线程  -------------------------------------*/
     /**
-     * 开始线程
+     * 开始倒计时线程
+     */
+    private void startTimeTask() {
+        tm = new Timer();
+        tt = new TimerTask() {
+            @Override
+            public void run() {
+                if (TIME > 1) {
+                    handler.sendEmptyMessage(TIME--);
+                } else {
+                    Message msg = new Message();
+                    msg.what = 0;
+                    handler.sendMessage(msg);
+                }
+            }
+        };
+        tm.schedule(tt, 0, 1000);
+    }
+    /**
+     * 取消倒计时线程
+     */
+    private void cancelTimeTask(){
+        tm.cancel();//取消倒计时
+        tt.cancel();//取消倒计时
+        TIME = 60;//重置时间
+    }
+    /**
+     * 开始检测用户是否存在线程
      */
     private void startThread() {
         pg_wait.setVisibility(View.VISIBLE);
@@ -486,7 +500,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     }
 
     /**
-     * 取消线程
+     * 取消检测用户是否存在线程
      */
     private void cancelThread() {
         pg_wait.setVisibility(View.GONE);
@@ -500,12 +514,27 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             cueThread = null;
         }
     }
+
+    /**
+     * 请求超时
+     */
+    private void checkTimeOut() {
+        cancelThread();
+        SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("请求超时，请稍后重试");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
     /**
      * 虚拟返回键
-     *
-     * @param keyCode
-     * @param event
-     * @return
      */
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
