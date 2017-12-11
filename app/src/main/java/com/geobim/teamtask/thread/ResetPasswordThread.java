@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
+ * 修改密码
  * Created by Administrator on 2017/12/9.
  */
 
@@ -19,19 +20,20 @@ public class ResetPasswordThread extends Thread {
     private final String TAG = "ResetPasswordThread";
     private Handler handler;
     private String userToken,passsword;
+    private Message msgMessage;
+    private HttpUrlGet httpUtils;
 
     public ResetPasswordThread(Handler handler, String userToken,String passsword) {
         this.handler = handler;
         this.userToken = userToken;
         this.passsword = passsword;
+        msgMessage = new Message();
+        httpUtils = new HttpUrlGet();
     }
 
     @Override
     public void run() {
         super.run();
-        Message msgMessage = new Message();
-        //传入令牌和密码
-        HttpUrlGet httpUtils = new HttpUrlGet();
         //判断密码是否与旧密码一致
         String pwdIsSame = httpUtils.getUserPasswordIsSameUrl(userToken,passsword);
         try {
@@ -41,11 +43,13 @@ public class ResetPasswordThread extends Thread {
                 int Code = json.getInt("Code");
                 switch (Code) {
                     case 200:
-                        boolean isExist = json.getBoolean("Data");
-                        if(isExist){
+                        boolean isSame = json.getBoolean("Data");
+                        if(!isSame){
+                            //与旧密码不一样，设置新密码
                             msgMessage.what = 200;
                             handler.sendMessage(msgMessage);
                         }else{
+                            //与旧密码一样，重新设置
                             msgMessage.what = 404;
                             handler.sendMessage(msgMessage);
                         }

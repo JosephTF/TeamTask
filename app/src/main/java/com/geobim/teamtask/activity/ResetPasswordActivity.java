@@ -28,7 +28,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 public class ResetPasswordActivity extends BaseActivity implements OnClickListener {
     private final String TAG = "ForgetActivity";
-    private String newPassword;
+    private String newPassword, userToken;
     private ImageButton ib_back;
     private EditText et_newpassword;
     private TextView tv_confirm;
@@ -36,6 +36,7 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
     private TimeoutThread timeoutThread;        //超时判断线程
     private ResetPasswordThread rptThread;
     private Handler handler;
+
     @Override
     protected void initVariables() {
 
@@ -59,25 +60,9 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 200) {
-                    verificationCodeDialog(phonenum);//用户存在，发送验证码弹框
                     cancelThread();
                 } else if (msg.what == 404) {
-                    userIsNotExist();//用户不存在
                     cancelThread();
-                } else if (msg.what == CODE_REPEAT) {
-                    isCountdown = false;//倒计时结束
-                    isRepeat = true;//非首次发送验证码
-                    tv_getVerificationCode.setEnabled(true);
-                    et_phonenumber.setEnabled(true);
-                    tv_getVerificationCode.setText(R.string.forget_getVerificationCode_again);
-                    tm.cancel();//取消任务
-                    tt.cancel();//取消任务
-                    TIME = 60;//时间重置
-                } else {
-                    isCountdown = true;
-                    tv_getVerificationCode.setEnabled(false);
-                    et_phonenumber.setEnabled(false);
-                    tv_getVerificationCode.setText(Html.fromHtml(getString(R.string.forget_receive_msg, TIME)));
                 }
             }
         };
@@ -96,7 +81,7 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
                 if (newPassword.length() < 6 || newPassword.length() > 16) {
                     Toast.makeText(ResetPasswordActivity.this, getString(R.string.reset_illegal), Toast.LENGTH_SHORT).show();
                 } else {
-
+                    startThread();
                 }
                 break;
         }
@@ -112,7 +97,7 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
             timeoutThread.start();//开启定时器线程
         }
         if (rptThread == null) {
-            rptThread = new CheckUserExistThread(handler, newPassword);
+            rptThread = new ResetPasswordThread(handler, userToken, newPassword);
             rptThread.start();
         }
     }
@@ -132,6 +117,7 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
             rptThread = null;
         }
     }
+
     /**
      * 虚拟返回键
      *
