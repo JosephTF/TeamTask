@@ -8,4 +8,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="weekIndicatorStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">#ff25adff</item>
+    </style>
+
+    <style name="MainTheme" parent="@style/AppTheme">
+        <item name="android:windowBackground">@drawable/transparent_background</item>
+    </style>
+    <!-- Base application theme. DarkActionBar-->
+    <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!--设置透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 设置activity切换动画 -->
+        <item name="android:windowAnimationStyle">@style/animation_translucent_translate</item>
+    </style>
+
+    <!--activity切换动画-->
+    <style name="animation_translucent_translate" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@anim/anim_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_fade_out</item>
+    </style>
 </resources>

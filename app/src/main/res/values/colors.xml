@@ -3,4 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <drawable name="transparent_background">#ffffffff</drawable>
+
+    <color name="lineColor">#e9eff4</color>
+    <color name="btn_color_red_down">#cf0d16</color>
+
+
+    <!--按钮-->
+    <drawable name="white">#e7e7e7</drawable>
+    <drawable name="btn_down_color">#fff2f6f9</drawable>
+    <drawable name="transparent">#00000000</drawable>
 </resources>

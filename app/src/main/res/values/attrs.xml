@@ -54,4 +54,10 @@
             <enum name="CoolWaitLoadingRenderer" value="15"/>
         </attr>
     </declare-styleable>
+
+    <string-array name="titles">
+        <item>Android</item>
+        <item>IOS</item>
+        <item>JAVA</item>
+    </string-array>
 </resources>

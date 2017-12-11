@@ -71,15 +71,15 @@ public class CountryActivity extends BaseActivity implements OnClickListener {
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_country);
         StatusBarUtil.setTranslucent(CountryActivity.this, 0);//状态栏半透明
-        country_edt_search = findViewById(R.id.et_country_search);
-        country_lv_countryList = findViewById(R.id.country_lv_list);
-        ib_country_back = findViewById(R.id.ib_country_back);
-        ib_country_search = findViewById(R.id.ib_country_search);
-        ib_country_searchclear = findViewById(R.id.ib_country_searchclear);
-        rl_country_search = findViewById(R.id.rl_register_search);
-        tv_title = findViewById(R.id.tv_country_title);
-        dialog = findViewById(R.id.country_dialog);
-        sideBar = findViewById(R.id.country_sidebar);
+        country_edt_search =(EditText) findViewById(R.id.et_country_search);
+        country_lv_countryList = (ListView) findViewById(R.id.country_lv_list);
+        ib_country_back =(ImageButton) findViewById(R.id.ib_country_back);
+        ib_country_search = (ImageButton)findViewById(R.id.ib_country_search);
+        ib_country_searchclear =(ImageButton) findViewById(R.id.ib_country_searchclear);
+        rl_country_search = (RelativeLayout) findViewById(R.id.rl_register_search);
+        tv_title = (TextView) findViewById(R.id.tv_country_title);
+        dialog = (TextView)findViewById(R.id.country_dialog);
+        sideBar =(SideBar) findViewById(R.id.country_sidebar);
         ib_country_back.setOnClickListener(this);
         ib_country_search.setOnClickListener(this);
         ib_country_searchclear.setOnClickListener(this);

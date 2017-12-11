@@ -29,6 +29,7 @@ import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
+import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.LoginSaveUtil;
 import com.geobim.teamtask.util.NetworkUtils;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
@@ -59,16 +60,17 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
         StatusBarUtil.setTranslucent(LoginActivity.this, 0);//状态栏半透明
-        rl_login = findViewById(R.id.rl_login);
-        et_username = findViewById(R.id.et_login_username);
-        et_password = findViewById(R.id.et_login_password);
-        iv_username = findViewById(R.id.iv_login_username);
-        iv_password = findViewById(R.id.iv_login_password);
-        tv_logo_title = findViewById(R.id.login_logo_title);
-        tv_login = findViewById(R.id.login_start);
-        tv_forget = findViewById(R.id.login_forget);
-        tv_register = findViewById(R.id.login_register);
-        pg_wait = findViewById(R.id.progress_login_wheel);
+        setSwipeBackEnable(false);
+        rl_login =(RelativeLayout) findViewById(R.id.rl_login);
+        et_username = (EditText) findViewById(R.id.et_login_username);
+        et_password = (EditText) findViewById(R.id.et_login_password);
+        iv_username = (ImageView) findViewById(R.id.iv_login_username);
+        iv_password = (ImageView) findViewById(R.id.iv_login_password);
+        tv_logo_title = (TextView)findViewById(R.id.login_logo_title);
+        tv_login = (TextView)findViewById(R.id.login_start);
+        tv_forget = (TextView)findViewById(R.id.login_forget);
+        tv_register = (TextView)findViewById(R.id.login_register);
+        pg_wait = (ProgressWheel) findViewById(R.id.progress_login_wheel);
         tv_logo_title.setTypeface(tf);
         tv_login.setOnClickListener(this);
         tv_forget.setOnClickListener(this);
@@ -330,7 +332,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
             sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                 @Override
                 public void onClick(SweetAlertDialog sweetAlertDialog) {
-                    finish();
+                    ActivityList.getInstance().exit();
                 }
             });
             sad.setCancelText("取消");

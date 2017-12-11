@@ -9,6 +9,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
@@ -33,4 +38,8 @@ dependencies {
     compile 'com.pnikosis:materialish-progress:1.7'
     compile name:'SMSSDK-3.0.0',ext:'aar'
     compile 'org.mongodb:mongo-java-driver:3.0.3'
+    /*ButterKnife注解*/
+    compile 'com.jakewharton:butterknife:7.0.1'
+    /*SuperCalendar 日历控件*/
+    compile 'com.github.MagicMashRoom:SuperCalendar:v1.4'
 }

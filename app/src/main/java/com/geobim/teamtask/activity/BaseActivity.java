@@ -1,6 +1,5 @@
 package com.geobim.teamtask.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +13,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
+import com.geobim.teamtask.util.ActivityList;
+import com.geobim.teamtask.util.swipebacklayout.app.SwipeBackActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,7 @@ import java.util.List;
  * Created by Administrator on 2017/11/27.
  */
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends SwipeBackActivity {
     private final String TAG = "BaseActivity";
     private int REQUEST_CODE_PERMISSION = 0x00099;
 
@@ -29,7 +31,7 @@ public abstract class BaseActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ActivityList.getInstance().addActivity(this);
         initVariables();
         initViews(savedInstanceState);
         loadData();
@@ -174,5 +176,11 @@ public abstract class BaseActivity extends Activity {
      */
     public void permissionFail(int requestCode) {
         Log.d(TAG, "获取权限失败=" + requestCode);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ActivityList.getInstance().removeActivity(this);
     }
 }

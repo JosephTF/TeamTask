@@ -2,23 +2,20 @@ package com.geobim.teamtask.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.entity.User;
-import com.geobim.teamtask.thread.CheckUserExistThread;
 import com.geobim.teamtask.thread.ResetPasswordThread;
 import com.geobim.teamtask.thread.TimeoutThread;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
@@ -50,10 +47,10 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_resetpassword);
         StatusBarUtil.setTranslucent(ResetPasswordActivity.this, 0);//状态栏半透明
-        ib_back = findViewById(R.id.ib_reset_back);
-        et_newpassword = findViewById(R.id.et_reset_newpassword);
-        tv_confirm = findViewById(R.id.tv_reset_confirm);
-        pg_wait = findViewById(R.id.progress_reset_wheel);
+        ib_back = (ImageButton) findViewById(R.id.ib_reset_back);
+        et_newpassword = (EditText) findViewById(R.id.et_reset_newpassword);
+        tv_confirm = (TextView) findViewById(R.id.tv_reset_confirm);
+        pg_wait = (ProgressWheel) findViewById(R.id.progress_reset_wheel);
         tv_confirm.setOnClickListener(this);
     }
 

@@ -22,6 +22,7 @@ import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.thread.CheckUserExistThread;
 import com.geobim.teamtask.thread.TimeoutThread;
+import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.ApkUtil;
 import com.geobim.teamtask.util.RegexConstants;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
@@ -68,20 +69,21 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         countryName = "中国";
         // 注册MobSDK
         MobSDK.init(ForgetActivity.this, ApkUtil.getMobAppKey(), ApkUtil.getMobAppSecret());
+        ActivityList.getInstance().addActivity(this);
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_forget);
         StatusBarUtil.setTranslucent(ForgetActivity.this, 0);//状态栏半透明
-        ib_back = findViewById(R.id.ib_forget_back);
-        iv_country = findViewById(R.id.iv_forget_countrynum);
-        tv_countrynum = findViewById(R.id.tv_forget_countrynum);
-        tv_getVerificationCode = findViewById(R.id.tv_forget_getVerificationCode);
-        tv_confirm = findViewById(R.id.tv_forget_confirm);
-        et_phonenumber = findViewById(R.id.et_forget_phonenumber);
-        et_code = findViewById(R.id.et_forget_code);
-        pg_wait = findViewById(R.id.progress_forget_wheel);
+        ib_back = (ImageButton) findViewById(R.id.ib_forget_back);
+        iv_country =(ImageView) findViewById(R.id.iv_forget_countrynum);
+        tv_countrynum =(TextView) findViewById(R.id.tv_forget_countrynum);
+        tv_getVerificationCode = (TextView)findViewById(R.id.tv_forget_getVerificationCode);
+        tv_confirm = (TextView)findViewById(R.id.tv_forget_confirm);
+        et_phonenumber = (EditText) findViewById(R.id.et_forget_phonenumber);
+        et_code = (EditText) findViewById(R.id.et_forget_code);
+        pg_wait = (ProgressWheel) findViewById(R.id.progress_forget_wheel);
         ib_back.setOnClickListener(this);
         iv_country.setOnClickListener(this);
         tv_countrynum.setOnClickListener(this);
