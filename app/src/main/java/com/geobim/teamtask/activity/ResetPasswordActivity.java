@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
+import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.thread.CheckUserExistThread;
 import com.geobim.teamtask.thread.ResetPasswordThread;
 import com.geobim.teamtask.thread.TimeoutThread;
@@ -28,7 +30,7 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 public class ResetPasswordActivity extends BaseActivity implements OnClickListener {
     private final String TAG = "ForgetActivity";
-    private String newPassword, userToken;
+    private String newPassword, userToken,resetKey;
     private ImageButton ib_back;
     private EditText et_newpassword;
     private TextView tv_confirm;
@@ -39,7 +41,9 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
 
     @Override
     protected void initVariables() {
-
+        //变量初始化
+        userToken = User.getInstance().getUserToken();
+        resetKey="";
     }
 
     @Override
@@ -60,14 +64,26 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
             @Override
             public void handleMessage(Message msg) {
                 if (msg.what == 200) {
+                    //修改成功
                     cancelThread();
+                    resetSuccessDialog();
+                } else if (msg.what == 202) {
+                    //与旧密码相同
+                    cancelThread();
+                    passwordIsSameDialog();
                 } else if (msg.what == 404) {
+                    //密码更新失败
                     cancelThread();
+                    resetErrorDialog();
+                }else if(msg.what == 504){
+                    //判断旧密码相同线程超时
+                    cancelThread();
+                    checkTimeOut();
                 }
             }
         };
     }
-
+    /*-------------------------------------  点击事件  -------------------------------------*/
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -87,6 +103,78 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
         }
     }
 
+    /*-------------------------------------  对话框  -------------------------------------*/
+    /**
+     * 改密失败
+     */
+    private void resetSuccessDialog(){
+        SweetAlertDialog sad = new SweetAlertDialog(ResetPasswordActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("密码修改成功！");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        sad.show();
+    }
+
+    /**
+     * 改密失败
+     */
+    private void resetErrorDialog(){
+        SweetAlertDialog sad = new SweetAlertDialog(ResetPasswordActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("抱歉，密码未能修改成功！");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
+    /**
+     * 与旧密码相同
+     */
+    private void passwordIsSameDialog(){
+        SweetAlertDialog sad = new SweetAlertDialog(ResetPasswordActivity.this, SweetAlertDialog.WARNING_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("不能与旧密码一致，请重新设置");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
+    /**
+     * 请求超时
+     */
+    private void checkTimeOut() {
+        SweetAlertDialog sad = new SweetAlertDialog(ResetPasswordActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("请求超时，请稍后重试");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
+            }
+        });
+        sad.show();
+    }
+
+    /*-------------------------------------  线程  -------------------------------------*/
     /**
      * 开始线程
      */
@@ -97,7 +185,7 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
             timeoutThread.start();//开启定时器线程
         }
         if (rptThread == null) {
-            rptThread = new ResetPasswordThread(handler, userToken, newPassword);
+            rptThread = new ResetPasswordThread(handler, userToken, newPassword,resetKey);
             rptThread.start();
         }
     }

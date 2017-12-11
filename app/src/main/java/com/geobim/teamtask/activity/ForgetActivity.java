@@ -116,6 +116,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
                 } else if (msg.what == 504) {
                     //判断用户存在线程超时
                     checkTimeOut();
+                    cancelThread();
                 } else {
                     //正在倒计时中
                     isCountdown = true;
@@ -150,7 +151,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         };
         SMSSDK.registerEventHandler(eh); //注册短信回调
     }
-
+    /*-------------------------------------  点击事件  -------------------------------------*/
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -235,6 +236,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
      */
     private void verificationCodeDialog(final String phonenum) {
         if (!isRepeat) {
+            //首次发送，默认短信验证码
             final String phone = countryNumber + phonenum;
             SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this);
             sad.setTitleText(getString(R.string.forget_getVerificationCode));
@@ -262,6 +264,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             });
             sad.show();
         } else {
+            //再次发送，自选短信验证码、语音验证码
             SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this);
             sad.setTitleText(getString(R.string.forget_getVerificationCode_again));
             sad.setContentText(getString(R.string.forget_getVerificationCode_method));
@@ -324,27 +327,25 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     }
 
     /**
-     * 国家列表回调方法，从第二个页面回来的时候会执行这个方法
+     * 请求超时
      */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // 根据上面发送过去的请求吗来区别
-        if (resultCode == RESULT_OK) {
-            switch (requestCode) {
-                case 10001:
-                    countryName = data.getStringExtra("countryName");
-                    countryNumber = data.getStringExtra("countryNumber");
-                    tv_countrynum.setText(countryNumber);
-                    break;
-                default:
-                    break;
+    private void checkTimeOut() {
+        SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this, SweetAlertDialog.ERROR_TYPE);
+        sad.setTitleText("提示");
+        sad.setContentText("请求超时，请稍后重试");
+        sad.setConfirmText("确定");
+        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+            @Override
+            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                sweetAlertDialog.dismiss();
             }
-        }
+        });
+        sad.show();
     }
 
+    /*-------------------------------------  Mob请求回执后处理方法  -------------------------------------*/
     /**
      * 提交验证码成功后的执行事件
-     *
      */
     protected void afterSubmit(final int result, final Object data) {
         Log.i(TAG, "验证成功");
@@ -383,7 +384,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     }
 
     /**
-     * 获取语音验证码成功后,的执行动作
+     * 获取语音验证码成功后的执行动作
      *
      */
     protected void afterGetVoice(final int result, final Object data) {
@@ -425,7 +426,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
             }
         });
     }
-
+    /*-------------------------------------  转屏时数据的存取  -------------------------------------*/
     /**
      * 保存转屏前的数据
      */
@@ -438,7 +439,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     }
 
     /**
-     * 转屏后读取界面
+     * 读取转屏后的数据
      */
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -515,22 +516,25 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         }
     }
 
+
+    /*-------------------------------------  其他  -------------------------------------*/
     /**
-     * 请求超时
+     * 国家列表回调方法，从第二个页面回来的时候会执行这个方法
      */
-    private void checkTimeOut() {
-        cancelThread();
-        SweetAlertDialog sad = new SweetAlertDialog(ForgetActivity.this, SweetAlertDialog.ERROR_TYPE);
-        sad.setTitleText("提示");
-        sad.setContentText("请求超时，请稍后重试");
-        sad.setConfirmText("确定");
-        sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-            @Override
-            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                sweetAlertDialog.dismiss();
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // 根据上面发送过去的请求吗来区别
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case 10001:
+                    countryName = data.getStringExtra("countryName");
+                    countryNumber = data.getStringExtra("countryNumber");
+                    tv_countrynum.setText(countryNumber);
+                    break;
+                default:
+                    break;
             }
-        });
-        sad.show();
+        }
     }
 
     /**
