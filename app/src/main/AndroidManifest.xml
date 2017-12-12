@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.geobim.teamtask">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <!--允许程序读取手机联系人-->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />

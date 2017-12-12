@@ -20,12 +20,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/10/18
- *     desc  : 进程相关工具类
- * </pre>
+ * 进程相关工具类
+ *
  */
 public final class ProcessUtils {
 
@@ -63,7 +59,6 @@ public final class ProcessUtils {
                         Utils.getApp().startActivity(intent);
                     }
                     if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, info.uid, info.packageName) != AppOpsManager.MODE_ALLOWED) {
-                        LogUtils.d("getForegroundApp", "没有打开\"有权查看使用权限的应用\"选项");
                         return null;
                     }
                     UsageStatsManager usageStatsManager = (UsageStatsManager) Utils.getApp().getSystemService(Context.USAGE_STATS_SERVICE);
@@ -102,56 +97,5 @@ public final class ProcessUtils {
             Collections.addAll(set, aInfo.pkgList);
         }
         return set;
-    }
-
-    /**
-     * 杀死所有的后台服务进程
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>}</p>
-     *
-     * @return 被暂时杀死的服务集合
-     */
-    public static Set<String> killAllBackgroundProcesses() {
-        ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
-        Set<String> set = new HashSet<>();
-        for (ActivityManager.RunningAppProcessInfo aInfo : info) {
-            for (String pkg : aInfo.pkgList) {
-                am.killBackgroundProcesses(pkg);
-                set.add(pkg);
-            }
-        }
-        info = am.getRunningAppProcesses();
-        for (ActivityManager.RunningAppProcessInfo aInfo : info) {
-            for (String pkg : aInfo.pkgList) {
-                set.remove(pkg);
-            }
-        }
-        return set;
-    }
-
-    /**
-     * 杀死后台服务进程
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>}</p>
-     *
-     * @param packageName 包名
-     * @return {@code true}: 杀死成功<br>{@code false}: 杀死失败
-     */
-    public static boolean killBackgroundProcesses(@NonNull final String packageName) {
-        ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
-        for (ActivityManager.RunningAppProcessInfo aInfo : info) {
-            if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
-                am.killBackgroundProcesses(packageName);
-            }
-        }
-        info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return true;
-        for (ActivityManager.RunningAppProcessInfo aInfo : info) {
-            if (Arrays.asList(aInfo.pkgList).contains(packageName)) {
-                return false;
-            }
-        }
-        return true;
     }
 }

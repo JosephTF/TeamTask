@@ -21,12 +21,8 @@ import android.widget.Toast;
 import java.lang.ref.WeakReference;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/29
- *     desc  : 吐司相关工具类
- * </pre>
+ * 吐司相关工具类
+ *
  */
 public final class ToastUtils {
 

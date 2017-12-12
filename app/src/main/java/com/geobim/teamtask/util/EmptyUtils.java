@@ -13,12 +13,8 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/28
- *     desc  : 判空相关工具类
- * </pre>
+ * 判空相关工具类
+ *
  */
 public final class EmptyUtils {
 

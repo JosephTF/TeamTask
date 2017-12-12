@@ -3,6 +3,9 @@ package com.geobim.teamtask.util;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+/**
+ * Stream工具类
+ */
 public class StreamTools {
     /**
      * 把InputStream中的内容读出来，放到一个byte[]中返回

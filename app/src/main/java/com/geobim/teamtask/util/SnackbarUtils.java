@@ -19,12 +19,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/10/16
- *     desc  : Snackbar相关工具类
- * </pre>
+ * Snackbar相关工具类
+ *
  */
 public final class SnackbarUtils {
 

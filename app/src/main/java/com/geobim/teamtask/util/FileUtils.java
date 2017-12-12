@@ -24,12 +24,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/05/03
- *     desc  : 文件相关工具类
- * </pre>
+ * 文件相关工具类
+ *
  */
 public final class FileUtils {
 

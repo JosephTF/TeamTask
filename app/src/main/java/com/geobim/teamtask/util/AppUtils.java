@@ -18,12 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : App相关工具类
- * </pre>
+ * App相关工具类
+ *
  */
 public final class AppUtils {
 

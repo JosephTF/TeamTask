@@ -28,7 +28,7 @@ import java.util.List;
  * Activity管理类
  */
 public class ActivityList {
-    private static List<Activity> activitys = new ArrayList<Activity>();
+    private static List<Activity> activitys = new ArrayList<>();
     private static ActivityList instance;
 
     private ActivityList() {

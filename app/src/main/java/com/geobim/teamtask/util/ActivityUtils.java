@@ -17,12 +17,8 @@ import android.view.View;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/23
- *     desc  : Activity相关工具类
- * </pre>
+ * Activity相关工具类
+ *
  */
 public final class ActivityUtils {
 

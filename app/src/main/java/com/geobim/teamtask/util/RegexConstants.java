@@ -1,12 +1,8 @@
 package com.geobim.teamtask.util;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/03/13
- *     desc  : 正则相关常量
- * </pre>
+ * 正则相关常量
+ *
  */
 public final class RegexConstants {
 

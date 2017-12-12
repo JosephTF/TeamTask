@@ -1,6 +1,7 @@
 package com.geobim.teamtask.util;
 
 /**
+ * Base64 编码
  * Created by Administrator on 2017/11/28.
  */
 

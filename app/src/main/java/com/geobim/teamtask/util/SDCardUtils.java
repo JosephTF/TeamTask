@@ -11,12 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/11
- *     desc  : SD卡相关工具类
- * </pre>
+ * SD卡相关工具类
+ *
  */
 public final class SDCardUtils {
 

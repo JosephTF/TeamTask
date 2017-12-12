@@ -47,10 +47,9 @@ public class SplashThread extends Thread {
             });
         }
         if(isSaved){
-            Intent intent = new Intent(mActivity, MainActivity.class);
+            Intent intent = new Intent(mActivity, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             mActivity.startActivity(intent);
-            mActivity.finish();
         }else {
             Intent intent = new Intent(mActivity, LoginActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

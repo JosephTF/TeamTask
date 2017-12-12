@@ -10,6 +10,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
 /**
+ * 加密算法工具类
  * Created by Administrator on 2017/11/28.
  */
 

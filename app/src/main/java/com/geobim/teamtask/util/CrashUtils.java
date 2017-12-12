@@ -19,12 +19,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/27
- *     desc  : 崩溃相关工具类
- * </pre>
+ * 崩溃相关工具类
+ *
  */
 public final class CrashUtils {
 

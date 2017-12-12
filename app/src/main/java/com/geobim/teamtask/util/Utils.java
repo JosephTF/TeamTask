@@ -11,12 +11,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 16/12/08
- *     desc  : Utils初始化相关
- * </pre>
+ * Utils初始化相关
+ *
  */
 public final class Utils {
 

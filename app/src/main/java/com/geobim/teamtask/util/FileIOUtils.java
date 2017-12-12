@@ -20,12 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/06/22
- *     desc  : 文件读写相关工具类
- * </pre>
+ * 文件读写相关工具类
+ *
  */
 public final class FileIOUtils {
 

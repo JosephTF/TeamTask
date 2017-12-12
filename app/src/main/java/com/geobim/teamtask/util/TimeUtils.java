@@ -9,12 +9,8 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : 时间相关工具类
- * </pre>
+ * 时间相关工具类
+ *
  */
 public final class TimeUtils {
 

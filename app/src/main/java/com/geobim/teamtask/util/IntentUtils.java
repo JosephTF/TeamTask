@@ -11,12 +11,8 @@ import android.support.v4.content.FileProvider;
 import java.io.File;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/23
- *     desc  : 意图相关工具类
- * </pre>
+ * Intent相关工具类
+ *
  */
 public final class IntentUtils {
 

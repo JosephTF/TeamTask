@@ -8,6 +8,9 @@ import android.view.View;
 import com.geobim.teamtask.util.swipebacklayout.SwipeBackLayout;
 import com.geobim.teamtask.util.swipebacklayout.Utils;
 
+/**
+ * 滑动返回Activity
+ */
 public class SwipeBackActivity extends AppCompatActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
 

@@ -21,12 +21,8 @@ import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : 网络相关工具类
- * </pre>
+ * 网络相关工具类
+ *
  */
 public final class NetworkUtils {
 

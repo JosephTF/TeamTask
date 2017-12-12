@@ -5,12 +5,8 @@ import android.os.Environment;
 import java.io.File;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/09/27
- *     desc  : 清除相关工具类
- * </pre>
+ * 清除相关工具类
+ *
  */
 public final class CleanUtils {
 

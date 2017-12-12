@@ -46,30 +46,6 @@ public final class PhoneUtils {
     }
 
     /**
-     * 获取IMEI码
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
-     *
-     * @return IMEI码
-     */
-    @SuppressLint("HardwareIds")
-    public static String getIMEI() {
-        TelephonyManager tm = (TelephonyManager) Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
-        return tm != null ? tm.getDeviceId() : null;
-    }
-
-    /**
-     * 获取IMSI码
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
-     *
-     * @return IMSI码
-     */
-    @SuppressLint("HardwareIds")
-    public static String getIMSI() {
-        TelephonyManager tm = (TelephonyManager) Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
-        return tm != null ? tm.getSubscriberId() : null;
-    }
-
-    /**
      * 获取移动终端类型
      *
      * @return 手机制式
@@ -128,49 +104,6 @@ public final class PhoneUtils {
             default:
                 return operator;
         }
-    }
-
-    /**
-     * 获取手机状态信息
-     * <p>需添加权限 {@code <uses-permission android:name="android.permission.READ_PHONE_STATE"/>}</p>
-     *
-     * @return DeviceId(IMEI) = 99000311726612<br>
-     * DeviceSoftwareVersion = 00<br>
-     * Line1Number =<br>
-     * NetworkCountryIso = cn<br>
-     * NetworkOperator = 46003<br>
-     * NetworkOperatorName = 中国电信<br>
-     * NetworkType = 6<br>
-     * honeType = 2<br>
-     * SimCountryIso = cn<br>
-     * SimOperator = 46003<br>
-     * SimOperatorName = 中国电信<br>
-     * SimSerialNumber = 89860315045710604022<br>
-     * SimState = 5<br>
-     * SubscriberId(IMSI) = 460030419724900<br>
-     * VoiceMailNumber = *86<br>
-     */
-    @SuppressLint("HardwareIds")
-    public static String getPhoneStatus() {
-        TelephonyManager tm = (TelephonyManager) Utils.getApp()
-                .getSystemService(Context.TELEPHONY_SERVICE);
-        String str = "";
-        str += "DeviceId(IMEI) = " + tm.getDeviceId() + "\n";
-        str += "DeviceSoftwareVersion = " + tm.getDeviceSoftwareVersion() + "\n";
-        str += "Line1Number = " + tm.getLine1Number() + "\n";
-        str += "NetworkCountryIso = " + tm.getNetworkCountryIso() + "\n";
-        str += "NetworkOperator = " + tm.getNetworkOperator() + "\n";
-        str += "NetworkOperatorName = " + tm.getNetworkOperatorName() + "\n";
-        str += "NetworkType = " + tm.getNetworkType() + "\n";
-        str += "PhoneType = " + tm.getPhoneType() + "\n";
-        str += "SimCountryIso = " + tm.getSimCountryIso() + "\n";
-        str += "SimOperator = " + tm.getSimOperator() + "\n";
-        str += "SimOperatorName = " + tm.getSimOperatorName() + "\n";
-        str += "SimSerialNumber = " + tm.getSimSerialNumber() + "\n";
-        str += "SimState = " + tm.getSimState() + "\n";
-        str += "SubscriberId(IMSI) = " + tm.getSubscriberId() + "\n";
-        str += "VoiceMailNumber = " + tm.getVoiceMailNumber() + "\n";
-        return str;
     }
 
     /**

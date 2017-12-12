@@ -36,12 +36,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/05/24
- *     desc  : 缓存相关工具类
- * </pre>
+ * 缓存相关工具类
+ *
  */
 public class CacheUtils {
 
