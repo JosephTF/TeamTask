@@ -37,7 +37,10 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.util.Map;
 
-
+/**
+ * 登录界面
+ *
+ */
 public class LoginActivity extends BaseActivity implements OnClickListener, OnFocusChangeListener, OnTouchListener {
     private final String TAG = "LoginActivity";
     private String username, password;
@@ -268,7 +271,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         cancelThread();
         //保存密码
         try {
-            boolean result = loginService.saveToRom(password, username, User.getInstance().getTokenKey());
+            boolean result = loginService.saveToRom(password, username, true);
             if (result) {
                 Log.i(TAG, "用户密码保存成功");
             } else {

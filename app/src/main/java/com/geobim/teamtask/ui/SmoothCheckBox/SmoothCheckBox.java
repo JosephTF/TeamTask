@@ -20,6 +20,9 @@ import android.widget.Checkable;
 
 import com.geobim.teamtask.R;
 
+/**
+ * 自定义的CheckBox，勾选有动画特效
+ */
 public class SmoothCheckBox extends View implements Checkable {
     private static final String KEY_INSTANCE_STATE = "InstanceState";
 

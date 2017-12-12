@@ -77,10 +77,10 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         setContentView(R.layout.activity_forget);
         StatusBarUtil.setTranslucent(ForgetActivity.this, 0);//状态栏半透明
         ib_back = (ImageButton) findViewById(R.id.ib_forget_back);
-        iv_country =(ImageView) findViewById(R.id.iv_forget_countrynum);
-        tv_countrynum =(TextView) findViewById(R.id.tv_forget_countrynum);
-        tv_getVerificationCode = (TextView)findViewById(R.id.tv_forget_getVerificationCode);
-        tv_confirm = (TextView)findViewById(R.id.tv_forget_confirm);
+        iv_country = (ImageView) findViewById(R.id.iv_forget_countrynum);
+        tv_countrynum = (TextView) findViewById(R.id.tv_forget_countrynum);
+        tv_getVerificationCode = (TextView) findViewById(R.id.tv_forget_getVerificationCode);
+        tv_confirm = (TextView) findViewById(R.id.tv_forget_confirm);
         et_phonenumber = (EditText) findViewById(R.id.et_forget_phonenumber);
         et_code = (EditText) findViewById(R.id.et_forget_code);
         pg_wait = (ProgressWheel) findViewById(R.id.progress_forget_wheel);
@@ -153,6 +153,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         };
         SMSSDK.registerEventHandler(eh); //注册短信回调
     }
+
     /*-------------------------------------  点击事件  -------------------------------------*/
     @Override
     public void onClick(View view) {
@@ -216,6 +217,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         return true;
     }
     /*-------------------------------------  对话框  -------------------------------------*/
+
     /**
      * 用户不存在，错误弹框
      */
@@ -346,6 +348,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
     }
 
     /*-------------------------------------  Mob请求回执后处理方法  -------------------------------------*/
+
     /**
      * 提交验证码成功后的执行事件
      */
@@ -387,7 +390,6 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
 
     /**
      * 获取语音验证码成功后的执行动作
-     *
      */
     protected void afterGetVoice(final int result, final Object data) {
         runOnUiThread(new Runnable() {
@@ -429,6 +431,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         });
     }
     /*-------------------------------------  转屏时数据的存取  -------------------------------------*/
+
     /**
      * 保存转屏前的数据
      */
@@ -460,6 +463,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         }
     }
     /*-------------------------------------  线程  -------------------------------------*/
+
     /**
      * 开始倒计时线程
      */
@@ -479,14 +483,16 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
         };
         tm.schedule(tt, 0, 1000);
     }
+
     /**
      * 取消倒计时线程
      */
-    private void cancelTimeTask(){
+    private void cancelTimeTask() {
         tm.cancel();//取消倒计时
         tt.cancel();//取消倒计时
         TIME = 60;//重置时间
     }
+
     /**
      * 开始检测用户是否存在线程
      */
@@ -520,6 +526,7 @@ public class ForgetActivity extends BaseActivity implements OnClickListener, OnL
 
 
     /*-------------------------------------  其他  -------------------------------------*/
+
     /**
      * 国家列表回调方法，从第二个页面回来的时候会执行这个方法
      */

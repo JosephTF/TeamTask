@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initVariables() {
         apkPath = ApkUtil.getApkPath();
-        sleepTime = 5000;
+        sleepTime = 4000;
         exitTime = 0;
         st = new SplashThread(this, sleepTime);
     }

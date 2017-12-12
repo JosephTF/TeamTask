@@ -33,12 +33,16 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:appcompat-v7:27.0.1'
     implementation 'com.android.support:design:27.0.1'
-    compile 'com.github.cazaea:sweet-alert-dialog:1.0.0'
     implementation files('libs/okhttp-3.8.1.jar')
+    /*Dialog对话框*/
+    compile 'com.github.cazaea:sweet-alert-dialog:1.0.0'
+    /*ProgressWheel缓冲等待条*/
     compile 'com.pnikosis:materialish-progress:1.7'
+    /*Mob短信验证码*/
     compile name:'SMSSDK-3.0.0',ext:'aar'
+    /*MongoDB数据库*/
     compile 'org.mongodb:mongo-java-driver:3.0.3'
-    /*ButterKnife注解*/
+    /*ButterKnife注解框架*/
     compile 'com.jakewharton:butterknife:7.0.1'
     /*SuperCalendar 日历控件*/
     compile 'com.github.MagicMashRoom:SuperCalendar:v1.4'

@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Activity框架
+ * 方法、权限整合
  * Created by Administrator on 2017/11/27.
  */
 
