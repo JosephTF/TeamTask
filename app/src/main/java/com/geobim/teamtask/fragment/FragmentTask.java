@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.activity.ResetPasswordActivity;
 import com.geobim.teamtask.adapter.ExampleAdapter;
-import com.geobim.teamtask.fragment.back.BaseFragment;
+import com.geobim.teamtask.base.ui.BaseFragment;
 import com.geobim.teamtask.ui.CalendarView.CustomDayView;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 import com.ldf.calendar.Utils;
@@ -89,7 +89,7 @@ public class FragmentTask extends BaseFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.activity_syllabus, null);
         StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
-        ButterKnife.bind(view);
+        ButterKnife.bind(this,view);
         mContentView.addView(view);
         context = this.getContext();
         content = view.findViewById(R.id.content);
@@ -114,7 +114,7 @@ public class FragmentTask extends BaseFragment {
         initToolbarClickListener();
     }
 
-    /**
+    /*
      * onWindowFocusChanged回调时，将当前月的种子日期修改为今天
      *
      * @return void
@@ -130,7 +130,6 @@ public class FragmentTask extends BaseFragment {
     /**
      * 初始化对应功能的listener
      *
-     * @return void
      */
     private void initToolbarClickListener() {
         backToday.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +155,6 @@ public class FragmentTask extends BaseFragment {
     /**
      * 初始化currentDate
      *
-     * @return void
      */
     private void initCurrentDate() {
         currentDate = new CalendarDate();
@@ -167,7 +165,6 @@ public class FragmentTask extends BaseFragment {
     /**
      * 初始化CustomDayView，并作为CalendarViewAdapter的参数传入
      *
-     * @return void
      */
     private void initCalendarView() {
         initListener();
@@ -184,7 +181,6 @@ public class FragmentTask extends BaseFragment {
     /**
      * 初始化标记数据，HashMap的形式，可自定义
      *
-     * @return void
      */
     private void initMarkData() {
         HashMap<String, String> markData = new HashMap<>();

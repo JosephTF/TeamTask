@@ -28,8 +28,7 @@ import android.widget.TextView;
  * 　　　　　┃┫┫　┃┫┫
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
- * Created by root on 2016/5/19  11:18.
- * Email:924686754@qq.com
+ * Created by root on 2017/12/12  11:18.
  */
 public class FragmentDemo extends Fragment {
     private TextView view;

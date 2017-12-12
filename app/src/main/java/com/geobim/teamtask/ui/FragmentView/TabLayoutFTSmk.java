@@ -37,8 +37,6 @@ import java.util.Random;
  * 　　　　　┃┫┫　┃┫┫
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
- * Created by Administrator on 2016/8/4.
- * Email:924686754@qq.com
  */
 
 public class TabLayoutFTSmk extends FrameLayout {

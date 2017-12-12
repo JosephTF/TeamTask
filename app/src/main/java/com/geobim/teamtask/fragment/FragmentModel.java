@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 import com.geobim.teamtask.R;
-import com.geobim.teamtask.fragment.back.BaseFragment;
+import com.geobim.teamtask.base.ui.BaseFragment;
 
 import butterknife.ButterKnife;
 

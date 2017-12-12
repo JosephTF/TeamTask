@@ -27,10 +27,18 @@
         <!-- 设置activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/animation_translucent_translate</item>
     </style>
-
     <!--activity切换动画-->
     <style name="animation_translucent_translate" parent="@android:style/Animation.Translucent">
         <item name="android:windowEnterAnimation">@anim/anim_fade_in</item>
         <item name="android:windowExitAnimation">@anim/anim_fade_out</item>
     </style>
+
+    <!-- 加载样式 -->
+    <style name="loading">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateDrawable">@drawable/base_progressloading</item>
+        <item name="android:indeterminateDuration">1000</item>
+        <item name="android:indeterminateOnly">true</item>
+    </style>
+
 </resources>

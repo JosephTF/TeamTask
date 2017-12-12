@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <drawable name="transparent_background">#ffffffff</drawable>
 
+    <color name="YOUR_APP_THEME">#0CB8F6</color>
     <color name="lineColor">#e9eff4</color>
     <color name="btn_color_red_down">#cf0d16</color>
 

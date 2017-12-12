@@ -1,4 +1,4 @@
-package com.geobim.teamtask.fragment.back;
+package com.geobim.teamtask.base.ui;
 
 
 import android.os.Bundle;
