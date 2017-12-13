@@ -67,7 +67,7 @@ public class TabLayoutFTSmk extends FrameLayout {
     }
 
     private void initView() {
-        tl_2 = (CommonTabLayout) findViewById(R.id.tl_2);
+        tl_2 = findViewById(R.id.tl_2);
     }
 
     /**

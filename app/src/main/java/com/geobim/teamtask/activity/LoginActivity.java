@@ -123,8 +123,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
             case R.id.login_forget:
                 cancelThread();
                 Intent intent = new Intent(LoginActivity.this, ForgetActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
-                finish();
                 break;
             case R.id.login_register:
                 Toast.makeText(LoginActivity.this, "暂时只开放内部用户使用，敬请期待新版本！", Toast.LENGTH_SHORT).show();

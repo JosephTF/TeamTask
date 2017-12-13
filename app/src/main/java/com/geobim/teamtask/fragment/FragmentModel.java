@@ -36,7 +36,7 @@ public class FragmentModel extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        view = inflater.inflate(R.layout.fragment_my, null);
+        view = inflater.inflate(R.layout.fragment_model, null);
         ButterKnife.bind(this, view);
         mContentView.addView(view);
         initView();

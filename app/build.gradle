@@ -46,4 +46,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     /*SuperCalendar 日历控件*/
     compile 'com.github.MagicMashRoom:SuperCalendar:v1.4'
+    /*圆形头像View*/
+    compile 'de.hdodenhof:circleimageview:2.2.0'
+    /*右上角红点View*/
+    compile 'com.assistne.android:icon-dot-text-view:1.0'
 }

@@ -29,14 +29,14 @@ import butterknife.ButterKnife;
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
  */
-public class FragmentMy extends BaseFragment {
+public class FragmentMe extends BaseFragment {
     private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        view = inflater.inflate(R.layout.fragment_my, null);
+        view = inflater.inflate(R.layout.fragment_me, null);
         ButterKnife.bind(this, view);
         mContentView.addView(view);
         initView();
