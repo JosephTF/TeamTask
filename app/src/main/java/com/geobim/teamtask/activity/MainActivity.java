@@ -14,6 +14,7 @@ import com.geobim.teamtask.fragment.FragmentQuick;
 import com.geobim.teamtask.fragment.FragmentTask;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutFTSmk;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutSmk;
+import com.geobim.teamtask.ui.FragmentView.demo.FragmentDemo;
 import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity implements TabLayoutSmk.CallbackP
     }
 
     private void initTab() {
-        fragments.add(new FragmentTask());
+        fragments.add(new FragmentDemo());
         fragments.add(new FragmentProject());
         fragments.add(new FragmentModel());
         fragments.add(new FragmentMe());

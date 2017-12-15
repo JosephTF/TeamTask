@@ -52,16 +52,16 @@ public abstract class BaseFragment extends Fragment {
 
 
     private void initView() {
-        mContentView = (FrameLayout) fragContentView.findViewById(R.id.mContentView);
-        emptyLayoutStub = (ViewStub) fragContentView.findViewById(R.id.emptyLayoutStub);
+        mContentView = fragContentView.findViewById(R.id.mContentView);
+        emptyLayoutStub = fragContentView.findViewById(R.id.emptyLayoutStub);
     }
 
     private void initEmptyLayout() {
         if (!isEmptyLayoutInited) {
             emptyLayout = (FrameLayout) emptyLayoutStub.inflate();
-            mNodataText = (TextView) emptyLayout.findViewById(R.id.nodata_text);
-            mNodataImage = (ImageView) emptyLayout.findViewById(R.id.nodata_image);
-            mProgressbar = (ProgressBar) emptyLayout.findViewById(R.id.mProgressbar);
+            mNodataText = emptyLayout.findViewById(R.id.nodata_text);
+            mNodataImage = emptyLayout.findViewById(R.id.nodata_image);
+            mProgressbar = emptyLayout.findViewById(R.id.mProgressbar);
             isEmptyLayoutInited = true;
             setEmptyLayoutClickListener();
         }
@@ -129,10 +129,4 @@ public abstract class BaseFragment extends Fragment {
         emptyLayout.setVisibility(View.GONE);
         mNodataText.setVisibility(View.GONE);
     }
-
-    public void Toast(String str) {
-        Toast.makeText(getActivity(), str, Toast.LENGTH_SHORT).show();
-    }
-
-
 }

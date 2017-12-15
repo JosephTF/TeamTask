@@ -47,6 +47,7 @@
         <activity android:name=".activity.ForgetActivity" />
         <activity android:name=".activity.CountryActivity" />
         <activity android:name=".activity.ResetPasswordActivity"/>
+        <activity android:name=".ui.FragmentView.demo.TabLayoutDemoTwo"/>
     </application>
     <!-- 通过AndroidManifest配置AppKey和AppSecret，如果你选择通过代码配置，则不需要配置以下meta-data -->
     <meta-data

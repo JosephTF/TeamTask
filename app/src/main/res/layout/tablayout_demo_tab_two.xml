@@ -17,10 +17,14 @@
             android:background="#ffffff"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
-            tl:tl_indicator_color="#2C97DE"
+            tl:tl_indicator_color="#ff0000"
+            tl:tl_indicator_corner_radius="@dimen/common_space_size6"
+            tl:tl_indicator_style="BLOCK"
             tl:tl_textSelectColor="#2C97DE"
             tl:tl_textUnselectColor="#66000000"
-            tl:tl_underline_color="#DDDDDD"
+            tl:tl_divider_color="#00ff00"
+            tl:tl_divider_width="@dimen/common_space_size6"
+            tl:tl_underline_color="#000000"
             tl:tl_underline_height="1dp" />
 
         <android.support.v4.view.ViewPager
@@ -57,7 +61,7 @@
             tl:tl_iconHeight="18dp"
             tl:tl_iconMargin="5dp"
             tl:tl_iconWidth="18dp"
-            tl:tl_indicator_bounce_enable="false"
+            tl:tl_indicator_bounce_enable="true"
             tl:tl_indicator_color="#2C97DE"
             tl:tl_indicator_gravity="TOP"
             tl:tl_textSelectColor="#2C97DE"

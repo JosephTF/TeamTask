@@ -10,24 +10,8 @@ import com.geobim.teamtask.base.ui.BaseFragment;
 import butterknife.ButterKnife;
 
 /**
- * 　　　┏┓　　　┏┓
- * 　　┏┛┻━━━┛┻┓
- * 　　┃　　　　　　　┃
- * 　　┃　　　━　　　┃
- * 　　┃　┳┛　┗┳　┃
- * 　　┃　　　　　　　┃
- * 　　┃　　　┻　　　┃
- * 　　┃　　　　　　　┃
- * 　　┗━┓　　　┏━┛
- * 　　　　┃　　　┃神兽保佑
- * 　　　　┃　　　┃永无BUG！
- * 　　　　┃　　　┗━━━┓
- * 　　　　┃　　　　　　　┣┓
- * 　　　　┃　　　　　　　┏┛
- * 　　　　┗┓┓┏━┳┓┏┛
- * 　　　　　┃┫┫　┃┫┫
- * 　　　　　┗┻┛　┗┻┛
- * ━━━━━━神兽出没━━━━━━
+ * 个人中心界面
+ *
  */
 public class FragmentMe extends BaseFragment {
     private View view;
@@ -39,6 +23,7 @@ public class FragmentMe extends BaseFragment {
         view = inflater.inflate(R.layout.fragment_me, null);
         ButterKnife.bind(this, view);
         mContentView.addView(view);
+
         initView();
     }
 
