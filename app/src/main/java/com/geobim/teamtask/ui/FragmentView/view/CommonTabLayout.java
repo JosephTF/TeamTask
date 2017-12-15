@@ -252,11 +252,16 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
      * 创建并添加tab
      */
     private void addTab(final int position, View tabView) {
-        TextView tv_tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
+        TextView tv_tab_title =  tabView.findViewById(R.id.tv_tab_title);
         tv_tab_title.setText(mTabEntitys.get(position).getTabTitle());
-        ImageView iv_tab_icon = (ImageView) tabView.findViewById(R.id.iv_tab_icon);
+        ImageView iv_tab_icon =  tabView.findViewById(R.id.iv_tab_icon);
         iv_tab_icon.setImageResource(mTabEntitys.get(position).getTabUnselectedIcon());
-
+        if (position==2) {
+            tv_tab_title.setVisibility(View.GONE);
+            iv_tab_icon.setScaleType(ImageView.ScaleType.CENTER);
+            iv_tab_icon.setPadding(5, 5, 5, 5);
+            iv_tab_icon.setLayoutParams(new ViewGroup.LayoutParams(MarginLayoutParams.MATCH_PARENT, MarginLayoutParams.MATCH_PARENT));
+        }
         tabView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -306,8 +311,8 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
                 CustomTabEntity tabEntity = mTabEntitys.get(i);
                 iv_tab_icon.setImageResource(i == mCurrentTab ? tabEntity.getTabSelectedIcon() : tabEntity.getTabUnselectedIcon());
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        mIconWidth <= 0 ? LinearLayout.LayoutParams.WRAP_CONTENT : (int) mIconWidth,
-                        mIconHeight <= 0 ? LinearLayout.LayoutParams.WRAP_CONTENT : (int) mIconHeight);
+                        mIconWidth <= 0 ? LinearLayout.LayoutParams.MATCH_PARENT : (int) mIconWidth,
+                        mIconHeight <= 0 ? LinearLayout.LayoutParams.MATCH_PARENT : (int) mIconHeight);
                 if (mIconGravity == Gravity.LEFT) {
                     lp.rightMargin = (int) mIconMargin;
                 } else if (mIconGravity == Gravity.RIGHT) {

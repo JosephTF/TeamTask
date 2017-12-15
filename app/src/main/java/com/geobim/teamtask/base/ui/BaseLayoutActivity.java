@@ -61,7 +61,7 @@ public abstract class BaseLayoutActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity_lib);
-        setStatusBar(R.id.view_status_bar);
+        //setStatusBar(R.id.view_status_bar);
         initBaseView();
     }
 

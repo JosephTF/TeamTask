@@ -24,8 +24,14 @@
     <style name="BaseTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!--设置透明-->
         <item name="android:windowIsTranslucent">true</item>
+        <!--toolbar显示左边空白问题-->
+        <item name="toolbarStyle">@style/ClubToolbar</item>
         <!-- 设置activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/animation_translucent_translate</item>
+    </style>
+    <!-- 设置Toolbar解决左边空白部分-->
+    <style name="ClubToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
     </style>
     <!--activity切换动画-->
     <style name="animation_translucent_translate" parent="@android:style/Animation.Translucent">
@@ -41,4 +47,9 @@
         <item name="android:indeterminateOnly">true</item>
     </style>
 
+    <!--下拉菜单-->
+    <style name="PopupAnimation">
+        <item name="android:windowEnterAnimation">@anim/pop_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_fade_out</item>
+    </style>
 </resources>

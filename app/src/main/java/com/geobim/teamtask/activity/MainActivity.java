@@ -7,14 +7,13 @@ import android.view.KeyEvent;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
-import com.geobim.teamtask.fragment.FragmentModel;
 import com.geobim.teamtask.fragment.FragmentMe;
+import com.geobim.teamtask.fragment.FragmentModel;
 import com.geobim.teamtask.fragment.FragmentProject;
 import com.geobim.teamtask.fragment.FragmentQuick;
 import com.geobim.teamtask.fragment.FragmentTask;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutFTSmk;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutSmk;
-import com.geobim.teamtask.ui.FragmentView.demo.FragmentDemo;
 import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
@@ -58,20 +57,24 @@ public class MainActivity extends BaseActivity implements TabLayoutSmk.CallbackP
     }
 
     private void initTab() {
-        fragments.add(new FragmentDemo());
+        fragments.add(new FragmentTask());
         fragments.add(new FragmentProject());
+        fragments.add(new FragmentQuick());
         fragments.add(new FragmentModel());
         fragments.add(new FragmentMe());
         mTitles.add("任务");
         mTitles.add("项目");
+        mTitles.add("");
         mTitles.add("模型");
         mTitles.add("我的");
         mIconUnselectIds.add(R.drawable.tab_task_unselect);
         mIconUnselectIds.add(R.drawable.tab_project_unselect);
+        mIconUnselectIds.add(R.drawable.tab_quick_select);
         mIconUnselectIds.add(R.drawable.tab_model_unselect);
         mIconUnselectIds.add(R.drawable.tab_me_unselect);
         mIconSelectIds.add(R.drawable.tab_task_select);
         mIconSelectIds.add(R.drawable.tab_project_select);
+        mIconSelectIds.add(R.drawable.tab_quick_select);
         mIconSelectIds.add(R.drawable.tab_model_select);
         mIconSelectIds.add(R.drawable.tab_me_select);
         tabLayout.init(fragments, mTitles, mIconUnselectIds, mIconSelectIds, getSupportFragmentManager(), this);

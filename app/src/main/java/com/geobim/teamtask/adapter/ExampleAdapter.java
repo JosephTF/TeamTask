@@ -1,14 +1,16 @@
 package com.geobim.teamtask.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geobim.teamtask.R;
+import com.geobim.teamtask.activity.TaskDetailActivity;
 
 /**
  * Created by ldf on 17/6/14.
@@ -43,15 +45,16 @@ public class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
+        RelativeLayout rlView;
 
         ViewHolder(View view) {
             super(view);
-            textView = (TextView) view.findViewById(R.id.text_view);
-            view.setOnClickListener(new View.OnClickListener() {
+            textView =  view.findViewById(R.id.text_view);
+            rlView =  view.findViewById(R.id.rlview1);
+            rlView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    context.startActivity(new Intent(context, TaskDetailActivity.class));
-                    Log.d("ViewHolder", "onClick--> position = " + getPosition());
+                   context.startActivity(new Intent(context, TaskDetailActivity.class));
                 }
             });
         }

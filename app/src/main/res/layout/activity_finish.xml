@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <!-- 标题栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size40"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib_country_back"
+            android:layout_width="@dimen/common_space_size24"
+            android:layout_height="@dimen/common_space_size24"
+            android:layout_marginLeft="@dimen/common_space_size6"
+            android:background="@drawable/btn_return"
+            android:contentDescription="@string/common_back"/>
+        <TextView
+            android:id="@+id/tv_country_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="任务完成"
+            android:textSize="@dimen/common_space_size16"
+            android:textColor="#ffffff"/>
+        <RelativeLayout
+            android:id="@+id/rl_register_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/style_countrysearch_shape"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <ImageButton
+                android:id="@+id/ib_country_searchclear"
+                android:layout_width="@dimen/common_space_size18"
+                android:layout_height="@dimen/common_space_size18"
+                android:layout_marginRight="@dimen/common_space_size6"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_txtclear"
+                android:contentDescription="@string/common_clear"
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/et_country_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/common_space_size5"
+                android:gravity="center"
+                android:ellipsize="middle"
+                android:singleLine="true"
+                android:maxLength="16"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/ib_country_searchclear"
+                android:hint="@string/register_country_hint"
+                android:textSize="@dimen/common_space_size16"
+                android:textCursorDrawable="@drawable/style_edittext_cursor_dark"
+                android:background="@null"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#eeeeee">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:gravity="center|left"
+                android:paddingLeft="10dp"
+                android:text="任务描述：这是任务描述这是任务描述..."/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:background="@color/lineColor" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:background="#eeeeee" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:background="@color/lineColor" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="top|left"
+                    android:padding="10dp"
+                    android:hint="请输入完成说明..."
+                    android:background="@null"
+                    android:textSize="13sp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:background="@color/lineColor" />
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|right"
+                        android:paddingRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:text="0/500"/>
+
+                <RelativeLayout
+                    android:layout_width="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@drawable/bg_round_white_gray">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:layout_margin="0.1px"
+                        android:clickable="true"
+                        android:textSize="25sp"
+                        android:text="+"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_space_size1"
+            android:background="@color/lineColor" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_space_size1"
+            android:background="#eeeeee" />
+
+    </LinearLayout>
+</LinearLayout>

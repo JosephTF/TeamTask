@@ -36,7 +36,6 @@ public class FragmentChangeManager {
         setFragments(0);
     }
 
-
     private void addTab(int index) {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         Fragment fragment = mFragments.get(index);

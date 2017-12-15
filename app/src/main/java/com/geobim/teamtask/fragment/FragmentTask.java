@@ -9,12 +9,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.geobim.teamtask.R;
-import com.geobim.teamtask.activity.ResetPasswordActivity;
+import com.geobim.teamtask.activity.TaskListActivity;
+import com.geobim.teamtask.activity.TaskNoticeActivity;
 import com.geobim.teamtask.adapter.ExampleAdapter;
 import com.geobim.teamtask.base.ui.BaseFragment;
 import com.geobim.teamtask.ui.CalendarView.CustomDayView;
@@ -53,35 +53,41 @@ import butterknife.OnClick;
  * 　　　　　┃┫┫　┃┫┫
  * 　　　　　┗┻┛　┗┻┛
  * ━━━━━━神兽出没━━━━━━
- * Created by  Administrator  on 2016/12/6.
- * Email:924686754@qq.com
+ *  任务fragment
  */
 public class FragmentTask extends BaseFragment {
-    @Bind(R.id.ib_add)
-    ImageButton ib_add;
+
+    @Bind(R.id.content)
+    CoordinatorLayout content;
+    @Bind(R.id.show_year_view)
+    TextView textViewYearDisplay;
+    @Bind(R.id.show_month_view)
+    TextView textViewMonthDisplay;
+    @Bind(R.id.back_today_button)
+    TextView backToday;
+    @Bind(R.id.calendar_view)
+    MonthPager monthPager;
+    @Bind(R.id.list)
+    RecyclerView rvToDoList;
+    @Bind(R.id.scroll_switch)
+    TextView scrollSwitch;
+    @Bind(R.id.next_month)
+    TextView nextMonthBtn;
+    @Bind(R.id.last_month)
+    TextView lastMonthBtn;
+    @Bind(R.id.tv_more)
+    TextView tv_more;
+    @Bind(R.id.tv_tongzhi)
+    TextView tv_tongzhi;
 
     private View view;
-    //为什么不使用ButterKnife，是不想让用户看到源码是产生疑问
-    TextView textViewYearDisplay;
-    TextView textViewMonthDisplay;
-    TextView backToday;
-    CoordinatorLayout content;
-    MonthPager monthPager;
-    RecyclerView rvToDoList;
-    TextView scrollSwitch;
-    TextView nextMonthBtn;
-    TextView lastMonthBtn;
-    TextView tv_more;
-    ;
-    TextView tv_tongzhi;
 
     private ArrayList<Calendar> currentCalendars = new ArrayList<>();
     private CalendarViewAdapter calendarAdapter;
     private OnSelectDateListener onSelectDateListener;
     private int mCurrentPage = MonthPager.CURRENT_DAY_INDEX;
-    private Context context;
+    private Context mContext;
     private CalendarDate currentDate;
-    private boolean initiated = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,41 +97,34 @@ public class FragmentTask extends BaseFragment {
         StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
         ButterKnife.bind(this,view);
         mContentView.addView(view);
-        context = this.getContext();
-        content = view.findViewById(R.id.content);
-        monthPager = view.findViewById(R.id.calendar_view);
+        mContext = this.getContext();
         //此处强行setViewHeight，日历牌的高度
-        monthPager.setViewheight(Utils.dpi2px(context, 270));
-        textViewYearDisplay = view.findViewById(R.id.show_year_view);
-        textViewMonthDisplay = view.findViewById(R.id.show_month_view);
-        backToday = view.findViewById(R.id.back_today_button);
-        scrollSwitch = view.findViewById(R.id.scroll_switch);
-        nextMonthBtn = view.findViewById(R.id.next_month);
-        lastMonthBtn = view.findViewById(R.id.last_month);
-        tv_tongzhi = view.findViewById(R.id.tv_tongzhi);
-        tv_more = view.findViewById(R.id.tv_more);
-        rvToDoList = view.findViewById(R.id.list);
+        monthPager.setViewheight(Utils.dpi2px(mContext, 270));
         rvToDoList.setHasFixedSize(true);
         //这里用线性显示 类似于listview
-        rvToDoList.setLayoutManager(new LinearLayoutManager(context));
-        rvToDoList.setAdapter(new ExampleAdapter(context));
+        rvToDoList.setLayoutManager(new LinearLayoutManager(mContext));
+        rvToDoList.setAdapter(new ExampleAdapter(mContext));
         initCurrentDate();
         initCalendarView();
         initToolbarClickListener();
+
+        tv_tongzhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mContext, TaskNoticeActivity.class));
+            }
+        });
+
     }
 
-    /*
-     * onWindowFocusChanged回调时，将当前月的种子日期修改为今天
-     *
-     * @return void
-
-     @Override public void onWindowFocusChanged(boolean hasFocus) {
-     super.onWindowFocusChanged(hasFocus);
-     if (hasFocus && !initiated) {
-     refreshMonthPager();
-     initiated = true;
-     }
-     }*/
+    @OnClick({R.id.tv_more})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_more:
+                startActivity(new Intent(mContext, TaskListActivity.class));
+                break;
+        }
+    }
 
     /**
      * 初始化对应功能的listener
@@ -168,11 +167,11 @@ public class FragmentTask extends BaseFragment {
      */
     private void initCalendarView() {
         initListener();
-        CustomDayView customDayView = new CustomDayView(context, R.layout.custom_day);
+        CustomDayView customDayView = new CustomDayView(mContext, R.layout.custom_day);
         calendarAdapter = new CalendarViewAdapter(
-                context,
+                mContext,
                 onSelectDateListener,
-                CalendarAttr.CalendayType.MONTH,
+                CalendarAttr.CalendayType.WEEK,
                 customDayView);
         initMarkData();
         initMonthPager();
@@ -196,7 +195,7 @@ public class FragmentTask extends BaseFragment {
             @Override
             public void onSelectDate(CalendarDate date) {
                 refreshClickDate(date);
-                Toast.makeText(context, "点击查看" + date.toString() + "的任务", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "点击查看" + date.toString() + "的任务", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -266,14 +265,5 @@ public class FragmentTask extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
-    }
-
-    @OnClick({R.id.ib_add})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ib_add:
-                startActivity(new Intent(getActivity(), ResetPasswordActivity.class));
-                break;
-        }
     }
 }

@@ -4,16 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <View
         android:id="@+id/view_status_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/img_status_bar" />
 
-
     <include layout="@layout/base_appbarlayout_lib" />
-
 
     <FrameLayout
         android:layout_width="match_parent"
