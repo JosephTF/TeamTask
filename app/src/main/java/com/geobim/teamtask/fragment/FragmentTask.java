@@ -87,7 +87,7 @@ public class FragmentTask extends BaseFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        view = inflater.inflate(R.layout.activity_syllabus, null);
+        view = inflater.inflate(R.layout.fragment_task, null);
         StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
         ButterKnife.bind(this,view);
         mContentView.addView(view);

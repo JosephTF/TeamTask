@@ -81,7 +81,16 @@
     <string name="me_title">我</string>
     <string name="me_username">Joseph</string>
     <string name="me_jobposition">职务：管理员</string>
-    <string name="me_tab">项目一</string>
-    <string name="me_tab2">项目二</string>
-    <string name="me_tab3">项目三</string>
+    <string name="me_tab">待办</string>
+    <string name="me_tab2">已完成</string>
+    <string name="me_tab3">已取消</string>
+    <string name="me_item1">个人文档</string>
+    <string name="me_item2">OCR识别</string>
+    <string name="me_item3">线路情况</string>
+    <string name="me_item4">数据分析</string>
+    <string name="me_item5">风险计算</string>
+    <string name="me_item6">安全管理</string>
+    <string name="me_item7">更多功能</string>
+    <string name="me_item8">设置</string>
+    <string name="me_item9">草稿箱</string>
 </resources>

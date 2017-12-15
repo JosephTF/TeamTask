@@ -28,11 +28,11 @@ public class TabLayoutDemoTwo extends AppCompatActivity {
 
     private String[] mTitles = {"首页", "消息", "联系人", "更多"};
     private int[] mIconUnselectIds = {
-            R.drawable.tab_home_unselect, R.drawable.tab_speech_unselect,
-            R.drawable.tab_contact_unselect, R.drawable.tab_more_unselect};
+            R.drawable.tab_task_unselect, R.drawable.tab_project_unselect,
+            R.drawable.tab_model_unselect, R.drawable.tab_me_unselect};
     private int[] mIconSelectIds = {
-            R.drawable.tab_home_select, R.drawable.tab_speech_select,
-            R.drawable.tab_contact_select, R.drawable.tab_more_select};
+            R.drawable.tab_task_select, R.drawable.tab_project_select,
+            R.drawable.tab_model_select, R.drawable.tab_me_select};
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
     private ArrayList<CustomTabEntity> mTabEntities1 = new ArrayList<>();
     private View mDecorView;
