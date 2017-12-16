@@ -115,9 +115,6 @@ public class TabLayoutDemoTwo extends AppCompatActivity {
         mTabLayout_3.setCurrentTab(1);
 
         //显示未读红点
-        mTabLayout_1.showDot(2);
-        mTabLayout_3.showDot(1);
-        mTabLayout_4.showDot(1);
         mTabLayout_1.showMsg(1,0);
         mTabLayout_1.showMsg(0,9);
 
@@ -130,7 +127,6 @@ public class TabLayoutDemoTwo extends AppCompatActivity {
         mTabLayout_2.setMsgMargin(1, -5, 5);
 
         //设置未读消息红点
-        mTabLayout_2.showDot(2);
         MsgView rtv_2_2 = mTabLayout_2.getMsgView(2);
         if (rtv_2_2 != null) {
             UnreadMsgUtils.setSize(rtv_2_2, dp2px(7.5f));
