@@ -15,6 +15,13 @@ import com.geobim.teamtask.ui.FragmentView.widget.MsgView;
  * 数字超过两位,显示99+
  */
 public class UnreadMsgUtils {
+
+    /**
+     * 显示未读红点或数字
+     *
+     * @param msgView
+     * @param num     未读数目
+     */
     public static void show(MsgView msgView, int num) {
         if (msgView == null) {
             return;

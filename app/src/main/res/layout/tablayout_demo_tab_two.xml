@@ -45,7 +45,9 @@
             tl:tl_textUnselectColor="#66000000"
             tl:tl_textsize="12sp"
             tl:tl_underline_color="#DDDDDD"
-            tl:tl_underline_height="1dp" />
+            tl:tl_underline_height="1dp"
+            tl:tl_indicator_anim_enable="true"
+            tl:tl_indicator_anim_duration="10000"/>
 
         <FrameLayout
             android:id="@+id/fl_change"

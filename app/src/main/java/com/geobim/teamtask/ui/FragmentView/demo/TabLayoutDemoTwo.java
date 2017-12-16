@@ -97,6 +97,7 @@ public class TabLayoutDemoTwo extends AppCompatActivity {
             @Override
             public void onTabSelect(int position) {
                 mTabLayout_1.setCurrentTab(position);
+                mTabLayout_2.hideMsg(position);
                 mTabLayout_2.setCurrentTab(position);
                 mTabLayout_4.setCurrentTab(position);
                 mTabLayout_5.setCurrentTab(position);
@@ -117,6 +118,8 @@ public class TabLayoutDemoTwo extends AppCompatActivity {
         mTabLayout_1.showDot(2);
         mTabLayout_3.showDot(1);
         mTabLayout_4.showDot(1);
+        mTabLayout_1.showMsg(1,0);
+        mTabLayout_1.showMsg(0,9);
 
         //两位数
         mTabLayout_2.showMsg(0, 55);

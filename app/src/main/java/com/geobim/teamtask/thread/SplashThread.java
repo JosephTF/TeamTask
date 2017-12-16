@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.geobim.teamtask.activity.LoginActivity;
 import com.geobim.teamtask.activity.MainActivity;
+import com.geobim.teamtask.ui.FragmentView.demo.TabLayoutDemoTwo;
 import com.geobim.teamtask.util.LoginSaveUtil;
 
 import java.util.Map;
@@ -47,7 +48,7 @@ public class SplashThread extends Thread {
             });
         }
         if(isSaved){
-            Intent intent = new Intent(mActivity, MainActivity.class);
+            Intent intent = new Intent(mActivity, TabLayoutDemoTwo.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             mActivity.startActivity(intent);
         }else {
