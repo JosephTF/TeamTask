@@ -1,5 +1,6 @@
 package com.geobim.teamtask.ui.FragmentView.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -12,7 +13,11 @@ import android.widget.TextView;
 import com.geobim.teamtask.R;
 
 
-/** 用于需要圆角矩形框背景的TextView的情况,减少直接使用TextView时引入的shape资源文件 */
+/**
+ * 圆角矩形背景的TextView
+ * 减少直接使用TextView时引入的shape资源文件
+ */
+@SuppressLint("AppCompatCustomView")
 public class MsgView extends TextView {
     private Context context;
     private GradientDrawable gd_background = new GradientDrawable();

@@ -54,6 +54,11 @@ public class UnreadMsgUtils {
         }
     }
 
+    /**
+     * 设置大小
+     * @param rtv
+     * @param size
+     */
     public static void setSize(MsgView rtv, int size) {
         if (rtv == null) {
             return;

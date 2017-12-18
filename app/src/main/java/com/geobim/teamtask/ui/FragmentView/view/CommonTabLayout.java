@@ -46,7 +46,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private Context mContext;
     private ArrayList<CustomTabEntity> mTabEntitys = new ArrayList<>();
     private LinearLayout mTabsContainer;
-    private int mCurrentTab;
+    private int mCurrentTab;    //选中Tab的position
     private int mLastTab;
     private int mTabCount;
     private IndicatorPoint mCurrentP = new IndicatorPoint();
@@ -61,14 +61,8 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private Paint mDividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Paint mTrianglePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Path mTrianglePath = new Path();
-    private static final int STYLE_NORMAL = 0;
-    private static final int STYLE_TRIANGLE = 1;
-    private static final int STYLE_BLOCK = 2;
-    private int mIndicatorStyle = STYLE_NORMAL;
 
-    private float mTabPadding;
-    private boolean mTabSpaceEqual;
-    private float mTabWidth;
+
     private boolean mIsFirstDraw = true;
     /**
      * indicator
@@ -76,16 +70,19 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private int mIndicatorColor;
     private float mIndicatorHeight;
     private float mIndicatorWidth;
-    private float mIndicatorCornerRadius;
     private float mIndicatorMarginLeft;
     private float mIndicatorMarginTop;
     private float mIndicatorMarginRight;
     private float mIndicatorMarginBottom;
+    private float mIndicatorCornerRadius;
+    private int mIndicatorGravity;
+    private int mIndicatorStyle = STYLE_NORMAL;
     private long mIndicatorAnimDuration;
     private boolean mIndicatorAnimEnable;
     private boolean mIndicatorBounceEnable;
-    private int mIndicatorGravity;
-
+    private static final int STYLE_NORMAL = 0;
+    private static final int STYLE_TRIANGLE = 1;
+    private static final int STYLE_BLOCK = 2;
     /**
      * underline
      */
@@ -101,6 +98,13 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     private float mDividerPadding;
 
     /**
+     * tab
+     */
+    private float mTabPadding;
+    private boolean mTabSpaceEqual;
+    private float mTabWidth;
+
+    /**
      * title
      */
     private float mTextsize;
@@ -112,10 +116,10 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
     /**
      * icon
      */
-    private boolean mIconVisible;
-    private int mIconGravity;
     private float mIconWidth;
     private float mIconHeight;
+    private boolean mIconVisible;
+    private int mIconGravity;
     private float mIconMargin;
 
     private int mHeight;
@@ -165,6 +169,11 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         mValueAnimator.addUpdateListener(this);
     }
 
+    /**
+     * 获取属性参数
+     * @param context
+     * @param attrs
+     */
     private void obtainAttributes(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CommonTabLayout);
         mIndicatorColor = ta.getColor(R.styleable.CommonTabLayout_tl_indicator_color, Color.parseColor(mIndicatorStyle == STYLE_BLOCK ? "#4B6A87" : "#ffffff"));
@@ -207,6 +216,10 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         ta.recycle();
     }
 
+    /**
+     * 设置选项卡TAB数据
+     * @param tabEntitys
+     */
     public void setTabData(ArrayList<CustomTabEntity> tabEntitys) {
         if (tabEntitys == null || tabEntitys.size() == 0) {
             throw new IllegalStateException("TabEntitys can not be NULL or EMPTY !");
@@ -259,6 +272,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         tv_tab_title.setText(mTabEntitys.get(position).getTabTitle());
         ImageView iv_tab_icon = tabView.findViewById(R.id.iv_tab_icon);
         iv_tab_icon.setImageResource(mTabEntitys.get(position).getTabUnselectedIcon());
+        //第三个Tab隐藏文字，只显示Icon
         if (position == 2) {
             tv_tab_title.setVisibility(View.GONE);
             iv_tab_icon.setScaleType(ImageView.ScaleType.CENTER);
@@ -292,11 +306,14 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         mTabsContainer.addView(tabView, position, lp_tab);
     }
 
+    /**
+     * 更新Tab外观
+     */
     private void updateTabStyles() {
         for (int i = 0; i < mTabCount; i++) {
             View tabView = mTabsContainer.getChildAt(i);
             tabView.setPadding((int) mTabPadding, 0, (int) mTabPadding, 0);
-            TextView tv_tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
+            TextView tv_tab_title =  tabView.findViewById(R.id.tv_tab_title);
             tv_tab_title.setTextColor(i == mCurrentTab ? mTextSelectColor : mTextUnselectColor);
             tv_tab_title.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextsize);
 //            tv_tab_title.setPadding((int) mTabPadding, 0, (int) mTabPadding, 0);
@@ -308,7 +325,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
                 tv_tab_title.getPaint().setFakeBoldText(mTextBold);
             }
 
-            ImageView iv_tab_icon = (ImageView) tabView.findViewById(R.id.iv_tab_icon);
+            ImageView iv_tab_icon =  tabView.findViewById(R.id.iv_tab_icon);
             if (mIconVisible) {
                 iv_tab_icon.setVisibility(View.VISIBLE);
                 CustomTabEntity tabEntity = mTabEntitys.get(i);
@@ -333,14 +350,18 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
         }
     }
 
+    /**
+     * 更新Tab全部选项卡视图
+     * @param position
+     */
     private void updateTabSelection(int position) {
         for (int i = 0; i < mTabCount; ++i) {
             View tabView = mTabsContainer.getChildAt(i);
             final boolean isSelect = i == position;
-            TextView tab_title = (TextView) tabView.findViewById(R.id.tv_tab_title);
-            tab_title.setTextColor(isSelect ? mTextSelectColor : mTextUnselectColor);
-            ImageView iv_tab_icon = (ImageView) tabView.findViewById(R.id.iv_tab_icon);
+            TextView tab_title =  tabView.findViewById(R.id.tv_tab_title);
+            ImageView iv_tab_icon = tabView.findViewById(R.id.iv_tab_icon);
             CustomTabEntity tabEntity = mTabEntitys.get(i);
+            tab_title.setTextColor(isSelect ? mTextSelectColor : mTextUnselectColor);
             iv_tab_icon.setImageResource(isSelect ? tabEntity.getTabSelectedIcon() : tabEntity.getTabUnselectedIcon());
         }
     }
@@ -408,6 +429,7 @@ public class CommonTabLayout extends FrameLayout implements ValueAnimator.Animat
 
     /**
      * 绘制VIEW
+     *
      * @param canvas
      */
     @Override

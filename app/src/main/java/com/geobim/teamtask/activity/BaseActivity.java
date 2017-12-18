@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,10 +13,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
+import com.geobim.teamtask.R;
 import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.swipebacklayout.app.SwipeBackActivity;
 
@@ -44,7 +49,9 @@ public abstract class BaseActivity extends SwipeBackActivity {
     }
 
     protected abstract void initVariables();
+
     protected abstract void initViews(Bundle savedInstanceState);
+
     protected abstract void loadData();
 
     /**
@@ -178,6 +185,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
 
     /**
      * 权限获取失败
+     *
      * @param requestCode
      */
     public void permissionFail(int requestCode) {
@@ -189,6 +197,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
         super.onDestroy();
         ActivityList.getInstance().removeActivity(this);
     }
+
     /**
      * 设置沉浸式状态栏
      */
@@ -227,5 +236,37 @@ public abstract class BaseActivity extends SwipeBackActivity {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    protected int getActionBarSize() {
+        TypedValue typedValue = new TypedValue();
+        int[] textSizeAttr = new int[]{R.attr.actionBarSize};
+        int indexOfAttrTextSize = 0;
+        TypedArray a = obtainStyledAttributes(typedValue.data, textSizeAttr);
+        int actionBarSize = a.getDimensionPixelSize(indexOfAttrTextSize, -1);
+        a.recycle();
+        return actionBarSize;
+    }
+
+    private static final int NUM_OF_ITEMS = 100;
+
+    protected void setDummyData(ListView listView) {
+        setDummyData(listView, NUM_OF_ITEMS);
+    }
+
+    protected void setDummyData(ListView listView, int num) {
+        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getDummyData(num)));
+    }
+
+    public static ArrayList<String> getDummyData() {
+        return getDummyData(NUM_OF_ITEMS);
+    }
+
+    public static ArrayList<String> getDummyData(int num) {
+        ArrayList<String> items = new ArrayList<>();
+        for (int i = 1; i <= num; i++) {
+            items.add("Item " + i);
+        }
+        return items;
     }
 }

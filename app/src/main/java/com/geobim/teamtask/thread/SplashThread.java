@@ -48,7 +48,7 @@ public class SplashThread extends Thread {
             });
         }
         if(isSaved){
-            Intent intent = new Intent(mActivity, TabLayoutDemoTwo.class);
+            Intent intent = new Intent(mActivity, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             mActivity.startActivity(intent);
         }else {

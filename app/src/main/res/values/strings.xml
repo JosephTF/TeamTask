@@ -84,13 +84,12 @@
     <string name="me_tab">待办</string>
     <string name="me_tab2">已完成</string>
     <string name="me_tab3">已取消</string>
-    <string name="me_item1">个人文档</string>
-    <string name="me_item2">OCR识别</string>
-    <string name="me_item3">线路情况</string>
-    <string name="me_item4">数据分析</string>
-    <string name="me_item5">风险计算</string>
-    <string name="me_item6">安全管理</string>
-    <string name="me_item7">更多功能</string>
-    <string name="me_item8">设置</string>
-    <string name="me_item9">草稿箱</string>
+    <string name="me_item1">AR识别</string>
+    <string name="me_item2">OCR认证</string>
+    <string name="me_item3">安全管理</string>
+    <string name="me_item4">意见反馈</string>
+    <string name="me_item5">草稿箱</string>
+    <string name="me_item6">版本更新</string>
+    <string name="me_item7">关于</string>
+    <string name="me_item8">退出登录</string>
 </resources>
