@@ -7,7 +7,6 @@ import android.widget.Toast;
 
 import com.geobim.teamtask.activity.LoginActivity;
 import com.geobim.teamtask.activity.MainActivity;
-import com.geobim.teamtask.ui.FragmentView.demo.TabLayoutDemoTwo;
 import com.geobim.teamtask.util.LoginSaveUtil;
 
 import java.util.Map;

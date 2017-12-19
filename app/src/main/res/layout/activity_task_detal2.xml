@@ -6,65 +6,46 @@
     android:background="@drawable/background">
 
     <!-- 标题栏 -->
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_space_size40"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:gravity="center_vertical">
         <ImageButton
             android:id="@+id/ib_country_back"
             android:layout_width="@dimen/common_space_size24"
             android:layout_height="@dimen/common_space_size24"
-            android:layout_marginLeft="@dimen/common_space_size6"
+            android:layout_marginStart="@dimen/common_space_size6"
+            android:layout_centerVertical="true"
             android:background="@drawable/btn_return"
             android:contentDescription="@string/common_back"/>
         <TextView
             android:id="@+id/tv_country_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:ellipsize="middle"
             android:singleLine="true"
             android:text="任务详情"
             android:textSize="@dimen/common_space_size16"
             android:textColor="#ffffff"/>
-        <RelativeLayout
-            android:id="@+id/rl_register_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/style_countrysearch_shape"
-            android:orientation="horizontal"
-            android:visibility="gone">
-            <ImageButton
-                android:id="@+id/ib_country_searchclear"
-                android:layout_width="@dimen/common_space_size18"
-                android:layout_height="@dimen/common_space_size18"
-                android:layout_marginRight="@dimen/common_space_size6"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/btn_txtclear"
-                android:contentDescription="@string/common_clear"
-                android:visibility="gone"/>
-            <EditText
-                android:id="@+id/et_country_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common_space_size5"
-                android:gravity="center"
-                android:ellipsize="middle"
-                android:singleLine="true"
-                android:maxLength="16"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/ib_country_searchclear"
-                android:hint="@string/register_country_hint"
-                android:textSize="@dimen/common_space_size16"
-                android:textCursorDrawable="@drawable/style_edittext_cursor_dark"
-                android:background="@null"/>
-        </RelativeLayout>
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingStart="@dimen/common_space_size30"
+            android:paddingEnd="@dimen/common_space_size20"
+            android:layout_marginEnd="@dimen/common_space_size2"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="..."
+            android:layout_alignParentEnd="true"
+            android:textSize="@dimen/common_space_size28"
+            android:textColor="#ffffff"/>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"

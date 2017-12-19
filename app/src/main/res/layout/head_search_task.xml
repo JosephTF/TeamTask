@@ -3,8 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_color"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <View
+        android:id="@+id/statusBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- 标题栏 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size40"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/ib_country_back"
+            android:layout_width="@dimen/common_space_size24"
+            android:layout_height="@dimen/common_space_size24"
+            android:layout_marginStart="@dimen/common_space_size6"
+            android:layout_centerVertical="true"
+            android:background="@drawable/btn_return"
+            android:contentDescription="@string/common_back"/>
+        <TextView
+            android:id="@+id/tv_country_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="任务搜索"
+            android:textSize="@dimen/common_space_size16"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/tv_right_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_alignParentEnd="true"
+            android:text="提交"
+            android:visibility="gone"
+            android:textSize="@dimen/common_space_size16"
+            android:textColor="#ffffff"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/layout_root"
@@ -99,6 +145,7 @@
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white_color"
             />
 
     </android.support.v4.widget.SwipeRefreshLayout>

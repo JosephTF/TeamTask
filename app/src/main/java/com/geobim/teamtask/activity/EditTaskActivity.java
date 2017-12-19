@@ -3,7 +3,9 @@ package com.geobim.teamtask.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
@@ -29,6 +31,10 @@ public class EditTaskActivity extends BaseActivity {
     RelativeLayout rl_view3;
     @Bind(R.id.rl_son_task)
     RelativeLayout rl_son_task;
+    @Bind(R.id.ib_country_back)
+    ImageButton ib_country_back;
+    @Bind(R.id.tv_right_title)
+    TextView tv_right_title;
 
     @Override
     protected void initVariables() {}
@@ -56,22 +62,25 @@ public class EditTaskActivity extends BaseActivity {
         DAY = calendar.get(Calendar.DAY_OF_MONTH);
     }
 
-    @OnClick({R.id.rl_view1, R.id.rl_view2, R.id.rl_view3,R.id.rl_son_task})
+    @OnClick({R.id.rl_view1, R.id.rl_view2, R.id.rl_view3,R.id.rl_son_task,R.id.ib_country_back, R.id.tv_right_title})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_view1:
-//                showSelectDateDialog();
                 break;
             case R.id.rl_view2:
-//                showSelectDateDialog();
                 break;
             case R.id.rl_view3:
-//                showSelectDateDialog();
                 break;
             case R.id.rl_son_task:
                 Intent intent = new Intent(this, TaskListActivity.class);
                 intent.putExtra("pagePars", "1");
                 startActivity(intent);
+                break;
+            case R.id.ib_country_back:
+                finish();
+                break;
+            case R.id.tv_right_title:
+                finish();
                 break;
         }
     }

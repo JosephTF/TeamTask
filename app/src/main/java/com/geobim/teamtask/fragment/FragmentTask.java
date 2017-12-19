@@ -94,9 +94,9 @@ public class FragmentTask extends BaseFragment {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.fragment_task, null);
-        StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
         ButterKnife.bind(this,view);
         mContentView.addView(view);
+        StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
         mContext = this.getContext();
         //此处强行setViewHeight，日历牌的高度
         monthPager.setViewheight(Utils.dpi2px(mContext, 270));

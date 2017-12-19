@@ -3,8 +3,10 @@ package com.geobim.teamtask.activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
@@ -18,10 +20,16 @@ import butterknife.OnClick;
  */
 public class AddTaskActivity extends BaseActivity {
 
+    @Bind(R.id.ib_country_back)
+    ImageButton ib_country_back;
+    @Bind(R.id.tv_right_title)
+    TextView tv_right_title;
+
     @Bind(R.id.rl_list)
     RelativeLayout rl_list;
     @Bind(R.id.ll_view_list)
     LinearLayout ll_view_list;
+
     @Override
     protected void initVariables() {
 
@@ -38,7 +46,7 @@ public class AddTaskActivity extends BaseActivity {
     protected void loadData() {
     }
 
-    @OnClick({R.id.rl_list,R.id.rl_date,R.id.rl_person_view,R.id.rl_fujina})
+    @OnClick({R.id.rl_list,R.id.rl_date,R.id.rl_person_view,R.id.rl_fujina,R.id.ib_country_back, R.id.tv_right_title})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_list:
@@ -52,6 +60,12 @@ public class AddTaskActivity extends BaseActivity {
                 break;
             case R.id.rl_fujina:
                 ll_view_list.addView(LayoutInflater.from(this).inflate(R.layout.task_add_item, null));
+                break;
+            case R.id.ib_country_back:
+                finish();
+                break;
+            case R.id.tv_right_title:
+                finish();
                 break;
         }
     }

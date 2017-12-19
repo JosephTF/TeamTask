@@ -2,6 +2,7 @@ package com.geobim.teamtask.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.adapter.SearchTaskAdapter;
@@ -24,6 +25,10 @@ public class TaskSearchActivity extends BaseListActivity<String> implements View
 
     @Bind(R.id.fb_search)
     FancyButton fb_search;
+    @Bind(R.id.statusBarView)
+    View statusBarView;
+    @Bind(R.id.ib_country_back)
+    ImageButton ib_country_back;
     @Override
     protected void initVariables() {
 
@@ -39,9 +44,9 @@ public class TaskSearchActivity extends BaseListActivity<String> implements View
     @Override
     protected void OnViewCreated() {
         ButterKnife.bind(this);
-        viewToolbarShadow.setVisibility(View.VISIBLE);
-        navigation.setBackgroundResource(R.drawable.img_title_bar);
-        initTitle(R.drawable.icon_aleft, "任务搜索");
+        appbar.setVisibility(View.GONE);
+        //状态栏透明
+        StatusBarTransparent(this, statusBarView);
         initData(10);
     }
 
@@ -73,11 +78,14 @@ public class TaskSearchActivity extends BaseListActivity<String> implements View
         return settings;
     }
 
-    @OnClick({R.id.fb_search})
+    @OnClick({R.id.fb_search,R.id.ib_country_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fb_search:
                 initData(3);
+                break;
+            case R.id.ib_country_back:
+                finish();
                 break;
         }
     }
