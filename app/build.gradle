@@ -52,7 +52,6 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     /*右上角红点View*/
     compile 'com.assistne.android:icon-dot-text-view:1.0'
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.melnykov:floatingactionbutton:1.0.7'
-    compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'
+    /* 分组RecyclerAdapter */
+    compile 'com.github.donkingliang:GroupedRecyclerViewAdapter:1.2.1'
 }

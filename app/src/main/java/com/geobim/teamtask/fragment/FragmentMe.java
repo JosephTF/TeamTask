@@ -7,8 +7,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.geobim.teamtask.R;
-import com.geobim.teamtask.activity.MainActivity;
-import com.geobim.teamtask.activity.MeActivity;
+import com.geobim.teamtask.activity.UserActivity;
 import com.geobim.teamtask.base.ui.BaseFragment;
 import android.view.View.OnClickListener;
 import butterknife.ButterKnife;
@@ -39,7 +38,7 @@ public class FragmentMe extends BaseFragment implements OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.rl_me_userdetail:
-                Intent intent = new Intent(getContext(), MeActivity.class);
+                Intent intent = new Intent(getContext(), UserActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 getContext().startActivity(intent);
                 break;

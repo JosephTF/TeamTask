@@ -92,4 +92,11 @@
     <string name="me_item6">版本更新</string>
     <string name="me_item7">关于</string>
     <string name="me_item8">退出登录</string>
+    <!-- 用户信息 -->
+    <string name="user_tab1">基本信息</string>
+    <string name="user_tab2">工作经历</string>
+    <string name="user_tab3">家属信息</string>
+    <string name="user_tab4">单位信息</string>
+    <string name="user_tab5">工种信息</string>
+    <string name="user_tab6">培训信息</string>
 </resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_title">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- 顶部 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_space_size180"
+                android:background="@drawable/background_title"
+                android:paddingBottom="@dimen/common_space_size6"
+                android:paddingTop="@dimen/common_space_size14">
+
+                <ImageButton
+                    android:id="@+id/ib_user_back"
+                    android:layout_width="@dimen/common_space_size24"
+                    android:layout_height="@dimen/common_space_size24"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="@dimen/common_space_size8"
+                    android:layout_marginTop="@dimen/common_space_size8"
+                    android:background="@drawable/btn_return" />
+
+                <ImageButton
+                    android:id="@+id/ib_user_refresh"
+                    android:layout_width="@dimen/common_space_size24"
+                    android:layout_height="@dimen/common_space_size24"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="@dimen/common_space_size12"
+                    android:layout_marginTop="@dimen/common_space_size8"
+                    android:background="@drawable/btn_refresh" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_user_userlogo"
+                    android:layout_width="@dimen/common_space_size64"
+                    android:layout_height="@dimen/common_space_size64"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/common_space_size24"
+                    android:src="@drawable/default_avatar"
+                    app:civ_border_color="#fff"
+                    app:civ_border_width="@dimen/common_space_size1" />
+
+                <TextView
+                    android:id="@+id/tv_user_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/civ_user_userlogo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/common_space_size16"
+                    android:text="@string/me_username"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/common_text_size18" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_user_username"
+                    android:layout_marginTop="@dimen/common_space_size4"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/me_jobposition"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/common_text_size12" />
+
+                    <ImageButton
+                        android:id="@+id/ib_user_edyit"
+                        android:layout_width="@dimen/common_space_size18"
+                        android:layout_height="@dimen/common_space_size18"
+                        android:layout_marginLeft="@dimen/common_space_size4"
+                        android:background="@drawable/btn_edit" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_space_size2"
+                android:background="#E8E8E8" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_user_recyclerlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

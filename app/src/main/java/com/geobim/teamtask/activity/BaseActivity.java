@@ -237,36 +237,4 @@ public abstract class BaseActivity extends SwipeBackActivity {
         }
         return 0;
     }
-
-    protected int getActionBarSize() {
-        TypedValue typedValue = new TypedValue();
-        int[] textSizeAttr = new int[]{R.attr.actionBarSize};
-        int indexOfAttrTextSize = 0;
-        TypedArray a = obtainStyledAttributes(typedValue.data, textSizeAttr);
-        int actionBarSize = a.getDimensionPixelSize(indexOfAttrTextSize, -1);
-        a.recycle();
-        return actionBarSize;
-    }
-
-    private static final int NUM_OF_ITEMS = 100;
-
-    protected void setDummyData(ListView listView) {
-        setDummyData(listView, NUM_OF_ITEMS);
-    }
-
-    protected void setDummyData(ListView listView, int num) {
-        listView.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getDummyData(num)));
-    }
-
-    public static ArrayList<String> getDummyData() {
-        return getDummyData(NUM_OF_ITEMS);
-    }
-
-    public static ArrayList<String> getDummyData(int num) {
-        ArrayList<String> items = new ArrayList<>();
-        for (int i = 1; i <= num; i++) {
-            items.add("Item " + i);
-        }
-        return items;
-    }
 }

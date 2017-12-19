@@ -92,13 +92,6 @@
                         android:layout_marginRight="@dimen/common_space_size12"
                         android:background="@drawable/detail" />
 
-                    <ImageView
-                        android:layout_width="@dimen/common_space_size24"
-                        android:layout_height="@dimen/common_space_size24"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="@dimen/common_space_size12"
-                        android:layout_toLeftOf="@id/iv_me_detail"
-                        android:background="@drawable/qrcode" />
                 </RelativeLayout>
 
                 <View
