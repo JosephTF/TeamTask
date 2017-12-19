@@ -37,12 +37,12 @@ public class PopSorting implements View.OnClickListener {
     //下拉菜单
     public PopupWindow show(int item) {
         if (pop != null && pop.isShowing()) {
-            mSorting.setTextColor(Color.parseColor("#7d7d7d"));
+            mSorting.setTextColor(Color.parseColor("#333333"));
             setDrawable(mSorting, R.drawable.sort_default_icon);
             pop.dismiss();
             mBack.setVisibility(View.GONE);
         } else {
-            mSorting.setTextColor(Color.parseColor("#49ceff"));
+            mSorting.setTextColor(Color.parseColor("#303F9F"));
             setDrawable(mSorting, R.drawable.sort_press_icon);
             mBack.setVisibility(View.VISIBLE);
             layoutway = mActivity.getLayoutInflater().inflate(
@@ -83,7 +83,7 @@ public class PopSorting implements View.OnClickListener {
         }
         if (pop.isShowing()) {
             pop.dismiss();
-            mSorting.setTextColor(Color.parseColor("#7d7d7d"));
+            mSorting.setTextColor(Color.parseColor("#333333"));
             setDrawable(mSorting, R.drawable.sort_default_icon);
             mBack.setVisibility(View.GONE);
         }
@@ -162,19 +162,19 @@ public class PopSorting implements View.OnClickListener {
                 drawable.getMinimumHeight());
         switch (mItem) {
             case 0:
-                layout_a.setTextColor(Color.parseColor("#fe850f"));
+                layout_a.setTextColor(Color.parseColor("#303F9F"));
                 layout_a.setCompoundDrawables(null, null, drawable, null);
                 break;
             case 1:
-                layout_b.setTextColor(Color.parseColor("#fe850f"));
+                layout_b.setTextColor(Color.parseColor("#303F9F"));
                 layout_b.setCompoundDrawables(null, null, drawable, null);
                 break;
             case 2:
-                layout_c.setTextColor(Color.parseColor("#fe850f"));
+                layout_c.setTextColor(Color.parseColor("#303F9F"));
                 layout_c.setCompoundDrawables(null, null, drawable, null);
                 break;
             case 3:
-                layout_d.setTextColor(Color.parseColor("#fe850f"));
+                layout_d.setTextColor(Color.parseColor("#303F9F"));
                 layout_d.setCompoundDrawables(null, null, drawable, null);
                 break;
         }

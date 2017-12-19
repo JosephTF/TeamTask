@@ -40,9 +40,17 @@ public class TaskListActivity extends BaseListActivity<String> {
     View back;
     @Bind(R.id.tv_saixuan)
     TextView tv_saixuan;
+    @Bind(R.id.statusBarView)
+    View statusBarView;
+    @Bind(R.id.tv_right_title)
+    TextView tv_right_title;
+    @Bind(R.id.ib_country_back)
+    ImageButton ib_country_back;
 
     private PopSorting popSorting;  //排序
     private PopScreening popScreening;  //筛选
+
+    List<String> mData = new ArrayList<>();
 
     @Override
     protected void initVariables() {
@@ -59,11 +67,9 @@ public class TaskListActivity extends BaseListActivity<String> {
     @Override
     protected void OnViewCreated() {
         ButterKnife.bind(this);
-        viewToolbarShadow.setVisibility(View.VISIBLE);
-        navigation.setBackgroundResource(R.drawable.img_title_bar);
-        initTitle(R.drawable.icon_aleft, "任务列表");
-        setTitleRight(0, "搜索");
-        List<String> mData = new ArrayList<>();
+        appbar.setVisibility(View.GONE);
+        //状态栏透明
+        StatusBarTransparent(this, statusBarView);
         for (int i = 0; i < 5; i++) {
             mData.add("任务" + i);
         }
@@ -79,7 +85,6 @@ public class TaskListActivity extends BaseListActivity<String> {
 
     @Override
     public void requestData(boolean needRefresh) {
-        List<String> mData = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             mData.add("任务" + i);
         }
@@ -89,7 +94,7 @@ public class TaskListActivity extends BaseListActivity<String> {
     @Override
     protected BaseListAdapter<String> getListAdapter() {
         return new TaskListAdapter(this);
-}
+    }
 
     @Override
     protected ListSettings getBaseSettings() {
@@ -100,11 +105,14 @@ public class TaskListActivity extends BaseListActivity<String> {
         return settings;
     }
 
-    @OnClick({R.id.layout_right,R.id.partDetails,R.id.tv_last_update,R.id.tv_canyu,R.id.tv_saixuan})
+    @OnClick({R.id.layout_right,R.id.partDetails,R.id.tv_last_update,R.id.tv_canyu,R.id.tv_saixuan,R.id.tv_right_title,R.id.ib_country_back})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.layout_right:
-                 startActivity(new Intent(TaskListActivity.this, TaskSearchActivity.class));
+            case R.id.tv_right_title:
+                startActivity(new Intent(TaskListActivity.this, TaskSearchActivity.class));
+                break;
+            case R.id.ib_country_back:
+                finish();
                 break;
             case R.id.partDetails:
                  startActivity(new Intent(TaskListActivity.this, AddTaskActivity.class));

@@ -38,11 +38,11 @@ public class PopScreening implements View.OnClickListener {
     //下拉菜单
     public PopupWindow show() {
         if (pop != null && pop.isShowing()) {
-            mSorting.setTextColor(Color.parseColor("#7d7d7d"));
+            mSorting.setTextColor(Color.parseColor("#333333"));
             pop.dismiss();
             mBack.setVisibility(View.GONE);
         } else {
-            mSorting.setTextColor(Color.parseColor("#49ceff"));
+            mSorting.setTextColor(Color.parseColor("#303F9F"));
             mBack.setVisibility(View.VISIBLE);
             layoutway = mActivity.getLayoutInflater().inflate(
                     R.layout.popwindow_screening, null);

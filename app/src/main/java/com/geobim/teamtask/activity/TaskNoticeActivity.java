@@ -2,23 +2,30 @@ package com.geobim.teamtask.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.adapter.TaskNoticeListAdapter;
 import com.geobim.teamtask.base.adapter.BaseListAdapter;
 import com.geobim.teamtask.base.ui.BaseListActivity;
 import com.geobim.teamtask.base.utils.ListSettings;
-import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * 任务通知
  */
 public class TaskNoticeActivity extends BaseListActivity<String> {
+
+    @Bind(R.id.statusBarView)
+    View statusBarView;
+    @Bind(R.id.ib_country_back)
+    ImageButton ib_country_back;
 
     @Override
     protected void initVariables() {
@@ -37,16 +44,23 @@ public class TaskNoticeActivity extends BaseListActivity<String> {
     @Override
     protected void OnViewCreated() {
         ButterKnife.bind(this);
-        viewToolbarShadow.setVisibility(View.GONE);
-        navigation.setBackgroundResource(R.drawable.background);
-        initTitle(R.drawable.icon_aleft, "通知");
-        StatusBarUtil.setTranslucent(this, 0);//状态栏半透明
-
+        appbar.setVisibility(View.GONE);
+        //状态栏透明
+        StatusBarTransparent(this, statusBarView);
         List<String> mData = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             mData.add("11月2" + i + "日 延期任务提醒");
         }
         onDataLoaded(mData);
+    }
+
+    @OnClick({R.id.ib_country_back})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ib_country_back:
+                finish();
+                break;
+        }
     }
 
     @Override

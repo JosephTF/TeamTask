@@ -1,10 +1,12 @@
 package com.geobim.teamtask.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -198,25 +200,30 @@ public abstract class BaseActivity extends SwipeBackActivity {
         ActivityList.getInstance().removeActivity(this);
     }
 
-    /**
-     * 设置沉浸式状态栏
+    /***
+     * 状态栏透明
+     * @param activity
+     * @param view
      */
-    protected void setStatusBar(int layoutId) {
-        //注意父布局一定要是LinearLayout
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            //设置透明状态栏
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            final View linear_bar = findViewById(layoutId);
-            final int statusHeight = getStatusBarHeight();
-            linear_bar.post(new Runnable() {
-                @Override
-                public void run() {
-                    int titleHeight = linear_bar.getHeight();
-                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) linear_bar.getLayoutParams();
-                    params.height = statusHeight + titleHeight;
-                    linear_bar.setLayoutParams(params);
-                }
-            });
+    protected void StatusBarTransparent(Activity activity, View view) {
+        //父容器必须是LineLayout
+        if (Build.VERSION.SDK_INT >= 19) {
+            //透明状态栏
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+            } else {
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+            //StatusBar Layout
+            int statusBarHeight = getStatusBarHeight();
+            LinearLayout.LayoutParams linearParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+            linearParams.height = statusBarHeight;
+            view.setLayoutParams(linearParams);
+        } else {
+            view.setVisibility(View.GONE);
         }
     }
 
