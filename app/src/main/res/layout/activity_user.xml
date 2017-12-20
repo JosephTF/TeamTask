@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_title">
+    android:background="@drawable/background_title"
+    android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/sv_user_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#eee">
+        android:background="#eee"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +57,7 @@
                     app:civ_border_width="@dimen/common_space_size1" />
 
                 <TextView
-                    android:id="@+id/tv_user_username"
+                    android:id="@+id/tv_user_realname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/civ_user_userlogo"
@@ -66,12 +70,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_user_username"
+                    android:layout_below="@id/tv_user_realname"
                     android:layout_marginTop="@dimen/common_space_size4"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tv_user_jobposition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/me_jobposition"
@@ -79,7 +84,7 @@
                         android:textSize="@dimen/common_text_size12" />
 
                     <ImageButton
-                        android:id="@+id/ib_user_edyit"
+                        android:id="@+id/ib_user_edit"
                         android:layout_width="@dimen/common_space_size18"
                         android:layout_height="@dimen/common_space_size18"
                         android:layout_marginLeft="@dimen/common_space_size4"
@@ -98,4 +103,65 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+    <!-- 标题 -->
+    <RelativeLayout
+        android:id="@+id/rl_user_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size50"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_title"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/ib_user_back2"
+            android:layout_width="@dimen/common_space_size24"
+            android:layout_height="@dimen/common_space_size24"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_space_size8"
+            android:background="@drawable/btn_return" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/user_title"
+            android:textColor="#fff"
+            android:textSize="@dimen/common_text_size18" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eee">
+
+        <ImageView
+            android:id="@+id/iv_user_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/default_error_image"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_user_nonetwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_user_error"
+            android:layout_marginTop="@dimen/common_space_size12"
+            android:layout_centerHorizontal="true"
+            android:text="@string/common_nonetwork"
+            android:textColor="#999"
+            android:textSize="@dimen/common_text_size12"
+            android:visibility="gone"/>
+    </RelativeLayout>
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_user_wheel"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        wheel:matProg_barColor="#28ADE5"
+        wheel:matProg_progressIndeterminate="true"
+        android:visibility="gone"/>
+</LinearLayout>

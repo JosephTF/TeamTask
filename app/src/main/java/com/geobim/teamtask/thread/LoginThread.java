@@ -22,19 +22,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginThread extends Thread{
-	private final String TAG = "CheckUserExistThread";
+	private final String TAG = "LoginThread";
 	private Handler handler;
 	private String username,password;
+	private Message msgMessage;
 	public LoginThread(Handler handler, String username, String password) {
 		this.handler = handler;
 		this.username = username;
 		this.password = password;
+		msgMessage = new Message();
 	}
 
 	@Override
 	public void run() {
 		super.run();
-		Message msgMessage = new Message();
 		//传入登录名和密码,获取登录地址
 		HttpUrlGet httpUtils = new HttpUrlGet();
 		String loginUrl = httpUtils.getUserLoginUrl(username, password);

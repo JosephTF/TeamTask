@@ -16,6 +16,7 @@
     <string name="common_prev">上一步</string>
     <string name="common_setting">设置</string>
     <string name="common_username">用户名</string>
+    <string name="common_nonetwork">网络无法访问，请连接后重新加载</string>
     <!-- 登录 -->
     <string name="login_title1">TeamTask</string>
     <string name="login_title2">For Better Work</string>
@@ -91,8 +92,9 @@
     <string name="me_item5">草稿箱</string>
     <string name="me_item6">版本更新</string>
     <string name="me_item7">关于</string>
-    <string name="me_item8">退出登录</string>
+    <string name="me_item8">退出</string>
     <!-- 用户信息 -->
+    <string name="user_title">个人信息</string>
     <string name="user_tab1">基本信息</string>
     <string name="user_tab2">工作经历</string>
     <string name="user_tab3">家属信息</string>

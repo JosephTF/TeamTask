@@ -1,24 +1,24 @@
 package com.geobim.teamtask.http.json;
 
-
 import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 /**
- * 解析获取User登录信息
+ * 解析获取应用的UserToken
  * Created by Administrator on 2017/12/20.
  */
 
-public class JsonParseUser {
-    private static final String TAG = "JsonParseUser";
+public class JsonParseUserToken {
+    private static final String TAG = "JsonParseUserToken";
 
     /**
      * @param result 需要解析的数据
      * @throws JSONException 格式不对，转换异常
      */
-    public static void parseUserByOrgJson(String result) throws JSONException {
+    public static void parseUserTokenByOrgJson(String result) throws JSONException {
 
         // 解析并保存回执信息
         JSONObject jsonObj = new JSONObject(result);
@@ -31,13 +31,7 @@ public class JsonParseUser {
         String data = ApiReturnInfo.getInstance().getData();
         if (data != "null") {
             JSONObject jsonObject = new JSONObject(data);
-            String userId = jsonObject.getString("_id");
-            User.getInstance().setId(userId.substring(3,userId.length()-1));
-            User.getInstance().setRealName(jsonObject.getString("RealName"));
-            User.getInstance().setPhoneNumber(jsonObject.getString("PhoneNumber"));
-            User.getInstance().setEmail(jsonObject.getString("Email"));
-            User.getInstance().setAvatar(jsonObject.getString("Avatar"));
-            User.getInstance().setTokenKey(jsonObject.getString("TokenKey"));
+            User.getInstance().setUserToken(jsonObject.getString("UserToken"));
         }
     }
 }

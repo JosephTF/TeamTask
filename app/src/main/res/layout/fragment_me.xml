@@ -48,7 +48,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_me_userdetail"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/common_space_size72"
+                    android:layout_height="@dimen/common_space_size82"
                     android:background="#fff">
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -61,25 +61,38 @@
                         android:src="@drawable/default_avatar" />
 
                     <TextView
-                        android:id="@+id/tv_me_username"
+                        android:id="@+id/tv_me_realname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_marginLeft="@dimen/common_space_size14"
-                        android:layout_marginTop="@dimen/common_space_size12"
+                        android:layout_marginTop="@dimen/common_space_size14"
                         android:layout_toRightOf="@id/civ_me_avatar"
                         android:text="@string/common_username"
                         android:textColor="#333"
                         android:textSize="@dimen/common_text_size16" />
 
                     <TextView
+                        android:id="@+id/tv_me_phonenum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_me_username"
+                        android:layout_below="@id/tv_me_realname"
                         android:layout_marginLeft="@dimen/common_space_size14"
-                        android:layout_marginTop="@dimen/common_space_size4"
+                        android:layout_marginTop="@dimen/common_space_size2"
                         android:layout_toRightOf="@id/civ_me_avatar"
-                        android:text="@string/me_jobposition"
+                        android:text="183XXXXX1234"
+                        android:textColor="#999"
+                        android:textSize="@dimen/common_text_size12" />
+
+                    <TextView
+                        android:id="@+id/tv_me_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_me_phonenum"
+                        android:layout_marginLeft="@dimen/common_space_size14"
+                        android:layout_marginTop="@dimen/common_space_size1"
+                        android:layout_toRightOf="@id/civ_me_avatar"
+                        android:text="123456@163.com"
                         android:textColor="#999"
                         android:textSize="@dimen/common_text_size12" />
 
@@ -196,6 +209,7 @@
                     android:background="#E8E8E8" />
                 <!--第一项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_ar"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -234,6 +248,7 @@
                     android:background="#E8E8E8" />
                 <!--第二项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_ocr"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -279,6 +294,7 @@
                     android:background="#E8E8E8" />
                 <!--第三项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_security"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -317,6 +333,7 @@
                     android:background="#E8E8E8" />
                 <!--第四项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -355,6 +372,7 @@
                     android:background="#E8E8E8" />
                 <!--第五项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_draftbox"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -400,6 +418,7 @@
                     android:background="#E8E8E8" />
                 <!--第六项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_version"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -438,6 +457,7 @@
                     android:background="#E8E8E8" />
                 <!--第七项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_about"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -482,6 +502,7 @@
                     android:background="#E8E8E8" />
                 <!--第八项-->
                 <RelativeLayout
+                    android:id="@+id/rl_me_exit"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/common_space_size42"
                     android:background="#fff">
@@ -502,7 +523,7 @@
                         android:layout_marginLeft="@dimen/common_space_size10"
                         android:layout_toRightOf="@id/iv_me_item8"
                         android:text="@string/me_item8"
-                        android:textColor="#333"
+                        android:textColor="#FF2236"
                         android:textSize="@dimen/common_text_size16" />
 
                     <ImageView

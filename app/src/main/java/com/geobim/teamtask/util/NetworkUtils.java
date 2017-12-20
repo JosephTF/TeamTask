@@ -72,7 +72,7 @@ public final class NetworkUtils {
      *
      * @return {@code true}: 可用<br>{@code false}: 不可用
      */
-    public static boolean isAvailableByPing(Context context) {
+    public static boolean isAvailableByPing(Context context,boolean showDialog) {
         boolean flag = false;
         //得到网络连接信息
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -80,16 +80,16 @@ public final class NetworkUtils {
         NetworkInfo activeNetwork = manager.getActiveNetworkInfo();
         if (activeNetwork != null) {
             flag = manager.getActiveNetworkInfo().isAvailable();
-        }else{
+        }else if(showDialog){
             //对未连接和已连接分别进行处理
-            setNetwork(context);
+            showDialog(context);
         }
         return flag;
     }
     /**
      * 网络未连接时，弹出提示
      */
-    private static void setNetwork(final Context context){
+    private static void showDialog(final Context context){
         SweetAlertDialog sad = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
         sad.setTitleText("网络错误");
         sad.setContentText("网络不可用，请先设置网络！");

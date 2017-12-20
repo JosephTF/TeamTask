@@ -1,20 +1,13 @@
 package com.geobim.teamtask.http;
 
-import okhttp3.OkHttpClient;
-
-import com.geobim.teamtask.util.MD5;
 import com.geobim.teamtask.util.api.UserAPI;
 import com.geobim.teamtask.util.api.WebAPI;
 
-import org.bson.types.ObjectId;
 import org.json.JSONArray;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 
-
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -242,7 +235,7 @@ public class HttpUrlGet {
     /**
      * 获取地址：获取当前用户在指定项目上具有权限的应用集合
      */
-    public String getUserProjectAppsUrl(String userToken, ObjectId id, int platform) {
+    public String getUserProjectAppsUrl(String userToken, String id, int platform) {
         return UserAPI.getUserProjectApps() + "?userToken=" + userToken + "&id=" + id + "&platform=" + platform;
     }
 

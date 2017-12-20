@@ -3,6 +3,8 @@ package com.geobim.teamtask.thread;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.widget.Toast;
 
 import com.geobim.teamtask.activity.LoginActivity;
@@ -17,43 +19,43 @@ import java.util.Map;
  * @author Administrator
  */
 public class SplashThread extends Thread {
-    private Activity mActivity;
-    private int mSleepTime;
+    private Activity activity;
+    private Handler handler;
+    private Message msgMessage;
+    private int sleepTime;
     private boolean isSaved;
-    private LoginSaveUtil loginService;         //用户密码保存
 
-    public SplashThread(Activity activity, int sleeptime) {
-        mActivity = activity;
-        mSleepTime = sleeptime;
-        loginService = new LoginSaveUtil(mActivity);
-        try {
-            Map<String, String> map = loginService.getUserInfo("private.txt");
-            isSaved = Boolean.parseBoolean(map.get("isSaved"));
-        } catch (Exception e) {
-        }
+    public SplashThread(Activity activity, Handler handler, int sleeptime) {
+        this.activity = activity;
+        this.handler =handler;
+        this.sleepTime = sleeptime;
+        msgMessage = new Message();
     }
 
     @Override
     public void run() {
         super.run();
         try {
-            Thread.sleep(mSleepTime);
+            Map<String, String> map = new LoginSaveUtil(activity).getUserInfo("private.txt");
+            isSaved = Boolean.parseBoolean(map.get("isSaved"));
+        } catch (Exception e) {
+        }
+        try {
+            Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
-            mActivity.runOnUiThread(new Runnable() {
+            activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(mActivity, "启动异常！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "启动异常！", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-        if(isSaved){
-            Intent intent = new Intent(mActivity, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            mActivity.startActivity(intent);
-        }else {
-            Intent intent = new Intent(mActivity, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            mActivity.startActivity(intent);
+        if (isSaved) {
+            msgMessage.what = 100;
+            handler.sendMessage(msgMessage);
+        } else {
+            msgMessage.what = 101;
+            handler.sendMessage(msgMessage);
         }
     }
 }

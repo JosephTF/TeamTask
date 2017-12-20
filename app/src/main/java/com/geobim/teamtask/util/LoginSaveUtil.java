@@ -26,10 +26,10 @@ public class LoginSaveUtil {
      * @param username 要保存的用户名
      * @return
      */
-    public boolean saveToRom(String password, String username, boolean isSaved) throws Exception {
+    public boolean saveToRom(String password, String username, boolean isSaved, String realname, String phonenum, String email) throws Exception {
         //以私有的方式打开一个文件
         FileOutputStream fos = context.openFileOutput("private.txt", Context.MODE_PRIVATE);
-        String result = username + ":" + password + ":" + isSaved;
+        String result = username + ":" + password + ":" + isSaved + ":" + realname + ":" + phonenum + ":" + email;
         fos.write(result.getBytes());
         fos.flush();
         fos.close();
@@ -52,6 +52,9 @@ public class LoginSaveUtil {
         map.put("username", results[0]);
         map.put("password", results[1]);
         map.put("isSaved", results[2]);
+        map.put("realname", results[3]);
+        map.put("phonenum", results[4]);
+        map.put("email", results[5]);
         return map;
     }
 }

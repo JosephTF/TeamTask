@@ -11,14 +11,16 @@ import com.geobim.teamtask.fragment.FragmentMe;
 import com.geobim.teamtask.fragment.FragmentModel;
 import com.geobim.teamtask.fragment.FragmentProject;
 import com.geobim.teamtask.fragment.FragmentQuick;
-import com.geobim.teamtask.fragment.FragmentTask2;
+import com.geobim.teamtask.fragment.FragmentTask;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutFTSmk;
 import com.geobim.teamtask.ui.FragmentView.TabLayoutSmk;
 import com.geobim.teamtask.util.ActivityList;
+import com.geobim.teamtask.util.LoginSaveUtil;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -57,7 +59,7 @@ public class MainActivity extends BaseActivity implements TabLayoutSmk.CallbackP
     }
 
     private void initTab() {
-        fragments.add(new FragmentTask2());
+        fragments.add(new FragmentTask());
         fragments.add(new FragmentProject());
         fragments.add(new FragmentQuick());
         fragments.add(new FragmentModel());

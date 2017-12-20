@@ -39,7 +39,6 @@ import java.util.Map;
 
 /**
  * 登录界面
- *
  */
 public class LoginActivity extends BaseActivity implements OnClickListener, OnFocusChangeListener, OnTouchListener {
     private final String TAG = "LoginActivity";
@@ -64,15 +63,15 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         setContentView(R.layout.activity_login);
         StatusBarUtil.setTranslucent(LoginActivity.this, 0);//状态栏半透明
         setSwipeBackEnable(false);
-        rl_login =(RelativeLayout) findViewById(R.id.rl_login);
+        rl_login = (RelativeLayout) findViewById(R.id.rl_login);
         et_username = (EditText) findViewById(R.id.et_login_username);
         et_password = (EditText) findViewById(R.id.et_login_password);
         iv_username = (ImageView) findViewById(R.id.iv_login_username);
         iv_password = (ImageView) findViewById(R.id.iv_login_password);
-        tv_logo_title = (TextView)findViewById(R.id.login_logo_title);
-        tv_login = (TextView)findViewById(R.id.login_start);
-        tv_forget = (TextView)findViewById(R.id.login_forget);
-        tv_register = (TextView)findViewById(R.id.login_register);
+        tv_logo_title = (TextView) findViewById(R.id.login_logo_title);
+        tv_login = (TextView) findViewById(R.id.login_start);
+        tv_forget = (TextView) findViewById(R.id.login_forget);
+        tv_register = (TextView) findViewById(R.id.login_register);
         pg_wait = (ProgressWheel) findViewById(R.id.progress_login_wheel);
         tv_logo_title.setTypeface(tf);
         tv_login.setOnClickListener(this);
@@ -99,7 +98,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
             case R.id.login_start:
                 //点击登录后
                 //先检查网络状态
-                boolean isConnect = NetworkUtils.isAvailableByPing(LoginActivity.this);
+                boolean isConnect = NetworkUtils.isAvailableByPing(LoginActivity.this,true);
                 Log.i(TAG, "isConnect:" + isConnect);
                 if (isConnect) {
                     /**
@@ -213,15 +212,19 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case 0:
+                    //登录失败
                     loginFailed();
                     break;
                 case 104:
+                    //登录错误
                     loginError();
                     break;
                 case 200:
+                    //登录成功
                     loginSuccess();
                     break;
                 case 504:
+                    //登录超时
                     loginTimeOut();
                     break;
             }
@@ -271,7 +274,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener, OnFo
         cancelThread();
         //保存密码
         try {
-            boolean result = loginService.saveToRom(password, username, true);
+            boolean result = loginService.saveToRom(password, username, true, User.getInstance().getRealName(), User.getInstance().getPhoneNumber(), User.getInstance().getEmail());
             if (result) {
                 Log.i(TAG, "用户密码保存成功");
             } else {

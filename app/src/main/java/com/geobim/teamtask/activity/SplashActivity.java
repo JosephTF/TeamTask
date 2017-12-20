@@ -1,7 +1,10 @@
 package com.geobim.teamtask.activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
@@ -20,30 +23,31 @@ import java.io.File;
 /**
  * 启动界面
  * 需要完成的功能：判断是否有用户登录过，获取密码，直接登录跳转到主页面
- * @author Joseph
- * 2017.10.18重构
  *
+ * @author Joseph
+ *         2017.10.18重构
  */
 public class SplashActivity extends BaseActivity {
     private static final String TAG = "SplashActivity";
-    private String apkPath;	// APK路径
-    private int sleepTime;	// 跳转页面定时
-    private long exitTime;	// 返回键点击计时
+    private String apkPath;    // APK路径
+    private int sleepTime;    // 跳转页面定时
+    private long exitTime;    // 返回键点击计时
     private SplashThread st;
+
     @Override
     protected void initVariables() {
         apkPath = ApkUtil.getApkPath();
-        sleepTime = 4000;
+        sleepTime = 2000;
         exitTime = 0;
-        st = new SplashThread(this, sleepTime);
+        st = new SplashThread(this, handler, sleepTime);
     }
 
     @Override
     protected void initViews(Bundle savedInstanceState) {
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); //设置全屏
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); //设置全屏
         setContentView(R.layout.activity_splash);
         //淡入效果动画
-        RelativeLayout rootLayout =(RelativeLayout) findViewById(R.id.splash_rootview);
+        RelativeLayout rootLayout = (RelativeLayout) findViewById(R.id.splash_rootview);
         AlphaAnimation animation = new AlphaAnimation(0.6f, 1.0f);
         animation.setDuration(2000);
         rootLayout.startAnimation(animation);
@@ -56,6 +60,28 @@ public class SplashActivity extends BaseActivity {
         Log.i(TAG, "系统版本" + android.os.Build.VERSION.RELEASE);
         firstLogin();
     }
+
+    Handler handler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    break;
+                case 104:
+                    break;
+                case 100:
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                    break;
+                case 101:
+                    Intent intent2login = new Intent(SplashActivity.this, LoginActivity.class);
+                    intent2login.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent2login);
+                    break;
+            }
+        }
+    };
+
     /**
      * 是否为首次加载
      */
@@ -63,9 +89,9 @@ public class SplashActivity extends BaseActivity {
         File file = new File(apkPath);
         if (!file.exists()) {
             //路径不存在
-            requestPermission(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0x0001);
+            requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0x0001);
             Log.i(TAG, "首次加载");
-        }else{
+        } else {
             st.start();
         }
     }
@@ -99,7 +125,7 @@ public class SplashActivity extends BaseActivity {
      * 返回键处理
      */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event){
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if ((System.currentTimeMillis() - exitTime) > 2000) {
                 Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();

@@ -55,7 +55,15 @@
         <activity android:name=".activity.EditTaskActivity"/>
         <activity android:name=".activity.AddTaskActivity"/>
         <activity android:name=".activity.TaskSearchActivity"/>
+        <!-- 个人中心 -->
         <activity android:name=".activity.UserActivity"/>
+        <activity android:name=".activity.ARActivity"/>
+        <activity android:name=".activity.OCRActivity"/>
+        <activity android:name=".activity.SecurityActivity"/>
+        <activity android:name=".activity.FeedBackActivity"/>
+        <activity android:name=".activity.DraftBoxActicity"/>
+        <activity android:name=".activity.VersionActivity"/>
+        <activity android:name=".activity.AboutActivity"/>
     </application>
     <!-- 通过AndroidManifest配置AppKey和AppSecret，如果你选择通过代码配置，则不需要配置以下meta-data -->
     <meta-data
