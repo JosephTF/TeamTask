@@ -1,5 +1,7 @@
 package com.geobim.teamtask.entity;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,18 +33,16 @@ public class User {
     private String phoneNumber;                     //手机号，可作为用户名登录
     private String realName;                        //用户姓名
     private String avatar;                          //用户头像文件Id
-    private String jobPosition;                     //工作职位
-    private int sex;                                //性别：0-未透露；1-男性；2-女性
+    private String sex;                                //性别：0-未透露；1-男性；2-女性
     private String nation;                          //民族
     private String birthday;                        //出生日期
     private String maritalStatus;                   //婚姻状况
     private String nativePlace;                     //籍贯
     private String location;                        //户口所在地
     private String educationLevel;                  //教育程度
-    private int firstWorkYear;                      //参加工作年份
+    private String firstWorkYear;                      //参加工作年份
     private String healthCheckTime;                 //体检时间
     private String bloodType;                       //血型
-    private String QQ;                              //qq号
     private String registerDate;                    //用户注册时间
     private ArrayList<LoginInfo> loginInfo;         //用户最近登录信息，最多保留100条数据
     private WorkHistory workHistory;                //最近一次工作经历
@@ -104,19 +104,17 @@ public class User {
         this.avatar = avatar;
     }
 
-    public String getJobPosition() {
-        return jobPosition;
+    public String getSex() {
+        if("1"==sex){
+            return "男";
+        }else if("2"==sex){
+            return "女";
+        }else{
+            return "保密";
+        }
     }
 
-    public void setJobPosition(String jobPosition) {
-        this.jobPosition = jobPosition;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -168,11 +166,11 @@ public class User {
         this.educationLevel = educationLevel;
     }
 
-    public int getFirstWorkYear() {
+    public String getFirstWorkYear() {
         return firstWorkYear;
     }
 
-    public void setFirstWorkYear(int firstWorkYear) {
+    public void setFirstWorkYear(String firstWorkYear) {
         this.firstWorkYear = firstWorkYear;
     }
 
@@ -185,19 +183,11 @@ public class User {
     }
 
     public String getBloodType() {
-        return bloodType;
+        return bloodType+"型";
     }
 
     public void setBloodType(String bloodType) {
         this.bloodType = bloodType;
-    }
-
-    public String getQQ() {
-        return QQ;
-    }
-
-    public void setQQ(String QQ) {
-        this.QQ = QQ;
     }
 
     public String getRegisterDate() {

@@ -50,7 +50,7 @@ public class UserActivity extends BaseActivity implements OnClickListener {
     private GetUserTokenThread getUserTokenThread;            //获取UserToken线程
     private GetUserMsgThread getUserMsgThread;                //获取User信息线程
     private ProgressWheel pg_wait;              //等待条
-
+    private ExpandableAdapter adapter;
     @Override
     protected void initVariables() {
         //先检查网络状态
@@ -110,27 +110,7 @@ public class UserActivity extends BaseActivity implements OnClickListener {
 
     @Override
     protected void loadData() {
-        ExpandableAdapter adapter = new ExpandableAdapter(this, UserDetail.getUserDetail());
-        adapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
-            @Override
-            public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition) {
-                ExpandableAdapter expandableAdapter = (ExpandableAdapter) adapter;
-                if (expandableAdapter.isExpand(groupPosition)) {
-                    expandableAdapter.collapseGroup(groupPosition);
-                } else {
-                    expandableAdapter.expandGroup(groupPosition);
-                }
-            }
-        });
-        adapter.setOnChildClickListener(new GroupedRecyclerViewAdapter.OnChildClickListener() {
-            @Override
-            public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder,
-                                     int groupPosition, int childPosition) {
-                Toast.makeText(UserActivity.this, "子项：groupPosition = " + groupPosition + ", childPosition = " + childPosition,
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-        rvList.setAdapter(adapter);
+
     }
 
     @Override
@@ -163,6 +143,7 @@ public class UserActivity extends BaseActivity implements OnClickListener {
                     startMsgThread();
                     break;
                 case 300:
+                    //Msg获取成功
                     getSuccess();
                     break;
             }
@@ -248,6 +229,27 @@ public class UserActivity extends BaseActivity implements OnClickListener {
      */
     private void getSuccess() {
         cancelThread();
+        adapter = new ExpandableAdapter(this, UserDetail.getUserDetail());
+        adapter.setOnHeaderClickListener(new GroupedRecyclerViewAdapter.OnHeaderClickListener() {
+            @Override
+            public void onHeaderClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder, int groupPosition) {
+                ExpandableAdapter expandableAdapter = (ExpandableAdapter) adapter;
+                if (expandableAdapter.isExpand(groupPosition)) {
+                    expandableAdapter.collapseGroup(groupPosition);
+                } else {
+                    expandableAdapter.expandGroup(groupPosition);
+                }
+            }
+        });
+        adapter.setOnChildClickListener(new GroupedRecyclerViewAdapter.OnChildClickListener() {
+            @Override
+            public void onChildClick(GroupedRecyclerViewAdapter adapter, BaseViewHolder holder,
+                                     int groupPosition, int childPosition) {
+                Toast.makeText(UserActivity.this, "子项：groupPosition = " + groupPosition + ", childPosition = " + childPosition,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        rvList.setAdapter(adapter);
         haveNetWork();
     }
 

@@ -2,6 +2,7 @@ package com.geobim.teamtask.thread;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.http.HttpUrlGet;
@@ -34,6 +35,7 @@ public class GetUserMsgThread extends Thread {
         //传入登录名和密码,获取登录地址
         HttpUrlGet httpUtils = new HttpUrlGet();
         String userInfoUrl = httpUtils.getUserInfoUrl(usertoken, id);
+        Log.i("TAG",userInfoUrl);
         try {
             final String result = httpUtils.getResult(userInfoUrl);
             try {

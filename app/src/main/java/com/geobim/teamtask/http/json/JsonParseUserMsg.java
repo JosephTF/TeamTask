@@ -1,5 +1,7 @@
 package com.geobim.teamtask.http.json;
 
+import android.util.Log;
+
 import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
 
@@ -33,24 +35,24 @@ public class JsonParseUserMsg {
             JSONObject jsonObject = new JSONObject(data);
             String userId = jsonObject.getString("_id");
             User.getInstance().setId(userId.substring(3,userId.length()-1));
-            User.getInstance().setId(jsonObject.getString("IDCard"));
+            User.getInstance().setIDCard(jsonObject.getString("IDCard"));
             User.getInstance().setEmail(jsonObject.getString("Email"));
             User.getInstance().setPhoneNumber(jsonObject.getString("PhoneNumber"));
             User.getInstance().setRealName(jsonObject.getString("RealName"));
             User.getInstance().setAvatar(jsonObject.getString("Avatar"));
-            User.getInstance().setJobPosition(jsonObject.getString("JobPosition"));
-            User.getInstance().setSex(jsonObject.getInt("Sex"));
+            User.getInstance().setSex(jsonObject.getString("Sex"));
             User.getInstance().setNation(jsonObject.getString("Nation"));
-            User.getInstance().setBirthday(jsonObject.getString("Birthday"));
+            User.getInstance().setBirthday((jsonObject.getString("Birthday")).substring(0,10));
             User.getInstance().setMaritalStatus(jsonObject.getString("MaritalStatus"));
             User.getInstance().setNativePlace(jsonObject.getString("NativePlace"));
             User.getInstance().setLocation(jsonObject.getString("Location"));
             User.getInstance().setEducationLevel(jsonObject.getString("EducationLevel"));
-            User.getInstance().setFirstWorkYear(jsonObject.getInt("FirstWorkYear"));
-            User.getInstance().setHealthCheckTime(jsonObject.getString("HealthCheckTime"));
+            User.getInstance().setFirstWorkYear(jsonObject.getString("FirstWorkYear"));
+            User.getInstance().setHealthCheckTime((jsonObject.getString("HealthCheckTime")).substring(0,10));
             User.getInstance().setBloodType(jsonObject.getString("BloodType"));
-            User.getInstance().setQQ(jsonObject.getString("QQ"));
-            User.getInstance().setRegisterDate(jsonObject.getString("RegisterDate"));
+            User.getInstance().setRegisterDate((jsonObject.getString("RegisterDate")).substring(0,10));
+//            String WorkHistory = jsonObj.getString("WorkHistory");
+//            Log.i("AAAAAAAAAAAAAAAA",WorkHistory);
         }
     }
 }

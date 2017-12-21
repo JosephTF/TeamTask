@@ -6,9 +6,9 @@ package com.geobim.teamtask.ui.RecyclerListView;
 public class ChildEntity {
 
     private String key;
-    private Object value;
+    private String value;
 
-    public ChildEntity(String key,Object value) {
+    public ChildEntity(String key,String value) {
         this.key = key;
         this.value = value;
     }
@@ -21,11 +21,11 @@ public class ChildEntity {
         this.key = key;
     }
 
-    public Object getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(Object value) {
+    public void setValue(String value) {
         this.value = value;
     }
 }

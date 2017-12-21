@@ -90,7 +90,7 @@ public class ExpandableAdapter extends GroupedRecyclerViewAdapter {
     public void onBindChildViewHolder(BaseViewHolder holder, int groupPosition, int childPosition) {
         ChildEntity entity = mGroups.get(groupPosition).getChildren().get(childPosition);
         holder.setText(R.id.tv_key, entity.getKey());
-        holder.setText(R.id.tv_value,entity.getValue().toString());
+        holder.setText(R.id.tv_value,entity.getValue());
     }
 
     /**
