@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_title">
+    <!-- 标题 -->
+    <RelativeLayout
+        android:id="@+id/rl_ar_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_space_size50"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/background_title">
 
+        <ImageButton
+            android:id="@+id/ib_ar_back"
+            android:layout_width="@dimen/common_space_size24"
+            android:layout_height="@dimen/common_space_size24"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_space_size8"
+            android:background="@drawable/btn_return" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/ar_title"
+            android:textColor="#fff"
+            android:textSize="@dimen/common_text_size18" />
+    </RelativeLayout>
 </LinearLayout>

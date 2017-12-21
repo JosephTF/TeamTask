@@ -2,6 +2,143 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_title"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#EEE">
+        <!-- 标题 -->
+        <RelativeLayout
+            android:id="@+id/rl_security_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_space_size50"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/background_title">
+
+            <ImageButton
+                android:id="@+id/ib_security_back"
+                android:layout_width="@dimen/common_space_size24"
+                android:layout_height="@dimen/common_space_size24"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/common_space_size8"
+                android:background="@drawable/btn_return" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/security_title"
+                android:textColor="#fff"
+                android:textSize="@dimen/common_text_size18" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_space_size2"
+            android:background="#E8E8E8" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size2"
+                    android:background="#E8E8E8" />
+                <!-- 第一组 -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:layout_marginTop="@dimen/common_space_size6"
+                    android:background="#E8E8E8" />
+                <!--修改密码-->
+                <RelativeLayout
+                    android:id="@+id/rl_security_resetpsw"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size42"
+                    android:background="#fff">
+
+                    <ImageView
+                        android:id="@+id/iv_security_resetpsw"
+                        android:layout_width="@dimen/common_space_size24"
+                        android:layout_height="@dimen/common_space_size24"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_space_size16"
+                        android:src="@drawable/me_item_security" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_space_size10"
+                        android:layout_toRightOf="@id/iv_security_resetpsw"
+                        android:text="@string/security_resetpsw"
+                        android:textColor="#333"
+                        android:textSize="@dimen/common_text_size16" />
+
+                    <ImageView
+                        android:layout_width="@dimen/common_space_size14"
+                        android:layout_height="@dimen/common_space_size14"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/common_space_size12"
+                        android:background="@drawable/detail" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size1"
+                    android:background="#E8E8E8" />
+                <!--登录记录-->
+                <RelativeLayout
+                    android:id="@+id/rl_security_loginhistory"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size42"
+                    android:background="#fff">
+
+                    <ImageView
+                        android:id="@+id/iv_security_loginhistory"
+                        android:layout_width="@dimen/common_space_size24"
+                        android:layout_height="@dimen/common_space_size24"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_space_size16"
+                        android:src="@drawable/me_item_ocr" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/common_space_size10"
+                        android:layout_toRightOf="@id/iv_security_loginhistory"
+                        android:text="@string/security_loginhistory"
+                        android:textColor="#333"
+                        android:textSize="@dimen/common_text_size16" />
+
+                    <ImageView
+                        android:layout_width="@dimen/common_space_size14"
+                        android:layout_height="@dimen/common_space_size14"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/common_space_size12"
+                        android:background="@drawable/detail" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/common_space_size2"
+                    android:background="#E8E8E8" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

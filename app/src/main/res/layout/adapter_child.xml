@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tv_key"
-        android:layout_width="@dimen/common_space_size100"
+        android:layout_width="@dimen/common_space_size80"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/common_space_size10"

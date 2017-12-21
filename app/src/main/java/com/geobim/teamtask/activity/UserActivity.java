@@ -79,8 +79,10 @@ public class UserActivity extends BaseActivity implements OnClickListener {
         ib_edit.setOnClickListener(this);
         rvList.setLayoutManager(new LinearLayoutManager(this));
         if (isConnect) {
+            Log.i("A","AAA");
             startTokenThread();
         } else {
+            Log.i("B","BBB");
             noNetWork();
         }
     }
@@ -118,6 +120,7 @@ public class UserActivity extends BaseActivity implements OnClickListener {
         switch (view.getId()) {
             case R.id.ib_user_back:
             case R.id.ib_user_back2:
+                cancelThread();
                 finish();
                 break;
             case R.id.ib_user_refresh:
@@ -271,6 +274,7 @@ public class UserActivity extends BaseActivity implements OnClickListener {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            cancelThread();
             finish();
         }
         return false;
