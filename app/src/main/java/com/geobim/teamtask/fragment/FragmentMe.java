@@ -159,7 +159,6 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
             case R.id.rl_me_exit:
                 SweetAlertDialog sad = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
                 sad.setTitleText("确认退出系统");
-                sad.setContentText(ApiReturnInfo.getInstance().getMessage());
                 sad.setConfirmText("确定");
                 sad.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override

@@ -117,4 +117,6 @@
     <string name="version_title">版本更新</string>
     <!-- 关于 -->
     <string name="about_title">关&#160;&#160;于</string>
+    <!-- 登录历史 -->
+    <string name="loginhistory_title">登录历史</string>
 </resources>

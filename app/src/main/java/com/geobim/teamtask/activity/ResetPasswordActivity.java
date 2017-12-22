@@ -214,8 +214,6 @@ public class ResetPasswordActivity extends BaseActivity implements OnClickListen
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(ResetPasswordActivity.this, LoginActivity.class);
-            startActivity(intent);
             finish();
         }
         return false;
