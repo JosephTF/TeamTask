@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cazaea.sweetalert.SweetAlertDialog;
 import com.geobim.teamtask.R;
@@ -17,24 +17,17 @@ import com.geobim.teamtask.activity.AboutActivity;
 import com.geobim.teamtask.activity.DraftBoxActicity;
 import com.geobim.teamtask.activity.FeedBackActivity;
 import com.geobim.teamtask.activity.LoginActivity;
-import com.geobim.teamtask.activity.MainActivity;
 import com.geobim.teamtask.activity.OCRActivity;
 import com.geobim.teamtask.activity.SecurityActivity;
-import com.geobim.teamtask.activity.SplashActivity;
 import com.geobim.teamtask.activity.UserActivity;
 import com.geobim.teamtask.activity.VersionActivity;
 import com.geobim.teamtask.base.ui.BaseFragment;
-import com.geobim.teamtask.entity.ApiReturnInfo;
 import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.thread.LoginThread;
 import com.geobim.teamtask.thread.TimeoutThread;
 import com.geobim.teamtask.util.ActivityList;
 import com.geobim.teamtask.util.LoginSaveUtil;
 import com.geobim.teamtask.util.NetworkUtils;
-
-import android.view.View.OnClickListener;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Map;
 

@@ -52,7 +52,6 @@ public class TabLayoutFTSmk extends FrameLayout {
     private List<Integer> mIconUnselectIds = null;
     //已选图片
     private List<Integer> mIconSelectIds = null;
-    private Random mRandom = new Random();
     private TabLayoutSmk.CallbackPosition mCallbackPosition;
 
     public TabLayoutFTSmk(Context context) {
@@ -105,7 +104,6 @@ public class TabLayoutFTSmk extends FrameLayout {
         });
         //默认只能显示第一页，因为显示后面的话必须先加载前面的，所以放弃
         tl_2.setCurrentTab(0);
-
     }
 
     /**

@@ -34,4 +34,11 @@
         t1:tl_textsize="12sp"
         t1:tl_underline_color="#DDDDDD"
         t1:tl_underline_height="1dp" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/tab_quick_select"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/common_space_size4"/>
 </RelativeLayout>
