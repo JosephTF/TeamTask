@@ -1,19 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@drawable/background_title">
+
+    <FrameLayout
+        android:id="@+id/fl_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
+        android:id="@+id/ll_main_bottombar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/common_space_size52"
+        android:layout_gravity="bottom"
         android:orientation="vertical">
 
-        <com.geobim.teamtask.ui.FragmentView.TabLayoutFTSmk
-            android:id="@+id/tabLayout"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="1dp"
+            android:background="@color/bottombar_navi_topdrive" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:id="@+id/rl_main_task"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bottombar_navi_bg"
+                android:orientation="horizontal">
+
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_main_task"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:dot_marginTop="@dimen/common_space_size0"
+                    app:icon="@drawable/bottombar_navi_task"
+                    app:icon_size="@dimen/common_space_size26"
+                    app:text="@string/task_title"
+                    app:textSize="@dimen/common_text_size12" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_project"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bottombar_navi_bg"
+                android:orientation="horizontal">
+
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_main_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:dot_marginTop="@dimen/common_space_size0"
+                    app:icon="@drawable/bottombar_navi_project"
+                    app:icon_size="@dimen/common_space_size26"
+                    app:text="@string/project_title"
+                    app:textSize="@dimen/common_text_size12" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bottombar_navi_bg"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_main_quick"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="@dimen/common_space_size4"
+                    android:layout_marginLeft="@dimen/common_space_size12"
+                    android:layout_marginRight="@dimen/common_space_size12"
+                    android:layout_marginTop="@dimen/common_space_size4"
+                    android:background="@drawable/style_iv_quick_shape"
+                    android:scaleType="center"
+                    android:src="@drawable/add_icon" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_main_model"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bottombar_navi_bg">
+
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_main_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:dot_marginTop="@dimen/common_space_size0"
+                    app:icon="@drawable/bottombar_navi_model"
+                    app:icon_size="@dimen/common_space_size26"
+                    app:text="@string/model_title"
+                    app:textSize="@dimen/common_text_size12" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_main_me"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bottombar_navi_bg">
+
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_main_me"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="true"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:dot_marginTop="@dimen/common_space_size0"
+                    app:icon="@drawable/bottombar_navi_me"
+                    app:icon_size="@dimen/common_space_size26"
+                    app:text="@string/me_title"
+                    app:textSize="@dimen/common_text_size12" />
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
-</RelativeLayout>
-
+</FrameLayout>

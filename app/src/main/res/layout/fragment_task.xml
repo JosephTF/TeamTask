@@ -11,6 +11,7 @@
         android:orientation="vertical">
         <!-- 顶部 -->
         <RelativeLayout
+            android:id="@+id/rl_task_topbar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:paddingBottom="@dimen/common_space_size6"

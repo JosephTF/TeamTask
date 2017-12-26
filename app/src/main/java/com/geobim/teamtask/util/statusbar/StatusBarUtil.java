@@ -600,7 +600,7 @@ public class StatusBarUtil {
 //            }else {
 //                setColor(context,Color.parseColor("#3cb2fa"),0);
 //                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-//                window.setStatusBarColor(context.getResources().getColor(android.R.color.white));
+//                window.setStatusBarColor(context.getResources().getColor(android.R.colors.white));
 //                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 //            }
 //        }

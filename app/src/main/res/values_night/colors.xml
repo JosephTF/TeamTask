@@ -21,11 +21,11 @@
     <!-- toast的背景色 -->
     <color name="bg_toast">#f79f43</color>
 
-    <!--微博底部Bar-白天 -->
-    <color name="bottombar_navi_bg">#FFFFFF</color><!--底部bar的背景样式-->
-    <color name="bottombar_navi_font">#929292</color><!--底部bar字体颜色-->
-    <color name="bottombar_navi_topdrive">#eaeaea</color><!--顶部分割线的颜色-->
-    <!--状态栏-白天 -->
-    <color name="home_status_bg">#FFFFFF</color><!--状态栏的的文字样颜色-->
+    <!--微博底部Bar-夜晚-->
+    <color name="bottombar_navi_bg">#262626</color><!--底部bar的背景样式-->
+    <color name="bottombar_navi_font">#6c6c6c</color><!--底部bar字体颜色-->
+    <color name="bottombar_navi_topdrive">#292929</color><!--顶部分割线的颜色-->
+    <!--状态栏-夜晚 -->
+    <color name="home_status_bg">#262626</color><!--状态栏的背景样式-->
     <color name="home_status_text">#FFFFFF</color><!--状态栏的的文字样颜色-->
 </resources>

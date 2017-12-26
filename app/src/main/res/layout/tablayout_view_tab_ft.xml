@@ -26,19 +26,12 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="#ffffff"
-        t1:tl_iconHeight="23dp"
-        t1:tl_iconWidth="23dp"
+        t1:tl_iconHeight="26dp"
+        t1:tl_iconWidth="26dp"
         t1:tl_indicator_height="0dp"
         t1:tl_textSelectColor="#56abe4"
         t1:tl_textUnselectColor="#a9b7b7"
         t1:tl_textsize="12sp"
         t1:tl_underline_color="#DDDDDD"
         t1:tl_underline_height="1dp" />
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/tab_quick_select"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/common_space_size4"/>
 </RelativeLayout>

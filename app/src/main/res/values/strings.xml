@@ -79,7 +79,7 @@
     <string name="error_view_no_data">暂无内容</string>
 
     <!-- 个人中心 -->
-    <string name="me_title">我</string>
+    <string name="me_title">我的</string>
     <string name="me_username">Joseph</string>
     <string name="me_jobposition">职务：管理员</string>
     <string name="me_tab">待办</string>
@@ -119,4 +119,19 @@
     <string name="about_title">关&#160;&#160;于</string>
     <!-- 登录历史 -->
     <string name="loginhistory_title">登录历史</string>
+
+    <!-- 任务 -->
+    <string name="task_title">任务</string>
+    <!-- 项目 -->
+    <string name="project_title">项目</string>
+    <!-- 模型 -->
+    <string name="model_title">模型</string>
+    <!-- 快速创建 -->
+    <string name="quick_title">快速创建</string>
+    <string name="quick_item1">人员</string>
+    <string name="quick_item2">物料</string>
+    <string name="quick_item3">派工单</string>
+    <string name="quick_item4">图钉</string>
+    <string name="quick_item5">整改</string>
+    <string name="quick_item6">更多</string>
 </resources>

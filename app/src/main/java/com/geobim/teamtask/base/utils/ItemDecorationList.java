@@ -50,7 +50,7 @@ public class ItemDecorationList extends RecyclerView.ItemDecoration {
     public void setHeaderDivider(int height, int color) {
         this.headerDividerHeight = height;
         mHeaderDivider.setColorFilter(Color.BLACK, PorterDuff.Mode.MULTIPLY);
-        //  mHeaderDivider.setColorFilter(color, PorterDuff.Mode.SRC);
+        //  mHeaderDivider.setColorFilter(colors, PorterDuff.Mode.SRC);
     }
 
     /**
@@ -59,7 +59,7 @@ public class ItemDecorationList extends RecyclerView.ItemDecoration {
     public void setContentDivider(int height, int color) {
         this.contentDividerHeight = height;
         mContentDivider.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
-        //mContentDivider.setColorFilter(color, PorterDuff.Mode.SRC);
+        //mContentDivider.setColorFilter(colors, PorterDuff.Mode.SRC);
     }
 
     /**

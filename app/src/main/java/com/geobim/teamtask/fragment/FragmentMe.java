@@ -44,6 +44,14 @@ public class FragmentMe extends BaseFragment implements OnClickListener {
     private TimeoutThread timeoutThread;        //超时判断线程
     private LoginThread loginThread;            //登录验证线程
 
+    public FragmentMe() {
+    }
+
+    public static FragmentMe newInstance() {
+        FragmentMe meFragment = new FragmentMe();
+        return meFragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

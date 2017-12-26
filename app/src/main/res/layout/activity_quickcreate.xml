@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_title"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f2f2f2">
+
+        <ImageView
+            android:id="@+id/compose_slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/common_space_size94"
+            android:src="@drawable/logo" />
+
+        <LinearLayout
+            android:id="@+id/first_line"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/compose_slogan"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/common_space_size60"
+            android:layout_marginLeft="@dimen/common_space_size20"
+            android:layout_marginRight="@dimen/common_space_size20"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_person"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_person" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_material"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_material" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_order"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_order" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item3" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/first_line"
+            android:layout_marginLeft="@dimen/common_space_size20"
+            android:layout_marginRight="@dimen/common_space_size20"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_pin"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_pin" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_rectification"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_rectification" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/common_space_size0"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/iv_quick_more"
+                    android:layout_width="@dimen/common_space_size48"
+                    android:layout_height="@dimen/common_space_size48"
+                    android:src="@drawable/quick_more" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/quick_item6" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="47dp"
+            android:layout_alignParentBottom="true"
+            android:background="#f2f2f2">
+
+            <ImageView
+                android:id="@+id/compose_close"
+                android:layout_width="@dimen/common_space_size32"
+                android:layout_height="@dimen/common_space_size32"
+                android:layout_centerInParent="true"
+                android:src="@drawable/quick_close" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

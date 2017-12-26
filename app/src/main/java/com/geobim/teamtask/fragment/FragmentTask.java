@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +19,9 @@ import com.geobim.teamtask.activity.TaskListActivity;
 import com.geobim.teamtask.activity.TaskNoticeActivity;
 import com.geobim.teamtask.adapter.ExampleAdapter;
 import com.geobim.teamtask.base.ui.BaseFragment;
+import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.ui.CalendarView.CustomDayView;
+import com.geobim.teamtask.ui.widget.bottombar.BottomBarManager;
 import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 import com.ldf.calendar.Utils;
 import com.ldf.calendar.component.CalendarAttr;
@@ -68,7 +72,7 @@ public class FragmentTask extends BaseFragment {
     @Bind(R.id.calendar_view)
     MonthPager monthPager;
     @Bind(R.id.list)
-    RecyclerView rvToDoList;
+    public RecyclerView rvToDoList;
     @Bind(R.id.scroll_switch)
     TextView scrollSwitch;
     @Bind(R.id.next_month)
@@ -80,20 +84,37 @@ public class FragmentTask extends BaseFragment {
     @Bind(R.id.tv_tongzhi)
     TextView tv_tongzhi;
 
+    private RelativeLayout rl_topbar;   //顶部导航栏
     private View view;
-
     private ArrayList<Calendar> currentCalendars = new ArrayList<>();
     private CalendarViewAdapter calendarAdapter;
     private OnSelectDateListener onSelectDateListener;
     private int mCurrentPage = MonthPager.CURRENT_DAY_INDEX;
     private Context mContext;
     private CalendarDate currentDate;
+    private User mCurrentUser;
+    private onButtonBarListener mOnBottonBarListener;
+    public FragmentTask() {
+    }
+
+    /**
+     * 静态工厂方法需要一个int型的值来初始化fragment的参数，
+     * 然后返回新的fragment到调用者
+     */
+    public static FragmentTask newInstance(boolean comeFromAccoutActivity) {
+        FragmentTask homeFragment = new FragmentTask();
+        Bundle args = new Bundle();
+        args.putBoolean("comeFromAccoutActivity", comeFromAccoutActivity);
+        homeFragment.setArguments(args);
+        return homeFragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         view = inflater.inflate(R.layout.fragment_task, null);
+        rl_topbar = view.findViewById(R.id.rl_task_topbar);
         ButterKnife.bind(this,view);
         mContentView.addView(view);
         StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
@@ -259,6 +280,64 @@ public class FragmentTask extends BaseFragment {
         calendarAdapter.notifyDataChanged(today);
         textViewYearDisplay.setText(today.getYear() + "年");
         textViewMonthDisplay.setText(today.getMonth() + "");
+    }
+
+    /**
+     * 把列表滑动到顶部，refreshDrata为true的话，会同时获取更新的数据
+     *
+     * @param refreshData
+     */
+    public void scrollToTop(boolean refreshData) {
+        rvToDoList.scrollToPosition(0);
+        if (refreshData) {
+            rvToDoList.post(new Runnable() {
+                @Override
+                public void run() {
+                    //mHomePresent.pullToRefreshData(mCurrentGroup, mContext);
+                }
+            });
+        }
+    }
+
+    /**
+     * 隐藏底部导航栏
+     */
+    public void hideTopBar() {
+        BottomBarManager barManager = new BottomBarManager();
+        barManager.hideTopBar(rl_topbar,mContext);
+    }
+
+
+    /**
+     * 显示顶部导航栏
+     */
+    public void showTopBar() {
+        BottomBarManager barManager = new BottomBarManager();
+        barManager.showTopBar(rl_topbar);
+    }
+
+
+    /**
+     * 设置实现
+     *
+     * @param onBarListener
+     */
+    public void setOnBarListener(onButtonBarListener onBarListener) {
+        this.mOnBottonBarListener = onBarListener;
+    }
+
+
+    /**
+     * 因为ButotnBar的布局并不在fragment中，而是在MainActivity中，所有隐藏和显示底部导航栏的工作要交给MainActivity去做
+     */
+    public interface onButtonBarListener {
+        void showButtonBar();
+
+        void hideButtonBar();
+    }
+
+    public User getCurrentUser() {
+        return mCurrentUser;
     }
 
     @Override
