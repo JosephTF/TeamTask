@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background_title"
-    android:fitsSystemWindows="true">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f2f2f2">
+    android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/compose_slogan"
@@ -16,12 +10,12 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/common_space_size94"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_title" />
 
         <LinearLayout
             android:id="@+id/first_line"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/common_space_size100"
             android:layout_below="@id/compose_slogan"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/common_space_size60"
@@ -31,77 +25,74 @@
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/iv_quick_person"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_person" />
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_person"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item1"
+                    app:textSize="@dimen/common_text_size12" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item1" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="bottom"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_material"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_material"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item2"
+                    app:textSize="@dimen/common_text_size12" />
 
-                <ImageView
-                    android:id="@+id/iv_quick_material"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_material" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item2" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_quick_order"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_order" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item3" />
+                android:orientation="vertical">
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_order"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item3"
+                    app:textSize="@dimen/common_text_size12" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/common_space_size100"
             android:layout_below="@id/first_line"
             android:layout_marginLeft="@dimen/common_space_size20"
             android:layout_marginRight="@dimen/common_space_size20"
@@ -110,87 +101,83 @@
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_quick_pin"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_pin" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item4" />
+                android:orientation="vertical">
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_pin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_pin"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item4"
+                    app:textSize="@dimen/common_text_size12" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_quick_rectification"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_rectification" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item5" />
+                android:orientation="vertical">
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_rectification"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_rectification"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item5"
+                    app:textSize="@dimen/common_text_size12" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/common_space_size0"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/iv_quick_more"
-                    android:layout_width="@dimen/common_space_size48"
-                    android:layout_height="@dimen/common_space_size48"
-                    android:src="@drawable/quick_more" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="@string/quick_item6" />
+                android:orientation="vertical">
+                <com.assistne.icondottextview.IconDotTextView
+                    android:id="@+id/idtv_quick_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    app:dot_visible="false"
+                    app:dot_color="#F43530"
+                    app:dot_size="@dimen/common_space_size6"
+                    app:icon="@drawable/quick_more"
+                    app:icon_size="@dimen/common_space_size32"
+                    app:text="@string/quick_item6"
+                    app:textSize="@dimen/common_text_size12" />
             </LinearLayout>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
-            android:layout_alignParentBottom="true"
-            android:background="#f2f2f2">
-
+            android:layout_alignParentBottom="true">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_space_size1"
+                android:background="#E8E8E8"
+                android:layout_alignParentTop="true"/>
             <ImageView
-                android:id="@+id/compose_close"
+                android:id="@+id/iv_quick_close"
                 android:layout_width="@dimen/common_space_size32"
                 android:layout_height="@dimen/common_space_size32"
                 android:layout_centerInParent="true"
                 android:src="@drawable/quick_close" />
 
         </RelativeLayout>
-    </RelativeLayout>
 </RelativeLayout>

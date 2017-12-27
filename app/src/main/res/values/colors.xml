@@ -28,4 +28,7 @@
     <!--状态栏-白天 -->
     <color name="home_status_bg">#FFFFFF</color><!--状态栏的的文字样颜色-->
     <color name="home_status_text">#FFFFFF</color><!--状态栏的的文字样颜色-->
+
+    <color name="transparent">#faffffff</color>
+    <color name="title">#1A89FD</color>
 </resources>
