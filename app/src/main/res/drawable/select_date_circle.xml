@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 圆角的幅度 -->
+    <corners
+        android:bottomLeftRadius="16px"
+        android:bottomRightRadius="16px"
+        android:topLeftRadius="16px"
+        android:topRightRadius="16px" />
+
+    <solid android:color="#fff" />
+
+</shape>

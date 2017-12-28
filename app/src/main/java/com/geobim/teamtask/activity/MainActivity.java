@@ -59,6 +59,7 @@ public class MainActivity extends BaseActivity{
     protected void initViews(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         StatusBarUtil.setTranslucent(MainActivity.this, 0);//状态栏半透明
+        setSwipeBackEnable(false);
         rl_task = (RelativeLayout) findViewById(R.id.rl_main_task);
         rl_project = (RelativeLayout) findViewById(R.id.rl_main_project);
         rl_model = (RelativeLayout) findViewById(R.id.rl_main_model);
@@ -188,9 +189,9 @@ public class MainActivity extends BaseActivity{
             mTransaction.add(R.id.fl_main_content, mFragmentTask, TAB_TASK_FRAGMENT);
         } else {
             mTransaction.show(mFragmentTask);
-            if (mCurrentIndex.equals(TAB_TASK_FRAGMENT) && mFragmentTask != null && mFragmentTask.rvToDoList != null) {
-                mFragmentTask.scrollToTop(false);
-            }
+//            if (mCurrentIndex.equals(TAB_TASK_FRAGMENT) && mFragmentTask != null && mFragmentTask.rvToDoList != null) {
+//               mFragmentTask.scrollToTop(false);
+//            }
         }
     }
 
@@ -267,9 +268,9 @@ public class MainActivity extends BaseActivity{
         //如果在当前页
         switch (currentIndex) {
             case TAB_TASK_FRAGMENT:
-                if (mFragmentTask != null) {
-                    mFragmentTask.scrollToTop(true);
-                }
+//                if (mFragmentTask != null) {
+//                    mFragmentTask.scrollToTop(true);
+//                }
                 break;
             case TAB_PROJECT_FRAGMENT:
                 break;

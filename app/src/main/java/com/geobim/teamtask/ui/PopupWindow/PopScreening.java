@@ -1,6 +1,7 @@
 package com.geobim.teamtask.ui.PopupWindow;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.geobim.teamtask.R;
+import com.geobim.teamtask.activity.SelDateActivity;
 
 /**
  * 筛选Pop
@@ -98,8 +100,7 @@ public class PopScreening implements View.OnClickListener {
                 mBack.setVisibility(View.GONE);
                 break;
             case R.id.tv_date_more:
-                dismissPop();
-                mBack.setVisibility(View.GONE);
+                mActivity.startActivity(new Intent(mActivity, SelDateActivity.class));
                 break;
         }
     }

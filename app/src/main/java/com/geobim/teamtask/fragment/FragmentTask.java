@@ -3,26 +3,21 @@ package com.geobim.teamtask.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.activity.TaskListActivity;
 import com.geobim.teamtask.activity.TaskNoticeActivity;
-import com.geobim.teamtask.adapter.ExampleAdapter;
-import com.geobim.teamtask.base.ui.BaseFragment;
+import com.geobim.teamtask.adapter.FragmentTaskAdapter;
+import com.geobim.teamtask.base.adapter.BaseListAdapter;
+import com.geobim.teamtask.base.ui.BaseListFragment;
+import com.geobim.teamtask.base.utils.ListSettings;
 import com.geobim.teamtask.entity.User;
 import com.geobim.teamtask.ui.CalendarView.CustomDayView;
 import com.geobim.teamtask.ui.widget.bottombar.BottomBarManager;
-import com.geobim.teamtask.util.statusbar.StatusBarUtil;
 import com.ldf.calendar.Utils;
 import com.ldf.calendar.component.CalendarAttr;
 import com.ldf.calendar.component.CalendarViewAdapter;
@@ -33,10 +28,9 @@ import com.ldf.calendar.view.MonthPager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * 　　　┏┓　　　┏┓
@@ -59,39 +53,26 @@ import butterknife.OnClick;
  * ━━━━━━神兽出没━━━━━━
  *  任务fragment
  */
-public class FragmentTask extends BaseFragment {
+public class FragmentTask extends BaseListFragment<String> implements View.OnClickListener{
 
-    @Bind(R.id.content)
-    CoordinatorLayout content;
-    @Bind(R.id.show_year_view)
-    TextView textViewYearDisplay;
-    @Bind(R.id.show_month_view)
-    TextView textViewMonthDisplay;
-    @Bind(R.id.back_today_button)
-    TextView backToday;
-    @Bind(R.id.calendar_view)
     MonthPager monthPager;
-    @Bind(R.id.list)
-    public RecyclerView rvToDoList;
-    @Bind(R.id.scroll_switch)
-    TextView scrollSwitch;
-    @Bind(R.id.next_month)
-    TextView nextMonthBtn;
-    @Bind(R.id.last_month)
-    TextView lastMonthBtn;
-    @Bind(R.id.tv_more)
+    TextView textViewYearDisplay;
+    TextView textViewMonthDisplay;
+    TextView tv_back_today;
+    TextView tv_notice;
     TextView tv_more;
-    @Bind(R.id.tv_tongzhi)
-    TextView tv_tongzhi;
-
     private RelativeLayout rl_topbar;   //顶部导航栏
-    private View view;
+
+    private CalendarDate currentDate;
     private ArrayList<Calendar> currentCalendars = new ArrayList<>();
     private CalendarViewAdapter calendarAdapter;
     private OnSelectDateListener onSelectDateListener;
     private int mCurrentPage = MonthPager.CURRENT_DAY_INDEX;
     private Context mContext;
-    private CalendarDate currentDate;
+
+    private int PAGE_INDEX = 1;
+    private int PAGE_SIZE = 9;
+    List<String> mData = new ArrayList<>();
     private User mCurrentUser;
     private onButtonBarListener mOnBottonBarListener;
     public FragmentTask() {
@@ -110,66 +91,50 @@ public class FragmentTask extends BaseFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        view = inflater.inflate(R.layout.fragment_task, null);
-        rl_topbar = view.findViewById(R.id.rl_task_topbar);
-        ButterKnife.bind(this,view);
-        mContentView.addView(view);
-        StatusBarUtil.setTranslucent(getActivity(), 0);//状态栏半透明
-        mContext = this.getContext();
-        //此处强行setViewHeight，日历牌的高度
-        monthPager.setViewheight(Utils.dpi2px(mContext, 270));
-        rvToDoList.setHasFixedSize(true);
-        //这里用线性显示 类似于listview
-        rvToDoList.setLayoutManager(new LinearLayoutManager(mContext));
-        rvToDoList.setAdapter(new ExampleAdapter(mContext));
+    protected void OnViewCreated() {
+        initView();
+        initLoadData("2017-11-11");
         initCurrentDate();
         initCalendarView();
-        initToolbarClickListener();
-
-        tv_tongzhi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, TaskNoticeActivity.class));
-            }
-        });
-
+    }
+    private void initLoadData(String dateStr) {
+        mData.clear();
+        for (int i = 0; i < 5; i++) {
+            mData.add(dateStr + "任务" + i);
+        }
+        onDataLoaded(mData);
     }
 
-    @OnClick({R.id.tv_more})
+    private void initView(){
+        mContext = getContext();
+        monthPager = mContentView.findViewById(R.id.calendar_view);
+        textViewYearDisplay = mContentView.findViewById(R.id.show_year_view);
+        textViewMonthDisplay = mContentView.findViewById(R.id.show_month_view);
+        tv_back_today = mContentView.findViewById(R.id.back_today_button);
+        tv_notice = mContentView.findViewById(R.id.tv_notice);
+        tv_more = mContentView.findViewById(R.id.tv_more);
+        rl_topbar = mContentView.findViewById(R.id.rl_task_topbar);
+        tv_back_today.setOnClickListener(this);
+        tv_notice.setOnClickListener(this);
+        tv_more.setOnClickListener(this);
+
+        //此处强行setViewHeight，日历牌的高度
+        monthPager.setViewheight(Utils.dpi2px(getActivity(), 270));
+    }
+
+    @Override
     public void onClick(View view) {
-        switch (view.getId()) {
+        switch (view.getId()){
+            case R.id.back_today_button:
+                onClickBackToDayBtn();
+                break;
+            case R.id.tv_notice:
+                startActivity(new Intent(mContext, TaskNoticeActivity.class));
+                break;
             case R.id.tv_more:
                 startActivity(new Intent(mContext, TaskListActivity.class));
                 break;
         }
-    }
-
-    /**
-     * 初始化对应功能的listener
-     *
-     */
-    private void initToolbarClickListener() {
-        backToday.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClickBackToDayBtn();
-            }
-        });
-        scrollSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (calendarAdapter.getCalendarType() == CalendarAttr.CalendayType.WEEK) {
-                    Utils.scrollTo(content, rvToDoList, monthPager.getViewHeight(), 200);
-                    calendarAdapter.switchToMonth();
-                } else {
-                    Utils.scrollTo(content, rvToDoList, monthPager.getCellHeight(), 200);
-                    calendarAdapter.switchToWeek(monthPager.getRowIndex());
-                }
-            }
-        });
     }
 
     /**
@@ -216,7 +181,7 @@ public class FragmentTask extends BaseFragment {
             @Override
             public void onSelectDate(CalendarDate date) {
                 refreshClickDate(date);
-                Toast.makeText(mContext, "点击查看" + date.toString() + "的任务", Toast.LENGTH_SHORT).show();
+                initLoadData(date.toString());
             }
 
             @Override
@@ -282,11 +247,35 @@ public class FragmentTask extends BaseFragment {
         textViewMonthDisplay.setText(today.getMonth() + "");
     }
 
+    @Override
+    public void requestData(boolean needRefresh) {
+        if (needRefresh) {
+            PAGE_INDEX = 1;
+        }
+    }
+
+    private FragmentTaskAdapter myActivityAdapter;
+
+    @Override
+    public BaseListAdapter<String> getListAdapter() {
+        myActivityAdapter = new FragmentTaskAdapter(getActivity());
+        return myActivityAdapter;
+    }
+
+    @Override
+    protected ListSettings getBaseSettings() {
+        ListSettings settings = new ListSettings();
+        settings.setCustomLayoutId(R.layout.fragment_tack_list);
+        settings.setCanLoadMore(false);
+        settings.setCanRefresh(true);
+        return settings;
+    }
+
     /**
      * 把列表滑动到顶部，refreshDrata为true的话，会同时获取更新的数据
      *
      * @param refreshData
-     */
+
     public void scrollToTop(boolean refreshData) {
         rvToDoList.scrollToPosition(0);
         if (refreshData) {
@@ -297,7 +286,7 @@ public class FragmentTask extends BaseFragment {
                 }
             });
         }
-    }
+    }*/
 
     /**
      * 隐藏底部导航栏

@@ -44,17 +44,31 @@
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ForgetActivity" />
-        <activity android:name=".activity.CountryActivity" />
-        <activity android:name=".activity.ResetPasswordActivity"/>
-        <activity android:name=".activity.TaskDetailActivity"/>
-        <activity android:name=".activity.TaskNoticeActivity"/>
-        <activity android:name=".activity.TaskListActivity"/>
-        <activity android:name=".activity.FinishTaskActivity"/>
-        <activity android:name=".activity.CommentActivity"/>
-        <activity android:name=".activity.EditTaskActivity"/>
-        <activity android:name=".activity.AddTaskActivity"/>
-        <activity android:name=".activity.TaskSearchActivity"/>
+        <activity android:name=".activity.ForgetActivity"
+            android:label="忘记密码" />
+        <activity android:name=".activity.CountryActivity"
+            android:label="电话区号"  />
+        <activity android:name=".activity.ResetPasswordActivity"
+            android:label="修改密码"/>
+        <activity android:name=".activity.TaskDetailActivity"
+            android:label="任务详情"/>
+        <activity android:name=".activity.TaskNoticeActivity"
+            android:label="通知"/>
+        <activity android:name=".activity.TaskListActivity"
+            android:label="任务列表"/>
+        <activity android:name=".activity.FinishTaskActivity"
+            android:label="任务完成"/>
+        <activity android:name=".activity.CommentActivity"
+            android:label="任务评论"/>
+        <activity android:name=".activity.EditTaskActivity"
+            android:label=" 编辑任务"/>
+        <activity android:name=".activity.AddTaskActivity"
+            android:label="添加任务"/>
+        <activity android:name=".activity.TaskSearchActivity"
+            android:label="任务搜索"/>
+        <activity android:name=".activity.SelDateActivity"
+            android:label="选择日期"/>
+
         <!-- 个人中心 -->
         <activity android:name=".activity.UserActivity"/>
         <activity android:name=".activity.ARActivity"/>

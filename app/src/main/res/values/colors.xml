@@ -17,7 +17,6 @@
     <drawable name="transparent">#00000000</drawable>
     <color name="btn_color_blue_default">#43b5ff</color>
     <color name="btn_color_blue_down">#1282cb</color>
-
     <!-- toast的背景色 -->
     <color name="bg_toast">#f79f43</color>
 
@@ -31,4 +30,12 @@
 
     <color name="transparent">#faffffff</color>
     <color name="title">#1A89FD</color>
+
+    <!--Date Wheel View Color -->
+    <color name="orange">#fe4a84</color>
+    <color name="wheel_unselect_text">#c2c2c2</color>
+    <color name="wheel_unselect_text1">#ffffff</color>
+    <color name="theme_pink_color">#fe4881</color>
+    <color name="gray_color">#f6f3f4</color>
+    <color name="all_line_color">#e7e7e7</color>
 </resources>
