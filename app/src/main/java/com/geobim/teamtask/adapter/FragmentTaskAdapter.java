@@ -39,8 +39,9 @@ public class FragmentTaskAdapter extends BaseListAdapter<String> {
         tv_Task_Date_Title = (TextView) holder.getView(R.id.tv_title);
         if (position == 0) {
             tv_Task_Date_Title.setVisibility(View.VISIBLE);
+            tv_Task_Date_Title.setText(item);
         }
         TextView tv_type = (TextView) holder.getView(R.id.tv_task_name);
-        tv_type.setText(item);
+        tv_type.setText(item + "任务" + position);
     }
 }

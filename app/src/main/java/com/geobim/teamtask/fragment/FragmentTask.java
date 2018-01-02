@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -93,19 +94,19 @@ public class FragmentTask extends BaseListFragment<String> implements View.OnCli
     @Override
     protected void OnViewCreated() {
         initView();
-        initLoadData("2017-11-11");
+        initLoadData("2017年12月29日");
         initCurrentDate();
         initCalendarView();
     }
     private void initLoadData(String dateStr) {
         mData.clear();
         for (int i = 0; i < 5; i++) {
-            mData.add(dateStr + "任务" + i);
+            mData.add(dateStr);
         }
         onDataLoaded(mData);
     }
 
-    private void initView(){
+    private void initView() {
         mContext = getContext();
         monthPager = mContentView.findViewById(R.id.calendar_view);
         textViewYearDisplay = mContentView.findViewById(R.id.show_year_view);
@@ -117,7 +118,8 @@ public class FragmentTask extends BaseListFragment<String> implements View.OnCli
         tv_back_today.setOnClickListener(this);
         tv_notice.setOnClickListener(this);
         tv_more.setOnClickListener(this);
-
+        mViewBuilder.mRecyclerview.setHasFixedSize(true);
+        mViewBuilder.mRecyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
         //此处强行setViewHeight，日历牌的高度
         monthPager.setViewheight(Utils.dpi2px(getActivity(), 270));
     }
@@ -247,26 +249,39 @@ public class FragmentTask extends BaseListFragment<String> implements View.OnCli
         textViewMonthDisplay.setText(today.getMonth() + "");
     }
 
+    /**
+     *  利用onDataLoaded提供数据到adapter显示
+     * @param needRefresh 是否为下拉刷新
+     */
     @Override
     public void requestData(boolean needRefresh) {
         if (needRefresh) {
             PAGE_INDEX = 1;
         }
+        //onDataLoaded(mData);
     }
 
     private FragmentTaskAdapter myActivityAdapter;
 
+    /**
+     * 进入adapter
+     * @return
+     */
     @Override
     public BaseListAdapter<String> getListAdapter() {
         myActivityAdapter = new FragmentTaskAdapter(getActivity());
         return myActivityAdapter;
     }
 
+    /**
+     * fragment 配置项
+     * @return
+     */
     @Override
     protected ListSettings getBaseSettings() {
         ListSettings settings = new ListSettings();
         settings.setCustomLayoutId(R.layout.fragment_tack_list);
-        settings.setCanLoadMore(false);
+        settings.setCanLoadMore(true);
         settings.setCanRefresh(true);
         return settings;
     }

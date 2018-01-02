@@ -60,7 +60,7 @@ public class BaseListViewBuilder<T> {
             }
         }
         //列表控件
-        mRecyclerview = (RecyclerView) mContentView.findViewById(R.id.recyclerview);
+        mRecyclerview = mContentView.findViewById(R.id.recyclerview);
         if (mAdapter == null) {
             return;
         }
