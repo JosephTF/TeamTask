@@ -235,7 +235,54 @@
         <item>Virgin Islands US					*+1284	</item>
       
     </string-array>
-  
+
+    <string-array name="country_person_list_ch" translatable="false" >
+
+        <item>张飞</item>
+        <item>张飞</item>
+        <item>张飞</item>
+        <item>张飞</item>
+        <item>张飞</item>
+        <item>张飞</item>
+        <item>陈森</item>
+        <item>陈森</item>
+        <item>陈森</item>
+        <item>陈森</item>
+        <item>陈森</item>
+        <item>陈森</item>
+        <item>刘军</item>
+        <item>刘军</item>
+        <item>刘军</item>
+        <item>刘军</item>
+        <item>刘军</item>
+        <item>毛阿丽 </item>
+        <item>毛阿丽 </item>
+        <item>毛阿丽 </item>
+        <item>毛阿丽 </item>
+        <item>毛阿丽 </item>
+        <item>毛阿丽 </item>
+        <item>保时捷</item>
+        <item>保时捷</item>
+        <item>保时捷</item>
+        <item>保时捷</item>
+        <item>保时捷</item>
+        <item>保时捷</item>
+        <item>大蛇丸</item>
+        <item>大蛇丸</item>
+        <item>大蛇丸</item>
+        <item>大蛇丸</item>
+        <item>海慧寺</item>
+        <item>海慧寺</item>
+        <item>海慧寺</item>
+        <item>海慧寺</item>
+        <item>海慧寺</item>
+        <item>小星星</item>
+        <item>小星星</item>
+        <item>小星星</item>
+        <item>小星星</item>
+        <item>小星星</item>
+    </string-array>
+
     <string-array name="country_code_list_ch" translatable="false" >
       
         <item>阿尔巴尼亚							*+355	</item>

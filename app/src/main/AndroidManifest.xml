@@ -68,6 +68,8 @@
             android:label="任务搜索"/>
         <activity android:name=".activity.SelDateActivity"
             android:label="选择日期"/>
+        <activity android:name=".activity.TaskFounderActivity"
+            android:label="选择人员"/>
 
         <!-- 个人中心 -->
         <activity android:name=".activity.UserActivity"/>

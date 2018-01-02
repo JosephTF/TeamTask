@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.geobim.teamtask.R;
 import com.geobim.teamtask.activity.SelDateActivity;
+import com.geobim.teamtask.activity.TaskFounderActivity;
 
 /**
  * 筛选Pop
@@ -21,7 +22,7 @@ public class PopScreening implements View.OnClickListener {
     public static PopupWindow pop;
     private View layoutway;
     private RelativeLayout rl_finish,rlcance_view;
-    private TextView tv_date_more;
+    private TextView tv_date_more,tv_team,tv_person,tv_founder;
     private Activity mActivity;
     private LinearLayout mLinearLayout;
     private LinearLayout mLayout_shuffling;
@@ -55,7 +56,13 @@ public class PopScreening implements View.OnClickListener {
             rlcance_view = layoutway.findViewById(R.id.rlcance_view);
             rlcance_view.setOnClickListener(this);
             tv_date_more = layoutway.findViewById(R.id.tv_date_more);
+            tv_team = layoutway.findViewById(R.id.tv_team);
+            tv_founder = layoutway.findViewById(R.id.tv_founder);
+            tv_person = layoutway.findViewById(R.id.tv_person);
             tv_date_more.setOnClickListener(this);
+            tv_team.setOnClickListener(this);
+            tv_founder.setOnClickListener(this);
+            tv_person.setOnClickListener(this);
             pop.setBackgroundDrawable(new ColorDrawable(0));
             pop.setAnimationStyle(R.style.PopupAnimation);
             pop.update();
@@ -101,6 +108,15 @@ public class PopScreening implements View.OnClickListener {
                 break;
             case R.id.tv_date_more:
                 mActivity.startActivity(new Intent(mActivity, SelDateActivity.class));
+                break;
+            case R.id.tv_team:
+                mActivity.startActivity(new Intent(mActivity, TaskFounderActivity.class));
+                break;
+            case R.id.tv_person:
+                mActivity.startActivity(new Intent(mActivity, TaskFounderActivity.class));
+                break;
+            case R.id.tv_founder:
+                mActivity.startActivity(new Intent(mActivity, TaskFounderActivity.class));
                 break;
         }
     }
