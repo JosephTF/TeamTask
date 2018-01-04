@@ -18,7 +18,7 @@ import com.geobim.teamtask.R;
 public class PopSorting implements View.OnClickListener {
     public static PopupWindow pop;
     private View layoutway;
-    private TextView layout_a, layout_b, layout_c, layout_d;
+    private TextView layout_a, layout_b, layout_c, layout_d,layout_e,layout_f;
     private Activity mActivity;
     private LinearLayout mLinearLayout;
     private LinearLayout mLayout_shuffling;
@@ -53,6 +53,8 @@ public class PopSorting implements View.OnClickListener {
             layout_b = layoutway.findViewById(R.id.layout_b);
             layout_c =  layoutway.findViewById(R.id.layout_c);
             layout_d = layoutway.findViewById(R.id.layout_d);
+            layout_e = layoutway.findViewById(R.id.layout_e);
+            layout_f = layoutway.findViewById(R.id.layout_f);
             getItem(item);
 
             pop.setBackgroundDrawable(new ColorDrawable(0));
@@ -83,15 +85,15 @@ public class PopSorting implements View.OnClickListener {
         }
         if (pop.isShowing()) {
             pop.dismiss();
-            mSorting.setTextColor(Color.parseColor("#333333"));
-            setDrawable(mSorting, R.drawable.sort_default_icon);
+//            mSorting.setTextColor(Color.parseColor("#333333"));
+//            setDrawable(mSorting, R.drawable.sort_default_icon);
             mBack.setVisibility(View.GONE);
         }
     }
 
 
     public void setOnItemClick(final OnClicks clicks) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 6; i++) {
             final int items = i;
             switch (i) {
                 case 0:
@@ -120,6 +122,22 @@ public class PopSorting implements View.OnClickListener {
                     break;
                 case 3:
                     layout_d.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            clicks.onClick(v, items);
+                        }
+                    });
+                    break;
+                case 4:
+                    layout_e.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            clicks.onClick(v, items);
+                        }
+                    });
+                    break;
+                case 5:
+                    layout_f.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             clicks.onClick(v, items);
@@ -176,6 +194,14 @@ public class PopSorting implements View.OnClickListener {
             case 3:
                 layout_d.setTextColor(Color.parseColor("#303F9F"));
                 layout_d.setCompoundDrawables(null, null, drawable, null);
+                break;
+            case 4:
+                layout_e.setTextColor(Color.parseColor("#303F9F"));
+                layout_e.setCompoundDrawables(null, null, drawable, null);
+                break;
+            case 5:
+                layout_f.setTextColor(Color.parseColor("#303F9F"));
+                layout_f.setCompoundDrawables(null, null, drawable, null);
                 break;
         }
     }

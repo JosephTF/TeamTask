@@ -13,14 +13,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:gravity="center|left"
                 android:paddingLeft="10dp"
-                android:background="#eeeeee"
+                android:background="@color/lineColor"
                 android:textSize="13sp"
                 android:text="类别"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,6 +38,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_type1"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
@@ -41,6 +52,7 @@
                     android:textColor="#fff" />
 
                 <TextView
+                    android:id="@+id/tv_type2"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
@@ -48,15 +60,18 @@
                     android:paddingRight="10dp"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
+                    android:textColor="@color/theme_text_color"
                     android:textSize="13sp"
                     android:background="@drawable/bg_round_white_gray"
                     android:text="类别2"/>
 
                 <TextView
+                    android:id="@+id/tv_type3"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:background="@drawable/bg_round_white_gray"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -65,10 +80,12 @@
                     android:text="类别3" />
 
                 <TextView
+                    android:id="@+id/tv_type4"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:background="@drawable/bg_round_white_gray"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -78,14 +95,22 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:gravity="center|left"
                 android:paddingLeft="10dp"
-                android:background="#eeeeee"
+                android:background="@color/lineColor"
                 android:textSize="13sp"
                 android:text="状态"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,7 +118,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/tv_states1"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
@@ -107,11 +132,13 @@
                     android:textColor="#fff" />
 
                 <TextView
+                    android:id="@+id/tv_states2"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:textSize="13sp"
@@ -119,11 +146,12 @@
                     android:text="待评价"/>
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/tv_states3"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:background="@drawable/bg_round_white_gray"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -132,11 +160,12 @@
                     android:text="待定" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/tv_states4"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:background="@drawable/bg_round_white_gray"
                     android:gravity="center"
                     android:paddingLeft="10dp"
@@ -146,6 +175,10 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -158,7 +191,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="10dp"
                     android:textSize="13sp"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:text="时间"/>
 
                 <TextView
@@ -169,12 +202,17 @@
                     android:layout_height="25dp"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:textSize="13sp"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="更多"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -182,6 +220,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/tv_date1"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
@@ -195,11 +234,13 @@
                     android:textColor="#fff" />
 
                 <TextView
+                    android:id="@+id/tv_date2"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:textSize="13sp"
@@ -207,11 +248,13 @@
                     android:text="明天"/>
 
                 <TextView
+                    android:id="@+id/tv_date3"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:textSize="13sp"
@@ -219,19 +262,39 @@
                     android:text="本周"/>
 
                 <TextView
+                    android:id="@+id/tv_date4"
                     android:layout_width="wrap_content"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
+                    android:textColor="@color/theme_text_color"
                     android:layout_marginStart="10dp"
                     android:gravity="center"
                     android:textSize="13sp"
                     android:background="@drawable/bg_round_white_gray"
                     android:text="下周"/>
 
+                <TextView
+                    android:id="@+id/tv_date5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/theme_text_color"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center"
+                    android:textSize="13sp"
+                    android:background="@drawable/bg_round_white_gray"
+                    android:text="本月"/>
+
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -242,7 +305,7 @@
                     android:layout_width="0dp"
                     android:layout_height="25dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:gravity="center|left"
                     android:paddingLeft="10dp"
                     android:text="小组"
@@ -257,11 +320,16 @@
                     android:clickable="true"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="更多"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -283,6 +351,11 @@
 
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -293,7 +366,7 @@
                     android:layout_width="0dp"
                     android:layout_height="25dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:gravity="center|left"
                     android:paddingLeft="10dp"
                     android:text="成员"
@@ -308,11 +381,16 @@
                     android:clickable="true"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="更多"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -333,6 +411,12 @@
                     android:textColor="#fff" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -342,7 +426,7 @@
                     android:layout_width="0dp"
                     android:layout_height="25dp"
                     android:layout_weight="1"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:gravity="center|left"
                     android:paddingLeft="10dp"
                     android:text="创建人"
@@ -356,12 +440,17 @@
                     android:textSize="13sp"
                     android:gravity="center|right"
                     android:paddingRight="10dp"
-                    android:background="#eeeeee"
+                    android:background="@color/lineColor"
                     android:clickable="true"
                     android:textColor="@color/colorPrimaryDark"
                     android:text="更多"/>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#eeeeee"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

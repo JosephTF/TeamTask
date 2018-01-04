@@ -1,6 +1,8 @@
 package com.geobim.teamtask.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -46,7 +48,7 @@ public class TaskListActivity extends BaseListActivity<String> {
     TextView tv_right_title;
     @Bind(R.id.ib_country_back)
     ImageButton ib_country_back;
-
+    private int mItemIndex = 0;
     private PopSorting popSorting;  //排序
     private PopScreening popScreening;  //筛选
 
@@ -121,7 +123,7 @@ public class TaskListActivity extends BaseListActivity<String> {
                 popScreening.show();
                 break;
             case R.id.tv_canyu:
-                popSorting.show(1);
+                popSorting.show(mItemIndex);
                 popSorting.setOnBackClick(new PopSorting.OnBackClicks() {
                     @Override
                     public void onClick(View v) {
@@ -132,8 +134,9 @@ public class TaskListActivity extends BaseListActivity<String> {
                 popSorting.setOnItemClick(new PopSorting.OnClicks() {
                     @Override
                     public void onClick(View v, int item) {
+                        mItemIndex = item;
+                        popSortingSetType(item);
                         popSorting.dismissPop();
-//                        showLoading();
                         onDataLoaded(null);
                     }
                 });
@@ -142,5 +145,37 @@ public class TaskListActivity extends BaseListActivity<String> {
                 Toast.makeText(TaskListActivity.this,"排序--最后更新&创建时间&结束日期",Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    /**
+     * 设置筛选类型
+     * @param selIndex
+     */
+    private void popSortingSetType(int selIndex) {
+        switch (selIndex) {
+            case 0:
+                tv_canyu.setText("全部");
+                break;
+            case 1:
+                tv_canyu.setText("我接收");
+                break;
+            case 2:
+                tv_canyu.setText("我分派");
+                break;
+            case 3:
+                tv_canyu.setText("已处理");
+                break;
+            case 4:
+                tv_canyu.setText("已过期");
+                break;
+            case 5:
+                tv_canyu.setText("待处理");
+                break;
+        }
+        tv_canyu.setTextColor(Color.parseColor("#303F9F"));
+        Drawable drawable = getResources().getDrawable(R.drawable.sort_press_icon);
+        drawable.setBounds(10, 0, drawable.getMinimumWidth(),
+                drawable.getMinimumHeight());
+        tv_canyu.setCompoundDrawables(drawable, null, null, null);
     }
 }

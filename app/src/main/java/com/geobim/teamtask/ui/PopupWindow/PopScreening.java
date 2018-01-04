@@ -28,6 +28,9 @@ public class PopScreening implements View.OnClickListener {
     private LinearLayout mLayout_shuffling;
     private View mBack;
     private TextView mSorting;
+    private TextView tv_type1,tv_type2,tv_type3,tv_type4;
+    private TextView tv_states1,tv_states2,tv_states3,tv_states4;
+    private TextView tv_date1,tv_date2,tv_date3,tv_date4,tv_date5;
 
     public PopScreening(final Activity activity, LinearLayout layout, LinearLayout layout_shuffling, View back, TextView sorting) {
         this.mActivity = activity;
@@ -40,6 +43,7 @@ public class PopScreening implements View.OnClickListener {
 
     //下拉菜单
     public PopupWindow show() {
+        initView();
         if (pop != null && pop.isShowing()) {
             mSorting.setTextColor(Color.parseColor("#333333"));
             pop.dismiss();
@@ -47,22 +51,9 @@ public class PopScreening implements View.OnClickListener {
         } else {
             mSorting.setTextColor(Color.parseColor("#303F9F"));
             mBack.setVisibility(View.VISIBLE);
-            layoutway = mActivity.getLayoutInflater().inflate(
-                    R.layout.popwindow_screening, null);
+
             pop = new PopupWindow(layoutway, mLinearLayout.getWidth(),
                     ViewGroup.LayoutParams.WRAP_CONTENT);
-            rl_finish =   layoutway.findViewById(R.id.rl_finish);
-            rl_finish.setOnClickListener(this);
-            rlcance_view = layoutway.findViewById(R.id.rlcance_view);
-            rlcance_view.setOnClickListener(this);
-            tv_date_more = layoutway.findViewById(R.id.tv_date_more);
-            tv_team = layoutway.findViewById(R.id.tv_team);
-            tv_founder = layoutway.findViewById(R.id.tv_founder);
-            tv_person = layoutway.findViewById(R.id.tv_person);
-            tv_date_more.setOnClickListener(this);
-            tv_team.setOnClickListener(this);
-            tv_founder.setOnClickListener(this);
-            tv_person.setOnClickListener(this);
             pop.setBackgroundDrawable(new ColorDrawable(0));
             pop.setAnimationStyle(R.style.PopupAnimation);
             pop.update();
@@ -75,6 +66,53 @@ public class PopScreening implements View.OnClickListener {
                     (topBarHeight - (mLinearLayout.getHeight() + mLayout_shuffling.getHeight())) / 50);
         }
         return pop;
+    }
+
+    private void initView(){
+        layoutway = mActivity.getLayoutInflater().inflate(
+                R.layout.popwindow_screening, null);
+
+        rl_finish =   layoutway.findViewById(R.id.rl_finish);
+        rlcance_view = layoutway.findViewById(R.id.rlcance_view);
+        tv_date_more = layoutway.findViewById(R.id.tv_date_more);
+        tv_team = layoutway.findViewById(R.id.tv_team);
+        tv_founder = layoutway.findViewById(R.id.tv_founder);
+        tv_person = layoutway.findViewById(R.id.tv_person);
+        rl_finish.setOnClickListener(this);
+        rlcance_view.setOnClickListener(this);
+        tv_date_more.setOnClickListener(this);
+        tv_team.setOnClickListener(this);
+        tv_founder.setOnClickListener(this);
+        tv_person.setOnClickListener(this);
+
+        tv_type1 = layoutway.findViewById(R.id.tv_type1);
+        tv_type2 = layoutway.findViewById(R.id.tv_type2);
+        tv_type3 = layoutway.findViewById(R.id.tv_type3);
+        tv_type4 = layoutway.findViewById(R.id.tv_type4);
+        tv_type1.setOnClickListener(this);
+        tv_type2.setOnClickListener(this);
+        tv_type3.setOnClickListener(this);
+        tv_type4.setOnClickListener(this);
+
+        tv_states1 = layoutway.findViewById(R.id.tv_states1);
+        tv_states2 = layoutway.findViewById(R.id.tv_states2);
+        tv_states3 = layoutway.findViewById(R.id.tv_states3);
+        tv_states4 = layoutway.findViewById(R.id.tv_states4);
+        tv_states1.setOnClickListener(this);
+        tv_states2.setOnClickListener(this);
+        tv_states3.setOnClickListener(this);
+        tv_states4.setOnClickListener(this);
+
+        tv_date1 = layoutway.findViewById(R.id.tv_date1);
+        tv_date2 = layoutway.findViewById(R.id.tv_date2);
+        tv_date3 = layoutway.findViewById(R.id.tv_date3);
+        tv_date4 = layoutway.findViewById(R.id.tv_date4);
+        tv_date5 = layoutway.findViewById(R.id.tv_date5);
+        tv_date1.setOnClickListener(this);
+        tv_date2.setOnClickListener(this);
+        tv_date3.setOnClickListener(this);
+        tv_date4.setOnClickListener(this);
+        tv_date5.setOnClickListener(this);
     }
 
     public boolean isShow() {
@@ -117,6 +155,146 @@ public class PopScreening implements View.OnClickListener {
                 break;
             case R.id.tv_founder:
                 mActivity.startActivity(new Intent(mActivity, TaskFounderActivity.class));
+                break;
+            case R.id.tv_type1:
+                tv_type1.setTextColor(Color.parseColor("#ffffff"));
+                tv_type2.setTextColor(Color.parseColor("#333333"));
+                tv_type3.setTextColor(Color.parseColor("#333333"));
+                tv_type4.setTextColor(Color.parseColor("#333333"));
+                tv_type1.setBackgroundResource(R.drawable.bg_round);
+                tv_type2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_type2:
+                tv_type1.setTextColor(Color.parseColor("#333333"));
+                tv_type2.setTextColor(Color.parseColor("#ffffff"));
+                tv_type3.setTextColor(Color.parseColor("#333333"));
+                tv_type4.setTextColor(Color.parseColor("#333333"));
+                tv_type1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type2.setBackgroundResource(R.drawable.bg_round);
+                tv_type3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_type3:
+                tv_type1.setTextColor(Color.parseColor("#333333"));
+                tv_type2.setTextColor(Color.parseColor("#333333"));
+                tv_type3.setTextColor(Color.parseColor("#ffffff"));
+                tv_type4.setTextColor(Color.parseColor("#333333"));
+                tv_type1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type3.setBackgroundResource(R.drawable.bg_round);
+                tv_type4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_type4:
+                tv_type1.setTextColor(Color.parseColor("#333333"));
+                tv_type2.setTextColor(Color.parseColor("#333333"));
+                tv_type3.setTextColor(Color.parseColor("#333333"));
+                tv_type4.setTextColor(Color.parseColor("#ffffff"));
+                tv_type1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_type4.setBackgroundResource(R.drawable.bg_round);
+                break;
+            case R.id.tv_states1:
+                tv_states1.setTextColor(Color.parseColor("#ffffff"));
+                tv_states2.setTextColor(Color.parseColor("#333333"));
+                tv_states3.setTextColor(Color.parseColor("#333333"));
+                tv_states4.setTextColor(Color.parseColor("#333333"));
+                tv_states1.setBackgroundResource(R.drawable.bg_round);
+                tv_states2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_states2:
+                tv_states1.setTextColor(Color.parseColor("#333333"));
+                tv_states2.setTextColor(Color.parseColor("#ffffff"));
+                tv_states3.setTextColor(Color.parseColor("#333333"));
+                tv_states4.setTextColor(Color.parseColor("#333333"));
+                tv_states1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states2.setBackgroundResource(R.drawable.bg_round);
+                tv_states3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_states3:
+                tv_states1.setTextColor(Color.parseColor("#333333"));
+                tv_states2.setTextColor(Color.parseColor("#333333"));
+                tv_states3.setTextColor(Color.parseColor("#ffffff"));
+                tv_states4.setTextColor(Color.parseColor("#333333"));
+                tv_states1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states3.setBackgroundResource(R.drawable.bg_round);
+                tv_states4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_states4:
+                tv_states1.setTextColor(Color.parseColor("#333333"));
+                tv_states2.setTextColor(Color.parseColor("#333333"));
+                tv_states3.setTextColor(Color.parseColor("#333333"));
+                tv_states4.setTextColor(Color.parseColor("#ffffff"));
+                tv_states1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_states4.setBackgroundResource(R.drawable.bg_round);
+                break;
+            case R.id.tv_date1:
+                tv_date1.setTextColor(Color.parseColor("#ffffff"));
+                tv_date2.setTextColor(Color.parseColor("#333333"));
+                tv_date3.setTextColor(Color.parseColor("#333333"));
+                tv_date4.setTextColor(Color.parseColor("#333333"));
+                tv_date5.setTextColor(Color.parseColor("#333333"));
+                tv_date1.setBackgroundResource(R.drawable.bg_round);
+                tv_date2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date5.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_date2:
+                tv_date1.setTextColor(Color.parseColor("#333333"));
+                tv_date2.setTextColor(Color.parseColor("#ffffff"));
+                tv_date3.setTextColor(Color.parseColor("#333333"));
+                tv_date4.setTextColor(Color.parseColor("#333333"));
+                tv_date5.setTextColor(Color.parseColor("#333333"));
+                tv_date1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date2.setBackgroundResource(R.drawable.bg_round);
+                tv_date3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date5.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_date3:
+                tv_date1.setTextColor(Color.parseColor("#333333"));
+                tv_date2.setTextColor(Color.parseColor("#333333"));
+                tv_date3.setTextColor(Color.parseColor("#ffffff"));
+                tv_date4.setTextColor(Color.parseColor("#333333"));
+                tv_date5.setTextColor(Color.parseColor("#333333"));
+                tv_date1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date3.setBackgroundResource(R.drawable.bg_round);
+                tv_date4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date5.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_date4:
+                tv_date1.setTextColor(Color.parseColor("#333333"));
+                tv_date2.setTextColor(Color.parseColor("#333333"));
+                tv_date3.setTextColor(Color.parseColor("#333333"));
+                tv_date4.setTextColor(Color.parseColor("#ffffff"));
+                tv_date5.setTextColor(Color.parseColor("#333333"));
+                tv_date1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date4.setBackgroundResource(R.drawable.bg_round);
+                tv_date5.setBackgroundResource(R.drawable.bg_round_white_gray);
+                break;
+            case R.id.tv_date5:
+                tv_date1.setTextColor(Color.parseColor("#333333"));
+                tv_date2.setTextColor(Color.parseColor("#333333"));
+                tv_date3.setTextColor(Color.parseColor("#333333"));
+                tv_date4.setTextColor(Color.parseColor("#333333"));
+                tv_date5.setTextColor(Color.parseColor("#ffffff"));
+                tv_date1.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date2.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date3.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date4.setBackgroundResource(R.drawable.bg_round_white_gray);
+                tv_date5.setBackgroundResource(R.drawable.bg_round);
                 break;
         }
     }

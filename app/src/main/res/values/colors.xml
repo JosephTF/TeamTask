@@ -10,6 +10,7 @@
     <color name="btn_color_red_down">#cf0d16</color>
     <color name="white_color">#ffffff</color>
     <color name="theme_color">#303F9F</color>
+    <color name="theme_text_color">#333</color>
 
     <!--按钮-->
     <drawable name="white">#ffffff</drawable>

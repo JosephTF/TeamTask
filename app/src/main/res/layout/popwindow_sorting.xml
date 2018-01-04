@@ -23,28 +23,14 @@
                     android:background="@color/lineColor" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/white"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="全部"
-                    android:textColor="#505050"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor" />
-
-                <TextView
                     android:id="@+id/layout_a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/white"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="我接收"
+                    android:text="全部"
+                    android:clickable="true"
                     android:textColor="#505050"
                     android:textSize="14sp" />
 
@@ -60,23 +46,8 @@
                     android:background="@drawable/white"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="我分派"
-                    android:textColor="#505050"
-                    android:textSize="14sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor"/>
-
-                <TextView
-                    android:id="@+id/layout_c"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/white"
-                    android:gravity="center_vertical"
-                    android:padding="10dp"
-                    android:text="已处理"
+                    android:text="我接收"
+                    android:clickable="true"
                     android:textColor="#505050"
                     android:textSize="14sp" />
 
@@ -86,13 +57,14 @@
                     android:background="@color/lineColor" />
 
                 <TextView
-                    android:id="@+id/layout_d"
+                    android:id="@+id/layout_c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/white"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="已过期"
+                    android:text="我分派"
+                    android:clickable="true"
                     android:textColor="#505050"
                     android:textSize="14sp" />
 
@@ -102,13 +74,48 @@
                     android:background="@color/lineColor"/>
 
                 <TextView
-                    android:id="@+id/layout_d1"
+                    android:id="@+id/layout_d"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="已处理"
+                    android:clickable="true"
+                    android:textColor="#505050"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lineColor" />
+
+                <TextView
+                    android:id="@+id/layout_e"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/white"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="已过期"
+                    android:clickable="true"
+                    android:textColor="#505050"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lineColor"/>
+
+                <TextView
+                    android:id="@+id/layout_f"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/white"
                     android:gravity="center_vertical"
                     android:padding="10dp"
                     android:text="待处理"
+                    android:clickable="true"
                     android:textColor="#505050"
                     android:textSize="14sp" />
 
